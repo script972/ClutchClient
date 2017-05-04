@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ClutchClient</string>
+    <string name="serch_title">search</string>
 </resources>
