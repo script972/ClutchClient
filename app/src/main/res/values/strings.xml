@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">ClutchClient</string>
-    <string name="serch_title">search</string>
+    <string name="app_name">Clutch Client</string>
+    <string name="serch_title">Search</string>
+    <string name="add_card">Add card</string>
+    <string name="MyCards">My Cards</string>
+    <string name="OnlineCards">Online Cards</string>
 </resources>
