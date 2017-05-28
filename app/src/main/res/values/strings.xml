@@ -4,4 +4,7 @@
     <string name="add_card">Add card</string>
     <string name="MyCards">My Cards</string>
     <string name="OnlineCards">Online Cards</string>
+    <string name="share_app">Share app</string>
+    <string name="close">close</string>
+    <string name="open">open</string>
 </resources>

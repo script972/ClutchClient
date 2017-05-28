@@ -2,11 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:id="@+id/manipulation_card" >
-    <item
+        <item
         android:orderInCategory="1"
         android:title="@string/add_card"
         android:icon="@drawable/credit_card_plus"/>
 
+        <item
+            android:id="@+id/menuMyCards"
+            android:orderInCategory="1"
+            android:title="@string/MyCards"
+            android:icon="@drawable/credit_card_plus"/>
+
+        <item
+            android:id="@+id/menuOnlineCards"
+            android:orderInCategory="1"
+            android:title="@string/OnlineCards"
+            android:icon="@drawable/credit_card_plus"/>
+
+        <item
+            android:orderInCategory="2"
+            android:title="@string/share_app"
+            android:icon="@mipmap/ic_share_variant"/>
     </group>
 
 </menu>

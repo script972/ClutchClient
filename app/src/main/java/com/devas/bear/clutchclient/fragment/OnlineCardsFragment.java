@@ -10,19 +10,18 @@ import android.view.ViewGroup;
 
 import com.devas.bear.clutchclient.R;
 
-
 /**
- * Created by script972 on 09.05.2017.
+ * Created by script972 on 28.05.2017.
  */
 
 @SuppressLint("ValidFragment")
-public class MyCardsFragment extends Fragment {
+public class OnlineCardsFragment extends Fragment {
     private View view;
-    private final int LAYOUT=R.layout.my_cards_fragment;
+    private final int LAYOUT= R.layout.online_cards_fragment;
 
-    public static MyCardsFragment getInstance(){
+    public static OnlineCardsFragment getInstance(){
         Bundle args = new Bundle();
-        MyCardsFragment fragment = new MyCardsFragment();
+        OnlineCardsFragment fragment = new OnlineCardsFragment();
         fragment.setArguments(args);
         return fragment;
     }
