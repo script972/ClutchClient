@@ -2,9 +2,17 @@ package com.devas.bear.clutchclient.adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ImageSpan;
+import android.util.Log;
 
 import com.devas.bear.clutchclient.MainActivity;
 import com.devas.bear.clutchclient.R;

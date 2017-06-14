@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout= (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
 
+        //icon in adapter cant add???
+        tabLayout.getTabAt(0).setIcon(R.mipmap.ic_cards_outline_grey600_36dp);
+        tabLayout.getTabAt(1).setIcon(R.mipmap.ic_cards_variant_grey600_36dp);
+
 
     }
 
