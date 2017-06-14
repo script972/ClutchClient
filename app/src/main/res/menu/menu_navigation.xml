@@ -5,19 +5,19 @@
         <item
         android:orderInCategory="1"
         android:title="@string/add_card"
-        android:icon="@drawable/credit_card_plus"/>
+        android:icon="@mipmap/ic_credit_card_plus"/>
 
         <item
             android:id="@+id/menuMyCards"
             android:orderInCategory="1"
             android:title="@string/MyCards"
-            android:icon="@drawable/credit_card_plus"/>
+            android:icon="@mipmap/ic_cards_outline_grey600_36dp"/>
 
         <item
             android:id="@+id/menuOnlineCards"
             android:orderInCategory="1"
             android:title="@string/OnlineCards"
-            android:icon="@drawable/credit_card_plus"/>
+            android:icon="@mipmap/ic_cards_variant_grey600_36dp"/>
 
         <item
             android:orderInCategory="2"

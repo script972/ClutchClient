@@ -3,8 +3,8 @@
 
         <style name="AppDefault" parent="AppTheme">
                 <!-- Customize your theme here. -->
-                <item name="colorPrimary">@color/colorPrimary</item>
-                <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+                <item name="colorPrimary">#ffd54f</item>
+                <item name="colorPrimaryDark">#ccaa3f</item>
                 <item name="windowActionBar">false</item>
                 <item name="colorControlNormal">@color/white</item>
 

@@ -5,6 +5,16 @@
         android:id="@+id/search"
         android:title="@string/serch_title"
         android:orderInCategory="1"
-        android:icon="@drawable/magnify"
+        android:icon="@mipmap/ic_magnify"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/gear"
+        android:title="@string/gear"
+        android:orderInCategory="2"
+        android:icon="@mipmap/ic_settings"
+        app:showAsAction="ifRoom" />
+
+
+
 </menu>

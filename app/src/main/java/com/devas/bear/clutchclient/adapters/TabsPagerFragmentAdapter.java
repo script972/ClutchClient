@@ -49,6 +49,10 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return context.getResources().getString(tabs[position]);
+        return context.getResources().getString(tabs[position]) ;
     }
+
+
+
+
 }
