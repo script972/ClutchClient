@@ -30,6 +30,12 @@ public class CardModel {
         this.auther = auther;
     }
 
+    public CardModel(String name, int rang, String thumbnail) {
+        this.name = name;
+        this.rang = rang;
+        this.thumbnail = thumbnail;
+    }
+
     public CardModel() {
     }
 
