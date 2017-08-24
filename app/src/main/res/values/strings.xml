@@ -9,4 +9,5 @@
     <string name="open">Open</string>
     <string name="gear">Settings</string>
     <string name="lorem">lorem</string>
+    <string name="action_delete_card">Delete card</string>
 </resources>

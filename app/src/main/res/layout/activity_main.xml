@@ -39,7 +39,6 @@
             app:tabIndicatorHeight="0dp"
             app:tabBackground="@drawable/tab_backgound"
             app:tabMode="fixed"
-
             app:tabGravity="fill"
             app:tabTextColor="@color/black">
 
