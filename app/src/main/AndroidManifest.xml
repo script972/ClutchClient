@@ -16,10 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.script972.clutch.Login">
-
-        </activity>
-        <activity android:name=".company.AboutCompany"></activity>
+        <activity android:name="com.script972.clutch.Login" />
+        <activity android:name=".company.AboutCompany" />
+        <activity android:name=".ActivityAddCard"></activity>
     </application>
 
 </manifest>

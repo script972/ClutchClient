@@ -1,14 +1,11 @@
 package com.devas.bear.clutchclient;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.provider.SyncStateContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppDefault);
@@ -33,8 +31,12 @@ public class MainActivity extends AppCompatActivity {
         initToolbar();
         initNavigationView();
         initTab();
+       // initFloating();
 
     }
+
+
+
 
     private void initToolbar() {
         toolbar=(Toolbar) findViewById(R.id.toolbar);

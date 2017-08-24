@@ -1,10 +1,12 @@
 package com.devas.bear.clutchclient.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.devas.bear.clutchclient.ActivityAddCard;
 import com.devas.bear.clutchclient.R;
 import com.devas.bear.clutchclient.adapters.CardsAdapter;
 import com.devas.bear.clutchclient.model.CardModel;
@@ -36,6 +39,9 @@ public class MyCardsFragment extends Fragment {
     private List<CardModel> cardModels;
     private TextView text;
 
+    private FloatingActionButton fab;
+
+
 
     public static MyCardsFragment getInstance(){
         Bundle args = new Bundle();
@@ -54,12 +60,27 @@ public class MyCardsFragment extends Fragment {
     }
 
     private void initView() {
-        text= (TextView) view.findViewById(R.id.text);
-        text.setText("LOL");
+
         cardModels=new ArrayList<>();//del
         initCards();
+        initFloating();
+
 
     }
+
+    private void initFloating() {
+        fab = (FloatingActionButton) view.findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+                Intent intent=new Intent(getContext(), ActivityAddCard.class);
+                startActivity(intent);
+            }
+        });
+    }
+
 
     private void initCards() {
 
@@ -73,6 +94,27 @@ public class MyCardsFragment extends Fragment {
         rcv.setAdapter(cardsAdapter);
         cardsAdapter.notifyDataSetChanged();
         Log.i("checkcard","set adapter ok");
+
+        rcv.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
+                Log.i("checkcard","dx="+dx+" dy="+dy);
+
+                if (dy > 0 ||dy<0 && fab.isShown())
+                    fab.hide();
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                Log.i("checkcard","newState="+newState);
+
+                if (newState == RecyclerView.SCROLL_INDICATOR_TOP){/*SCROLL_INDICATOR_BOTTOM*/
+                    fab.show();
+                }
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
+
 
     }
 
