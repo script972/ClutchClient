@@ -11,4 +11,12 @@
     <string name="lorem">lorem</string>
     <string name="action_delete_card">Delete card</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="b_scan_barckode">Add barckode</string>
+    <string name="card_front_side">Front side</string>
+    <string name="card_back_side">Back side</string>
+    <string name="number_card">Number card</string>
+    <string name="comment_card">Comment</string>
+    <string name="card_list">Cards</string>
+    <string name="country_select">Country</string>
+    <string name="action_search">Search</string>
 </resources>

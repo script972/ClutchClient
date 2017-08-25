@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.devas.bear.clutchclient.ActivityAddCard;
+import com.devas.bear.clutchclient.addcard.ActivityAddCard;
 import com.devas.bear.clutchclient.R;
 import com.devas.bear.clutchclient.adapters.CardsAdapter;
 import com.devas.bear.clutchclient.model.CardModel;
