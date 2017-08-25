@@ -18,9 +18,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.devas.bear.clutchclient.addcard.ActivityAddCard;
 import com.devas.bear.clutchclient.R;
 import com.devas.bear.clutchclient.adapters.CardsAdapter;
+import com.devas.bear.clutchclient.addcard.ActivityListCard;
 import com.devas.bear.clutchclient.model.CardModel;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class MyCardsFragment extends Fragment {
             public void onClick(View view) {
                /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
-                Intent intent=new Intent(getContext(), ActivityAddCard.class);
+                Intent intent=new Intent(getContext(), ActivityListCard.class);
                 startActivity(intent);
             }
         });

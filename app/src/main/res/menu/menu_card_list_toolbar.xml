@@ -5,14 +5,14 @@
 
     <item android:id="@+id/action_search"
         android:title="@string/action_search"
-        android:icon="@drawable/loop"
+        android:icon="@mipmap/ic_magnify"
         app:showAsAction="ifRoom|collapseActionView"
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
     <!-- "Mark Favorite", should appear as action button if possible -->
     <item
         android:id="@+id/action_favorite"
-        android:icon="@drawable/earth"
+        android:icon="@drawable/ic_earth_white_48dp"
         android:title="@string/country_select"
         app:showAsAction="ifRoom"/>
 
