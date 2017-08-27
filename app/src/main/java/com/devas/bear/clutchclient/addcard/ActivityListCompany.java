@@ -1,10 +1,13 @@
 package com.devas.bear.clutchclient.addcard;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,12 +16,21 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.devas.bear.clutchclient.R;
+import com.devas.bear.clutchclient.model.Company;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 
-public class ActivityListCard extends AppCompatActivity {
+public class ActivityListCompany extends AppCompatActivity {
 
     private Toolbar toolbar;
     private  SearchView searchView;
+    private RecyclerView companyList;
+    private CompanyListAdapter adapter;
+
+    private ArrayList<Company> companies;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +42,54 @@ public class ActivityListCard extends AppCompatActivity {
     private void initView() {
         initToolBar();
 
+        initRecycler();
+
+
+    }
+
+
+    private void initRecycler() {
+        companyList= (RecyclerView) findViewById(R.id.company_list);
+
+
+        companyList.setClickable(true);
+        companyList.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), companyList,
+                new RecyclerItemListener.RecyclerTouchListener() {
+                    public void onClickItem(View v, int position) {
+                        Log.i("taxiservicelist", "VIEW "+position);
+                        Log.i("taxiservicelist", companies.get(position).toString());
+                        Intent intent=new Intent(ActivityListCompany.this, ActivityAddCard.class);
+                        startActivity(intent);
+
+
+                    }
+
+                    public void onLongClickItem(View v, int position) {
+                        Log.i("taxiservicelist", "Long VIEW "+position);
+
+                    }
+                }));
+
+        mockeLoadData();
+
+    }
+
+    private void mockeLoadData() {
+
+        companies=new ArrayList<>();
+        companies.add(new Company(1, "Addidas", "icon1"));
+        companies.add(new Company(2, "Puma", "icon2"));
+        companies.add(new Company(3, "Breshka", "icon3"));
+        companies.add(new Company(6, "BreshkaRR", "icon3RR"));
+        companies.add(new Company(4, "Pulombir", "icon4"));
+        companies.add(new Company(5, "Lacost", "icon5"));
+        Collections.sort(companies);
+
+        adapter=new CompanyListAdapter(this.getApplicationContext(), companies);
+        LinearLayoutManager llm = new LinearLayoutManager(this.getApplicationContext());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        companyList.setLayoutManager(llm);
+        companyList.setAdapter(adapter);
     }
 
     private void initToolBar() {
@@ -69,10 +129,6 @@ public class ActivityListCard extends AppCompatActivity {
         });
 
 
-
-
-
-
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -91,5 +147,9 @@ public class ActivityListCard extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
 
         }
+    }
+
+    public void addNewCompany(View view) {
+
     }
 }
