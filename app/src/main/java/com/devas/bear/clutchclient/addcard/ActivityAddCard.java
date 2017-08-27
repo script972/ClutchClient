@@ -1,11 +1,13 @@
 package com.devas.bear.clutchclient.addcard;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.devas.bear.clutchclient.R;
 
@@ -13,6 +15,7 @@ public class ActivityAddCard extends AppCompatActivity {
 
 
     private Toolbar toolbar;
+    private ImageView cardPhotoBarckode;
 
 
     @Override
@@ -26,6 +29,7 @@ public class ActivityAddCard extends AppCompatActivity {
 
     private void initView() {
         initToolBar();
+        cardPhotoBarckode= (ImageView) findViewById(R.id.card_photo_barckode);
     }
 
     private void initToolBar() {
@@ -42,6 +46,8 @@ public class ActivityAddCard extends AppCompatActivity {
     }
 
 
-
-
+    public void openScan(View view) {
+        Intent intent=new Intent(this, ActivityScaner.class);
+        startActivity(intent);
+    }
 }

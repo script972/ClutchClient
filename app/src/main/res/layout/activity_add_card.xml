@@ -116,6 +116,7 @@
                 android:id="@+id/card_photo_barckode"
                 android:layout_width="18dp"
                 android:layout_height="match_parent"
+                android:onClick="openScan"
                 android:layout_weight="0.55"
                 android:src="@drawable/add_barkode" />
 

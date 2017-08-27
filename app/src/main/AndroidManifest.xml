@@ -19,7 +19,8 @@
         <activity android:name="com.script972.clutch.Login" />
         <activity android:name=".company.AboutCompany" />
         <activity android:name=".addcard.ActivityAddCard" />
-        <activity android:name=".addcard.ActivityListCompany"></activity>
+        <activity android:name=".addcard.ActivityListCompany" />
+        <activity android:name=".addcard.ActivityScaner"></activity>
     </application>
 
 </manifest>
