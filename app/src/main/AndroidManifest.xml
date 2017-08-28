@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.devas.bear.clutchclient">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
@@ -20,7 +24,17 @@
         <activity android:name=".company.AboutCompany" />
         <activity android:name=".addcard.ActivityAddCard" />
         <activity android:name=".addcard.ActivityListCompany" />
-        <activity android:name=".addcard.ActivityScaner"></activity>
+
+      <!--  <activity android:name="com.google.zxing.client.android.SCAN"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="com.google.zxing.client.android.SCAN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>-->
     </application>
 
 </manifest>

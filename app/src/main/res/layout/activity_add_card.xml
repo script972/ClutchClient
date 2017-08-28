@@ -63,6 +63,7 @@
                     android:id="@+id/card_photo_front"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:onClick="loadFront"
                     android:layout_marginTop="10dp"
                     android:src="@drawable/front_card" />
 
