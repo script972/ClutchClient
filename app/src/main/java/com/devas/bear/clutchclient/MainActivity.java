@@ -4,11 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.devas.bear.clutchclient.adapters.TabsPagerFragmentAdapter;
@@ -19,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
+    private SearchView searchView;
 
 
 
@@ -50,6 +55,66 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar.inflateMenu(R.menu.menu);
     }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView =
+                (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.i("search", "onQueryTextSubmit "+query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.i("search", "onQueryTextChange "+newText);
+                /*Log.i("search", "onQueryTextChange "+newText);
+                List<Company> companiestemp=new ArrayList<Company>();
+                companiestemp.addAll(companies);
+                companies.clear();
+                for (int i = 0; i < companiestemp.size(); i++) {
+                    if(companiestemp.get(i).getTitle().contains(newText))
+                        companies.add(companiestemp.get(i));
+                }
+                adapter.notifyDataSetChanged();
+                Log.i("search", "adapterNofityData");*/
+
+                return false;
+            }
+        });
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_favorite:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+
+
 
     private void initNavigationView() {
         drawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);

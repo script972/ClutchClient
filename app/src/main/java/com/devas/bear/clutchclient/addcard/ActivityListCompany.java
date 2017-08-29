@@ -29,6 +29,7 @@ public class ActivityListCompany extends AppCompatActivity {
     private  SearchView searchView;
     private RecyclerView companyList;
     private CompanyListAdapter adapter;
+    private ArrayList<Company> companiesListFromServer;
 
     private ArrayList<Company> companies;
 
@@ -83,6 +84,8 @@ public class ActivityListCompany extends AppCompatActivity {
         companies.add(new Company(4, "Pulombir", "icon4"));
         companies.add(new Company(5, "Lacost", "icon5"));
         Collections.sort(companies);
+        companiesListFromServer=new ArrayList<>();
+        companiesListFromServer.addAll(companies);
 
         adapter=new CompanyListAdapter(this.getApplicationContext(), companies);
         LinearLayoutManager llm = new LinearLayoutManager(this.getApplicationContext());
@@ -126,8 +129,16 @@ public class ActivityListCompany extends AppCompatActivity {
                 List<Company> companiestemp=new ArrayList<Company>();
                 companiestemp.addAll(companies);
                 companies.clear();
+
+                if(newText.equals("")){
+                    companies.addAll(companiesListFromServer);
+                    adapter.notifyDataSetChanged();
+                    return false;
+                }
+
+
                 for (int i = 0; i < companiestemp.size(); i++) {
-                    if(companiestemp.get(i).getTitle().contains(newText))
+                    if(companiestemp.get(i).getTitle().toUpperCase().contains(newText.toUpperCase()))
                         companies.add(companiestemp.get(i));
                 }
                 adapter.notifyDataSetChanged();
