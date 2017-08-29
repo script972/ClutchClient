@@ -20,6 +20,7 @@ import com.devas.bear.clutchclient.model.Company;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class ActivityListCompany extends AppCompatActivity {
@@ -41,7 +42,6 @@ public class ActivityListCompany extends AppCompatActivity {
 
     private void initView() {
         initToolBar();
-
         initRecycler();
 
 
@@ -50,7 +50,6 @@ public class ActivityListCompany extends AppCompatActivity {
 
     private void initRecycler() {
         companyList= (RecyclerView) findViewById(R.id.company_list);
-
 
         companyList.setClickable(true);
         companyList.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), companyList,
@@ -124,6 +123,16 @@ public class ActivityListCompany extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 Log.i("search", "onQueryTextChange "+newText);
+                List<Company> companiestemp=new ArrayList<Company>();
+                companiestemp.addAll(companies);
+                companies.clear();
+                for (int i = 0; i < companiestemp.size(); i++) {
+                    if(companiestemp.get(i).getTitle().contains(newText))
+                        companies.add(companiestemp.get(i));
+                }
+                adapter.notifyDataSetChanged();
+                Log.i("search", "adapterNofityData");
+
                 return false;
             }
         });

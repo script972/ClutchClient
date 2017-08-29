@@ -105,4 +105,8 @@ public class MainActivity extends AppCompatActivity {
     private void showOnlineCardTab() {
         viewPager.setCurrentItem(Constants.TAB_TWO);
     }
+
+
+
+
 }
