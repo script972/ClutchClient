@@ -1,4 +1,4 @@
-package com.devas.bear.clutchclient.company;
+package com.devas.bear.clutchclient.activitys.company;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

@@ -3,7 +3,9 @@
     package="com.devas.bear.clutchclient">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
 
     <application
@@ -13,7 +15,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".activitys.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,11 +28,12 @@
             </intent-filter>
         </activity>
         <activity android:name="com.script972.clutch.Login" />
-        <activity android:name=".company.AboutCompany" />
-        <activity android:name=".addcard.ActivityAddCard" />
-        <activity android:name=".addcard.ActivityListCompany" />
+        <activity android:name=".activitys.company.AboutCompany" />
+        <activity android:name=".activitys.addcard.ActivityAddCard" />
+        <activity android:name=".activitys.addcard.ActivityListCompany" />
 
-      <!--  <activity android:name="com.google.zxing.client.android.SCAN"
+        <!--
+        <activity android:name="com.google.zxing.client.android.SCAN"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
@@ -34,7 +42,9 @@
                 <action android:name="com.google.zxing.client.android.SCAN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
-        </activity>-->
+        </activity>
+        -->
+        <activity android:name=".activitys.DiscountMapsActivity"></activity>
     </application>
 
 </manifest>

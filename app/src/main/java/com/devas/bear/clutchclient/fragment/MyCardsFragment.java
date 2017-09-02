@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.devas.bear.clutchclient.R;
 import com.devas.bear.clutchclient.adapters.CardsAdapter;
-import com.devas.bear.clutchclient.addcard.ActivityListCompany;
+import com.devas.bear.clutchclient.activitys.addcard.ActivityListCompany;
 import com.devas.bear.clutchclient.model.CardModel;
 
 import java.util.ArrayList;

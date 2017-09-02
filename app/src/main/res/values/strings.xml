@@ -20,4 +20,5 @@
     <string name="country_select">Country</string>
     <string name="action_search">Search</string>
     <string name="scaner_activity_title">Scan your card</string>
+    <string name="menu_discount_point">Discount map</string>
 </resources>

@@ -1,5 +1,6 @@
-package com.devas.bear.clutchclient;
+package com.devas.bear.clutchclient.activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.devas.bear.clutchclient.Constants;
+import com.devas.bear.clutchclient.R;
+import com.devas.bear.clutchclient.activitys.addcard.ActivityAddCard;
 import com.devas.bear.clutchclient.adapters.TabsPagerFragmentAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -137,12 +141,28 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.menuOnlineCards:
                         showOnlineCardTab();
                         break;
+                    case R.id.menuAddCard:
+                        showAddCard();
+                        break;
+                    case R.id.menuDiscountPoint:
+                        showMapsDiscount();
 
                 }
                 return true;
             }
         });
 
+    }
+
+    private void showMapsDiscount() {
+        Intent intent=new Intent(this, DiscountMapsActivity.class);
+        startActivity(intent);
+
+    }
+
+    private void showAddCard() {
+        Intent intent=new Intent(this,ActivityAddCard.class);
+        startActivity(intent);
     }
 
 

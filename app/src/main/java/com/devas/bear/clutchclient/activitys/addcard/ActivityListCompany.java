@@ -1,4 +1,4 @@
-package com.devas.bear.clutchclient.addcard;
+package com.devas.bear.clutchclient.activitys.addcard;
 
 import android.content.Intent;
 import android.graphics.Color;

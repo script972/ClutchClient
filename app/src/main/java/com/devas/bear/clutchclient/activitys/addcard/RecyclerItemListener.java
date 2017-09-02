@@ -1,4 +1,4 @@
-package com.devas.bear.clutchclient.addcard;
+package com.devas.bear.clutchclient.activitys.addcard;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

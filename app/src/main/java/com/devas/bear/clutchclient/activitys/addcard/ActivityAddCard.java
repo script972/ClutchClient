@@ -1,9 +1,13 @@
-package com.devas.bear.clutchclient.addcard;
+package com.devas.bear.clutchclient.activitys.addcard;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.ParcelFileDescriptor;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +20,9 @@ import com.devas.bear.clutchclient.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.io.FileDescriptor;
+import java.io.IOException;
+
 
 public class ActivityAddCard extends AppCompatActivity {
 
@@ -23,7 +30,8 @@ public class ActivityAddCard extends AppCompatActivity {
     private Toolbar toolbar;
     private ImageView cardPhotoBarckode;
     private EditText etNumberCard;
-
+    private ImageView cardPhotoFront;
+    private ImageView cardPhotoBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +46,8 @@ public class ActivityAddCard extends AppCompatActivity {
         initToolBar();
         cardPhotoBarckode= (ImageView) findViewById(R.id.card_photo_barckode);
         etNumberCard= (EditText) findViewById(R.id.et_number_card);
+        cardPhotoFront= (ImageView) findViewById(R.id.card_photo_front);
+        cardPhotoBack= (ImageView) findViewById(R.id.card_photo_back);
     }
 
     private void initToolBar() {
@@ -82,11 +92,65 @@ public class ActivityAddCard extends AppCompatActivity {
                 etNumberCard.setText(result.getContents());
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
             }
+
         }
+
+        /*if (requestCode == 21) {
+
+            //Get ImageURi and load with help of picasso
+            //Uri selectedImageURI = data.getData();
+            Log.i("scan", "fronPhoto ready");
+
+            Picasso.with(this).load(data.getData()).noPlaceholder().centerCrop().fit()
+                    .into(cardPhotoFront);
+        }*/
+
+        if(requestCode == 21 && resultCode == RESULT_OK){
+            Log.i("scan", "fronPhoto ready");
+
+            Uri imageUri = data.getData();
+            cardPhotoFront.setImageURI(imageUri);
+
+        }
+        if (requestCode == 22 && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            cardPhotoBack.setImageURI(selectedImage);
+
+        }
+
+    }
+
+    private Bitmap getBitmapFromUri(Uri uri) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor =
+                getContentResolver().openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+        return image;
     }
 
     public void loadFront(View view) {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE );
-        startActivityForResult( intent, 22 );
+        /*Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE );
+        startActivityForResult( intent, 22 );*/
+        pickImage(21);
     }
+
+    public void loadBack(View view) {
+        pickImage(22);
+
+    }
+
+
+    private void pickImage(int code) {
+
+        Intent i = new Intent(
+                Intent.ACTION_PICK,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(i, code);
+    }
+
 }
+
+
+
