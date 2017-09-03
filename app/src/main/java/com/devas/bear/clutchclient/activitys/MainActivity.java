@@ -18,7 +18,7 @@ import android.view.MenuItem;
 
 import com.devas.bear.clutchclient.Constants;
 import com.devas.bear.clutchclient.R;
-import com.devas.bear.clutchclient.activitys.addcard.ActivityAddCard;
+import com.devas.bear.clutchclient.activitys.addcard.ActivityListCompany;
 import com.devas.bear.clutchclient.adapters.TabsPagerFragmentAdapter;
 
 public class MainActivity extends AppCompatActivity {
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAddCard() {
-        Intent intent=new Intent(this,ActivityAddCard.class);
+        Intent intent=new Intent(this,ActivityListCompany.class);
         startActivity(intent);
     }
 

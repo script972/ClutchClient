@@ -1,7 +1,8 @@
 package com.devas.bear.clutchclient.controller;
 
+import android.location.LocationListener;
+
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
@@ -16,7 +17,8 @@ public interface GoogleMapsController extends OnMapReadyCallback,
         GoogleMap.OnCameraMoveListener,
         GoogleMap.OnCameraIdleListener,
         GoogleMap.OnCameraMoveCanceledListener,
-        LocationListener {
+        LocationListener
+         {
 
     void fillPoint();
 
