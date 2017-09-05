@@ -1,0 +1,75 @@
+package com.devas.bear.clutchclient.activitys.card;
+
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+
+import com.devas.bear.clutchclient.R;
+import com.devas.bear.clutchclient.view.ViewItemCard;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.wajahatkarim3.easyflipview.EasyFlipView;
+
+
+public class ActivityItemCard extends AppCompatActivity implements ViewItemCard {
+
+    private EasyFlipView profileImage;
+    private ImageView barcode;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_item_card);
+        initView();
+    }
+
+    private void initView() {
+        barcode= (ImageView) findViewById(R.id.barcode);
+
+        initToolbar();
+        mock();
+
+
+    }
+
+    private void mock() {
+        String text="11232321"; // Whatever you need to encode in the QR code
+        MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+        try {
+            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.CODE_128,700,330);
+            BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+            Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+            barcode.setImageBitmap(bitmap);
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void initToolbar() {
+
+    }
+
+    @Override
+    public void fillPhoto(String fron, String back) {
+
+    }
+
+    @Override
+    public void fillBarCode(String number) {
+
+    }
+
+    @Override
+    public void fillLike(int like) {
+
+    }
+
+    @Override
+    public void fillNotice(String notice) {
+
+    }
+}

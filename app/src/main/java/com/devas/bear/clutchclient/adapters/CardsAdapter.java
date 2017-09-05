@@ -1,6 +1,7 @@
 package com.devas.bear.clutchclient.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.devas.bear.clutchclient.R;
+import com.devas.bear.clutchclient.activitys.card.ActivityItemCard;
 import com.devas.bear.clutchclient.model.CardModel;
 
 import java.util.List;
@@ -79,6 +81,15 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
         });
         Log.i("checkcard","onBindViewHolder finish");
 
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, ActivityItemCard.class);
+                mContext.startActivity(intent);
+            }
+        });
+
+
     }
 
     /**
@@ -96,6 +107,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
         Log.i("checkcard","showPopupMenu finish");
 
     }
+
+
 
     /**
      * Click listener for popup menu items

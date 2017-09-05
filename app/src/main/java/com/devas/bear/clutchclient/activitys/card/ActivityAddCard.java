@@ -1,4 +1,4 @@
-package com.devas.bear.clutchclient.activitys.addcard;
+package com.devas.bear.clutchclient.activitys.card;
 
 import android.content.Intent;
 import android.graphics.Bitmap;

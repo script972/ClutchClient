@@ -18,7 +18,7 @@ import android.view.MenuItem;
 
 import com.devas.bear.clutchclient.Constants;
 import com.devas.bear.clutchclient.R;
-import com.devas.bear.clutchclient.activitys.addcard.ActivityListCompany;
+import com.devas.bear.clutchclient.activitys.card.ActivityListCompany;
 import com.devas.bear.clutchclient.adapters.TabsPagerFragmentAdapter;
 
 public class MainActivity extends AppCompatActivity {

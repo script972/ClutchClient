@@ -20,7 +20,7 @@ import android.widget.TextView;
 
 import com.devas.bear.clutchclient.R;
 import com.devas.bear.clutchclient.adapters.CardsAdapter;
-import com.devas.bear.clutchclient.activitys.addcard.ActivityListCompany;
+import com.devas.bear.clutchclient.activitys.card.ActivityListCompany;
 import com.devas.bear.clutchclient.model.CardModel;
 
 import java.util.ArrayList;
@@ -134,6 +134,8 @@ public class MyCardsFragment extends Fragment {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
+
 
 
     /**
