@@ -21,4 +21,5 @@
     <string name="action_search">Search</string>
     <string name="scaner_activity_title">Scan your card</string>
     <string name="menu_discount_point">Discount map</string>
+    <string name="txt_version_bottom">ver</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.devas.bear.clutchclient">
+    package="com.script972.clutchclient">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,17 +18,18 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".activitys.MainActivity">
+        <activity android:name=".ui.activitys.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.script972.clutch.Login" />
-        <activity android:name=".activitys.company.AboutCompany" />
-        <activity android:name=".activitys.card.ActivityAddCard" />
-        <activity android:name=".activitys.card.ActivityListCompany" />
+
+        <activity android:name=".ui.activitys.MainActivity"/>
+        <activity android:name=".ui.activitys.Login" />
+        <activity android:name=".ui.activitys.company.AboutCompany" />
+        <activity android:name=".ui.activitys.card.ActivityAddCard" />
+        <activity android:name=".ui.activitys.card.ActivityListCompany" />
 
         <!--
         <activity android:name="com.google.zxing.client.android.SCAN"
@@ -42,8 +43,9 @@
             </intent-filter>
         </activity>
         -->
-        <activity android:name=".activitys.DiscountMapsActivity" />
-        <activity android:name=".activitys.card.ActivityItemCard"></activity>
+        <activity android:name=".ui.activitys.DiscountMapsActivity" />
+        <activity android:name=".ui.activitys.card.ActivityItemCard" />
+
     </application>
 
 </manifest>
