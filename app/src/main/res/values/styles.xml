@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
 
@@ -22,5 +22,30 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="LoginEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dimen_26</item>
+        <item name="android:layout_marginRight">@dimen/dimen_26</item>
 
+
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="android:layout_marginTop">@dimen/dimen_8</item>
+        <item name="android:paddingBottom">@dimen/dimen_22</item>
+        <item name="android:backgroundTint" tools:ignore="NewApi">@color/colorWhite</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:lines">1</item>
+    </style>
+
+    <style name="LoginButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/dimen_26</item>
+        <item name="android:layout_marginRight">@dimen/dimen_26</item>
+        <item name="android:layout_marginBottom">@dimen/dimen_16</item>
+        <item name="android:background">@drawable/bg_button_login</item>
+    </style>
+
+
+    <color name="colorWhite">#ffffff</color>
 </resources>

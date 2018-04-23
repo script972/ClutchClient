@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activitys.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/app_background" />
+
+    <ProgressBar
+        android:id="@+id/pb_freeze"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+         >
+    </ProgressBar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt_email"
+                style="@style/LoginEditText"
+                android:hint="@string/hint_email"
+                android:inputType="text" />
+
+            <EditText
+                android:id="@+id/edt_password"
+                style="@style/LoginEditText"
+                android:hint="@string/hint_password"
+                android:inputType="text" />
+
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/LoginButton"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="@dimen/dimen_30"
+                android:text="@string/btn_login" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</android.support.constraint.ConstraintLayout>
