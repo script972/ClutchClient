@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1054324136526",
+    "project_id": "firebase-clutch"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054324136526:android:d58af97c9e933989",
+        "android_client_info": {
+          "package_name": "com.script972.clutch"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054324136526-1ordmeplbtn5t1bnn8ho6706eag2capb.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1054324136526-ij99fib0vigpgi81l9352agph320orsn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.script972.clutch",
+            "certificate_hash": "df1102711e9fc4b803d1da48ee9a88d331a7a573"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhrZHBx1lgXA-puXhbRuR1q1GfWMhYtgE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
