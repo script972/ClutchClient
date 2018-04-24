@@ -1,33 +1,35 @@
 {
   "project_info": {
-    "project_number": "1054324136526",
-    "project_id": "firebase-clutch"
+    "project_number": "816618119060",
+    "firebase_url": "https://clutch-dcdbd.firebaseio.com",
+    "project_id": "clutch-dcdbd",
+    "storage_bucket": "clutch-dcdbd.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1054324136526:android:d58af97c9e933989",
+        "mobilesdk_app_id": "1:816618119060:android:1f2328dab5afd7ce",
         "android_client_info": {
           "package_name": "com.script972.clutchclient"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1054324136526-1ordmeplbtn5t1bnn8ho6706eag2capb.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "1054324136526-ij99fib0vigpgi81l9352agph320orsn.apps.googleusercontent.com",
+          "client_id": "816618119060-de0hkim7lj9tpruhi48lm3hbuchn8113.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.script972.clutch",
-            "certificate_hash": "df1102711e9fc4b803d1da48ee9a88d331a7a573"
+            "package_name": "com.script972.clutchclient",
+            "certificate_hash": "6944f781c0c32f3aaa9d61264b4c5feb548a8021"
           }
+        },
+        {
+          "client_id": "816618119060-dlj5keco5rns1r3k6kejt5c3p7of3r2g.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBhrZHBx1lgXA-puXhbRuR1q1GfWMhYtgE"
+          "current_key": "AIzaSyCSOwM6SShwj1y_OJ1BNY2Sz9b7zrI9x-E"
         }
       ],
       "services": {
@@ -35,11 +37,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816618119060-dlj5keco5rns1r3k6kejt5c3p7of3r2g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

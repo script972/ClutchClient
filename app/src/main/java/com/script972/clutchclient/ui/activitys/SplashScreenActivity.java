@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.ui.activitys.authorization.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

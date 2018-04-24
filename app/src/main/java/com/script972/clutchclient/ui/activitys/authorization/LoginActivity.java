@@ -1,5 +1,6 @@
-package com.script972.clutchclient.ui.activitys;
+package com.script972.clutchclient.ui.activitys.authorization;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.artlite.bslibrary.annotations.FindViewBy;
 import com.script972.clutchclient.R;
@@ -28,12 +30,16 @@ public class LoginActivity extends AppCompatActivity{
     @BindView(R.id.pb_freeze)
     ProgressBar pbFreeze;
 
+    @BindView(R.id.link_registration)
+    TextView linkRegistration;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
         ButterKnife.bind(this);
         button.setOnClickListener(clicker);
+        linkRegistration.setOnClickListener(clicker);
 
     }
 
@@ -53,12 +59,19 @@ public class LoginActivity extends AppCompatActivity{
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.btn_login: btnLoginClick(); break;
+                case R.id.link_registration: btnRegistration(); break;
             }
 
         }
     };
 
-
+    /**
+     * Method wich help move to registration activity
+     */
+    private void btnRegistration() {
+        Intent intent = new Intent(this, RegistrationStep1Activity.class);
+        startActivity(intent);
+    }
 
 
 }

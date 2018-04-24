@@ -26,7 +26,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activitys.MainActivity" />
-        <activity android:name=".ui.activitys.Login" />
         <activity android:name=".ui.activitys.company.AboutCompany" />
         <activity android:name=".ui.activitys.card.ActivityAddCard" />
         <activity android:name=".ui.activitys.card.ActivityListCompany" />
@@ -45,7 +44,9 @@
         -->
         <activity android:name=".ui.activitys.DiscountMapsActivity" />
         <activity android:name=".ui.activitys.card.ActivityItemCard" />
-        <activity android:name=".ui.activitys.LoginActivity"/>
+        <activity android:name=".ui.activitys.authorization.LoginActivity" />
+        <activity android:name=".ui.activitys.authorization.RegistrationStep1Activity" />
+        <activity android:name=".ui.activitys.authorization.RegistrationStep2Activity"></activity>
     </application>
 
 </manifest>

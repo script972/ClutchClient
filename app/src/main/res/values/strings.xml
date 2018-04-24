@@ -25,4 +25,11 @@
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="btn_login">Login</string>
+    <string name="hint_password_rep">Repeat password</string>
+    <string name="btn_registration">Registration</string>
+    <string name="e_invalid_email">Invalid email</string>
+    <string name="e_short_password">Password must be more than 5 symbol</string>
+    <string name="e_password_not_same">Check your passwords. They is not same</string>
+    <string name="e_user_already_existing">User with same email already existing</string>
+    <string name="link_registration">Registration</string>
 </resources>
