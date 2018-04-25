@@ -32,4 +32,7 @@
     <string name="e_password_not_same">Check your passwords. They is not same</string>
     <string name="e_user_already_existing">User with same email already existing</string>
     <string name="link_registration">Registration</string>
+    <string name="toolbar_registration">Registration</string>
+    <string name="toolbar_personal_info">Personal info</string>
+    <string name="btn_save">Save</string>
 </resources>

@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,11 +17,16 @@ import com.script972.clutchclient.helpers.ValidatorHelper;
 import com.script972.clutchclient.mvp.impl.RegistrationPresentersImpl;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class RegistrationStep1Activity extends AppCompatActivity implements RegistrationContract.View {
 
-    @BindView(R.id.btn_registration)
-    Button btnRegistration;
+    //outlets
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
+    @BindView(R.id.btn_registration_one)
+    Button btnRegistrationOne;
 
     @BindView(R.id.edt_email)
     EditText edtEmail;
@@ -41,8 +47,15 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_step1);
+        ButterKnife.bind(this);
 
-        btnRegistration.setOnClickListener(clicker);
+        btnRegistrationOne.setOnClickListener(clicker);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
     }
 
@@ -51,8 +64,7 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
      */
     private void btnRegistrationClick() {
         if(validateEmail(edtEmail) & validatePassword(edtPassword) & validatePassword(edtRepPassword)){
-
-            if(!edtPassword.equals(edtRepPassword)){
+            if(!edtPassword.getText().toString().equals(edtRepPassword.getText().toString())){
                 edtRepPassword.setError(getResources().getString(R.string.e_password_not_same));
                 return;
             }else{
@@ -60,7 +72,6 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
                 presenter.checkSameUserName(edtEmail.toString());
             }
         }
-
     }
 
     /**
@@ -69,7 +80,7 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
      * @return
      */
     private boolean validateEmail(EditText edtEmail) {
-        if(ValidatorHelper.validateEmail(edtEmail.getText().toString())){
+        if(!ValidatorHelper.validateEmail(edtEmail.getText().toString())){
             edtEmail.setError(getResources().getString(R.string.e_invalid_email));
             return false;
         }else{
@@ -90,16 +101,19 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
         return true;
     }
 
-
-
-
+    /**
+     * Method wich show progress dialog and freeze window
+     */
     private void showProgressDialog() {
         hideProgressDialog();
-
         progressDialog = DialogHelper.getProgressDialog(this);
+        progressDialog.setCancelable(false);
         progressDialog.show();
     }
 
+    /**
+     * Method wich hide progress dialog and unfreeze window
+     */
     protected void hideProgressDialog() {
         if (progressDialog != null) {
             progressDialog.dismiss();
@@ -114,7 +128,7 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
      */
     @Override
     public void registrationSuccess(User user) {
-        Intent intent = new Intent(this, RegistrationStep2Activity.class);
+        Intent intent = new Intent(this, PersonalInfoActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
@@ -149,7 +163,7 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
         @Override
         public void onClick(View v) {
             switch (v.getId()){
-                case R.id.btn_login: btnRegistrationClick(); break;
+                case R.id.btn_registration_one: btnRegistrationClick(); break;
             }
         }
     };

@@ -34,4 +34,6 @@ public class RegistrationPresentersImpl implements RegistrationContract.Presente
         this.view.registrationSuccess(user);
 
     }
+
+
 }

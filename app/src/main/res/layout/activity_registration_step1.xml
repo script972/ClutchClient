@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.activitys.authorization.LoginActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_tollbar"
+        android:background="@color/main_color"
+        android:minHeight="@dimen/dimen_tollbar"
+        android:fitsSystemWindows="true"
+        android:elevation="2dp"
+        app:title="@string/toolbar_registration"
+        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+        app:titleTextColor="@color/colorWhite"
+        android:titleTextColor="@color/colorWhite"/>
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -29,7 +43,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -57,27 +71,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/dimen_30"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="@dimen/dimen_35"
                     android:layout_height="@dimen/dimen_35"
-                    android:src="@drawable/ic_google"/>
+                    android:src="@drawable/ic_google" />
 
                 <ImageView
                     android:layout_width="@dimen/dimen_35"
                     android:layout_height="@dimen/dimen_35"
                     android:layout_marginLeft="@dimen/dimen_16"
                     android:layout_marginRight="@dimen/dimen_16"
-                    android:src="@drawable/ic_facebook"/>
+                    android:src="@drawable/ic_facebook" />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_registration"
+                android:id="@+id/btn_registration_one"
                 style="@style/LoginButton"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="@dimen/dimen_30"

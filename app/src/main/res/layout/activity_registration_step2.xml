@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.activitys.authorization.LoginActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_tollbar"
+        android:background="@color/main_color"
+        android:minHeight="@dimen/dimen_tollbar"
+        android:fitsSystemWindows="true"
+        android:elevation="2dp"
+        app:title="@string/toolbar_personal_info"
+        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+        app:titleTextColor="@color/colorWhite"
+        android:titleTextColor="@color/colorWhite"/>
+
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -36,15 +50,17 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_registration"
-                style="@style/LoginButton"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="@dimen/dimen_30"
-                android:text="@string/btn_registration" />
+
 
         </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_registration"
+        style="@style/LoginButton"
+        android:layout_marginBottom="8dp"
+        android:text="@string/btn_save"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView" />
 
 
 </android.support.constraint.ConstraintLayout>

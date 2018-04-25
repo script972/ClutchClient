@@ -12,6 +12,11 @@ public class RegistrationContract {
          */
         void checkSameUserName(String email);
 
+        /**
+         * Method wich registration new User
+         * @param email
+         * @param password
+         */
         void sendNewUser(String email, String password);
 
     }
@@ -33,6 +38,8 @@ public class RegistrationContract {
          * @param existing true or false
          */
         void sameUserExisting(boolean existing);
+
+
 
     }
 
