@@ -2,9 +2,9 @@ package com.script972.clutchclient.mvp.contracts;
 
 import com.script972.clutchclient.model.api.User;
 
-public class RegistrationContract {
+public interface RegistrationContract {
 
-    public interface Presenter{
+    interface Presenter{
 
         /**
          * Method wich check the existing User on the server
@@ -14,17 +14,17 @@ public class RegistrationContract {
 
         /**
          * Method wich registration new User
-         * @param email
-         * @param password
+         * @param email  user's
+         * @param password user's
          */
         void sendNewUser(String email, String password);
 
     }
 
-    public interface View{
+    interface View{
         /**
          * Method wich call if registation pass success
-         * @param user
+         * @param user registration
          */
         void registrationSuccess(User user);
 

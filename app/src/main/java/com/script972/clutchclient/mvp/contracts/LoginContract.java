@@ -2,20 +2,18 @@ package com.script972.clutchclient.mvp.contracts;
 
 import com.script972.clutchclient.model.api.User;
 
-public class LoginContract {
+public interface LoginContract {
 
-    public interface Presenter{
-
-
+    interface Presenter{
         /**
          * Method wich controll login process of User
-         * @param login
-         * @param password
+         * @param login user's
+         * @param password user's
          */
         void login(String login, String password);
     }
 
-    public interface View{
+    interface View{
         /**
          * Withod wich show UI user login success
          */

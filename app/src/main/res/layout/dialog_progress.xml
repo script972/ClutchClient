@@ -12,6 +12,6 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:padding="15dp"
-        android:background="@drawable/ic_dots" />
+        />
 
 </FrameLayout>

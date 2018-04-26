@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activitys.authorization.LoginActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_tollbar"
+        android:background="@color/main_color"
+        android:minHeight="@dimen/dimen_tollbar"
+        android:fitsSystemWindows="true"
+        android:elevation="2dp"
+        app:title="@string/toolbar_discount_map"
+        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+        app:titleTextColor="@color/colorWhite"
+        android:titleTextColor="@color/colorWhite" tools:targetApi="m"/>
 
-    <fragment
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <fragment xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="290dp"
+        android:layout_marginTop="0dp"
         android:scaleType="center"
-        tools:context="com.devas.bear.clutchclient.activitys.DiscountMapsActivity" />
-</FrameLayout>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:context="com.devas.bear.clutchclient.activitys.DiscountMapsActivity"
+        tools:ignore="MissingConstraints" />
+
+
+    <com.script972.clutchclient.ui.views.GeoDiscountView
+        android:id="@+id/geo_discount_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dimen_0"
+        android:layout_marginEnd="@dimen/dimen_0"
+        android:layout_marginLeft="@dimen/dimen_0"
+        android:layout_marginRight="@dimen/dimen_0"
+        android:layout_marginStart="@dimen/dimen_0"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map" />
+
+</android.support.constraint.ConstraintLayout>

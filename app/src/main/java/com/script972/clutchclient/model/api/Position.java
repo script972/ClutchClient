@@ -13,6 +13,11 @@ public class Position {
     public Position() {
     }
 
+    public Position(double lat, double lng) {
+        this.lat=lat;
+        this.lng=lng;
+    }
+
     public Position(Long id, double lat, double lng, String description) {
         this.id = id;
         this.lat = lat;

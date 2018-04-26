@@ -93,7 +93,6 @@ public class MyCardsFragment extends Fragment {
         rcv.setItemAnimator(new DefaultItemAnimator());
         rcv.setAdapter(cardsAdapter);
         cardsAdapter.notifyDataSetChanged();
-        Log.i("checkcard","set adapter ok");
 
         rcv.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override

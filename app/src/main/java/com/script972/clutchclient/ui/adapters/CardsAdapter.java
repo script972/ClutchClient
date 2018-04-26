@@ -39,7 +39,6 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
             count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             overflow = (ImageView) view.findViewById(R.id.overflow);
-            Log.i("checkcard","init ready");
         }
     }
 
@@ -47,16 +46,12 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
     public CardsAdapter(Context mContext, List<CardModel> cardList) {
         this.mContext = mContext;
         this.cardList = cardList;
-        Log.i("checkcard","CardsAdapter finish");
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.i("checkcard","onCreateViewHolder start");
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_inflator, parent, false);
-        Log.i("checkcard","onCreateViewHolder finish");
-
         return new MyViewHolder(itemView);
     }
 
@@ -64,23 +59,15 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Log.i("checkcard","onBindViewHolder start");
-
         CardModel cardModel = cardList.get(position);
         holder.title.setText(cardModel.getName());
         holder.count.setText("Rang "+cardModel.getRang());
-
-        // loading album cover using Glide library
-     //!   Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
-
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPopupMenu(holder.overflow);
             }
         });
-        Log.i("checkcard","onBindViewHolder finish");
-
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,23 +76,18 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
             }
         });
 
-
     }
 
     /**
      * Showing popup menu when tapping on 3 dots
      */
     private void showPopupMenu(View view) {
-        Log.i("checkcard","showPopupMenu start");
-
         // inflate menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.cards_dots_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
-        Log.i("checkcard","showPopupMenu finish");
-
     }
 
 

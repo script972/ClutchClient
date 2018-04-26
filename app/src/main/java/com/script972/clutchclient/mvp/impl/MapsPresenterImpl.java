@@ -1,4 +1,4 @@
-package com.script972.clutchclient.controller;
+package com.script972.clutchclient.mvp.impl;
 
 import android.Manifest;
 import android.app.Activity;
@@ -12,17 +12,11 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
-import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -37,58 +31,43 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.model.api.Company;
+import com.script972.clutchclient.mvp.contracts.MapsContract;
+import com.script972.clutchclient.ui.activitys.DiscountMapsActivity;
 
-/**
- * Created by script972 on 02.09.2017.
- */
+import java.util.List;
 
-public class DiscountMapsController implements GoogleMapsController {
-
-
-    private Context context;
+public class MapsPresenterImpl implements MapsContract.Presenter{
     private GoogleMap mapG;
-    private GoogleApiClient mGoogleApiClient;
     private CameraPosition cameraPosition;
     private BitmapDescriptor image;
     private Marker myPositionMarker;
 
+
     private FusedLocationProviderClient mFusedLocationClient;
 
+    private final MapsContract.View view;
+    private final Context context;
 
-    public DiscountMapsController(Context context, SupportMapFragment mapG) {
-        this.context = context;
-        mapG.getMapAsync(this);
+
+
+    public MapsPresenterImpl(DiscountMapsActivity discountMapsActivity) {
+        this.view=discountMapsActivity;
+        this.context=discountMapsActivity;
+    }
+
+    public MapsPresenterImpl(SupportMapFragment mapFragment, DiscountMapsActivity discountMapsActivity) {
+        this.view=discountMapsActivity;
+        this.context=discountMapsActivity;
+        mapFragment.getMapAsync(this);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
-
     }
 
-
-    @Override
-    public void fillPoint() {
-
-    }
-
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
 
     @Override
     public void onLocationChanged(Location location) {
-        Log.i("mylocation", "Changed location " + location.getLatitude() + " " + location.getLongitude());
         myPositionMarker.setPosition(new LatLng(location.getLatitude(), location.getLongitude()));
         myPositionMarker.setVisible(true);
-        Toast.makeText(context, "Changed location" + location.getLatitude() + " " + location.getLongitude(), Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -102,17 +81,13 @@ public class DiscountMapsController implements GoogleMapsController {
         detectPosition();
 
         //mapG.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        Log.i("myLocation", "ProviderEndbled provider=" + provider);
-
+        //Log.i("myLocation", "ProviderEndbled provider=" + provider);
     }
 
     @Override
     public void onProviderDisabled(String provider) {
         Log.i("myLocation", "onProviderDisabled");
-        Log.i("myLocation", "onProviderDisabled "+myPositionMarker.isVisible());
         myPositionMarker.remove();
-
-
 
     }
 
@@ -121,10 +96,6 @@ public class DiscountMapsController implements GoogleMapsController {
 
     }
 
-    @Override
-    public void onCameraMoveCanceled() {
-
-    }
 
     @Override
     public void onCameraMove() {
@@ -147,6 +118,7 @@ public class DiscountMapsController implements GoogleMapsController {
 
         settingCamera();
         detectPosition();
+        view.onMapReady();
 
     }
 
@@ -155,9 +127,6 @@ public class DiscountMapsController implements GoogleMapsController {
         MarkerOptions myLocationMarker = new MarkerOptions().position(new LatLng(46.97, 32.02)).icon(image);
         myPositionMarker=mapG.addMarker(myLocationMarker);
         myPositionMarker.setVisible(false);
-
-
-
     }
 
     private void detectPosition() {
@@ -210,8 +179,6 @@ public class DiscountMapsController implements GoogleMapsController {
 
         mapG.setBuildingsEnabled(true);
         mapG.setOnCameraMoveListener(this);//Устанавливаем слушатель на передвижение карты
-        mapG.setOnCameraMoveCanceledListener(this);
-        mapG.setOnCameraMoveListener(this);
         mapG.setOnCameraIdleListener(this);
 
 
@@ -220,10 +187,10 @@ public class DiscountMapsController implements GoogleMapsController {
 
 
 
-        mapG.getUiSettings().setCompassEnabled(false);//отключаем компас
-        mapG.getUiSettings().setRotateGesturesEnabled(false); //отключаем вращение карты
-        mapG.getUiSettings().setZoomControlsEnabled(false);//отключаем елементы зуум карты
-        mapG.getUiSettings().setTiltGesturesEnabled(true);//накол угла карты
+        mapG.getUiSettings().setCompassEnabled(false);//switch off compas
+        mapG.getUiSettings().setRotateGesturesEnabled(false); //switch off rotation map
+        mapG.getUiSettings().setZoomControlsEnabled(false);//switch off zoom button
+        mapG.getUiSettings().setTiltGesturesEnabled(true);//switch on anchor map
         //  mapG.setPadding(0, 300, 0,0); //установка отступов для помещение в видимый район кнопки onMyPossition
 
 
@@ -244,8 +211,7 @@ public class DiscountMapsController implements GoogleMapsController {
         mGoogleApiClient.connect();
 */
 
-        //позиционирование
-
+        //positions
         LocationManager lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.i("myLocation", "MyPosition error");
@@ -332,4 +298,15 @@ public class DiscountMapsController implements GoogleMapsController {
         return marker;
     }
 
+    public void fillDiscountPoints(List<Company> companyList) {
+        for (int i = 0; i < companyList.size(); i++) {
+            LatLng position=new LatLng(companyList.get(i).getPosition().getLat(), companyList.get(i).getPosition().getLng());
+            mapG.addMarker(new MarkerOptions().position(position));
+        }
+    }
+
+    @Override
+    public void onCameraMoveCanceled() {
+
+    }
 }

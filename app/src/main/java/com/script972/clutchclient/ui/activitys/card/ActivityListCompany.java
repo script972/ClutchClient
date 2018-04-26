@@ -17,7 +17,7 @@ import android.view.View;
 
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.Company;
+import com.script972.clutchclient.model.api.Company;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,12 +78,12 @@ public class ActivityListCompany extends AppCompatActivity {
     private void mockeLoadData() {
 
         companies=new ArrayList<>();
-        companies.add(new Company(1, "Addidas", "icon1"));
-        companies.add(new Company(2, "Puma", "icon2"));
-        companies.add(new Company(3, "Breshka", "icon3"));
-        companies.add(new Company(6, "BreshkaRR", "icon3RR"));
-        companies.add(new Company(4, "Pulombir", "icon4"));
-        companies.add(new Company(5, "Lacost", "icon5"));
+        companies.add(new Company( "Addidas", "icon1"));
+        companies.add(new Company("Puma", "icon2"));
+        companies.add(new Company( "Breshka", "icon3"));
+        companies.add(new Company( "BreshkaRR", "icon3RR"));
+        companies.add(new Company( "Pulombir", "icon4"));
+        companies.add(new Company( "Lacost", "icon5"));
         Collections.sort(companies);
         companiesListFromServer=new ArrayList<>();
         companiesListFromServer.addAll(companies);

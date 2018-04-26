@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.Company;
+import com.script972.clutchclient.model.api.Company;
 
 import java.util.List;
 
