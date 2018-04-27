@@ -50,12 +50,6 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
     private final Context context;
 
 
-
-    public MapsPresenterImpl(DiscountMapsActivity discountMapsActivity) {
-        this.view=discountMapsActivity;
-        this.context=discountMapsActivity;
-    }
-
     public MapsPresenterImpl(SupportMapFragment mapFragment, DiscountMapsActivity discountMapsActivity) {
         this.view=discountMapsActivity;
         this.context=discountMapsActivity;
@@ -63,65 +57,9 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
     }
 
-
-    @Override
-    public void onLocationChanged(Location location) {
-        myPositionMarker.setPosition(new LatLng(location.getLatitude(), location.getLongitude()));
-        myPositionMarker.setVisible(true);
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        Log.i("myLocation", "onStatucChanged=" + provider + " Statuc=" + status);
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-        detectPosition();
-
-        //mapG.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-        //Log.i("myLocation", "ProviderEndbled provider=" + provider);
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-        Log.i("myLocation", "onProviderDisabled");
-        myPositionMarker.remove();
-
-    }
-
-    @Override
-    public void onCameraIdle() {
-
-    }
-
-
-    @Override
-    public void onCameraMove() {
-
-    }
-
-    @Override
-    public void onCameraMoveStarted(int i) {
-
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mapG = googleMap;
-        initialVars();
-
-
-        settingMap();
-        //initializeVars();
-
-        settingCamera();
-        detectPosition();
-        view.onMapReady();
-
-    }
-
+    /**
+     * Method wich controll start initial vars
+     */
     private void initialVars() {
         image = bitmapSizeByScall(R.drawable.mylocationmarker, 0.1f);
         MarkerOptions myLocationMarker = new MarkerOptions().position(new LatLng(46.97, 32.02)).icon(image);
@@ -129,6 +67,9 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
         myPositionMarker.setVisible(false);
     }
 
+    /**
+     * Method wich detect user position
+     */
     private void detectPosition() {
 
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -147,7 +88,6 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
-                            Log.i("myLocation", "myLocation=" + location);
                             cameraPosition = new CameraPosition.Builder()
                                     .target(new LatLng(location.getLatitude(), location.getLongitude()))        //Позиция на карты
                                     .zoom(15)                   //Зумм карты
@@ -155,38 +95,25 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
                                     .tilt(45)                   //Градус на карту
                                     .build();
 
-                            ;
-
-
 
                             mapG.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
                             myPositionMarker.setPosition(new LatLng(location.getLatitude(), location.getLongitude()));
                             myPositionMarker.setVisible(true);
 
-
-                            // ...
-                        } else {
-                            Log.i("myLocation", "myLocation is null");
-
                         }
-
                     }
                 });
-
     }
 
+    /**
+     * Method wich controll setting map
+     */
     private void settingMap() {
-
-        mapG.setBuildingsEnabled(true);
-        mapG.setOnCameraMoveListener(this);//Устанавливаем слушатель на передвижение карты
-        mapG.setOnCameraIdleListener(this);
+        mapG.setOnCameraMoveListener(this);//set listener start move
+        mapG.setOnCameraIdleListener(this);//set listener on move map end
 
 
-
-
-
-
-
+        mapG.setBuildingsEnabled(true); //set show bilding on map
         mapG.getUiSettings().setCompassEnabled(false);//switch off compas
         mapG.getUiSettings().setRotateGesturesEnabled(false); //switch off rotation map
         mapG.getUiSettings().setZoomControlsEnabled(false);//switch off zoom button
@@ -195,11 +122,9 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
 
 
         mapG.animateCamera(CameraUpdateFactory.zoomIn(), 1500, null);// анимирование зуум
-
         mapG.animateCamera(CameraUpdateFactory.zoomTo(12), 1500, null);// анимирование
 
 /*
-
         //Подлключаем АПИ
         mGoogleApiClient = new GoogleApiClient
                 .Builder(context)
@@ -224,35 +149,55 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
 
     }
 
+    /**
+     * Method wich controll setting camera of the map
+     */
     private void settingCamera() {
-        LatLng curentTemp;
-       /* if(myPosistion!=null){
-            Log.i("currentPosition", "myPosBefore "+myPosistion.getLatitude()+";"+myPosistion.getLongitude());
-            curentTemp=new LatLng(myPosistion.getLatitude(), myPosistion.getLongitude());
-        }
-        else {
-            curentTemp=currentCity;
-        }*/
-        //   Log.i("currentPosition", curentTemp.latitude+";"+curentTemp.longitude);
-
         cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(46.976303, 31.992626))        //Позиция на карты
-                .zoom(15)                   //Зумм карты
+                .zoom(12)                   //Зумм карты
                 .bearing(0)                //Направление на север в градусах
                 .tilt(45)                   //Градус на карту
                 .build();
-        //mapG.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         mapG.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
     }
 
-    private BitmapDescriptor bitmapSizeByScall(int bitmapIn, float scall_zero_to_one_f) {
+
+    /**
+     * Method wich fill discount point
+     * @param companyList - this list
+     */
+    public void fillDiscountPoints(List<Company> companyList) {
+        for (int i = 0; i < companyList.size(); i++) {
+            LatLng position=new LatLng(companyList.get(i).getPosition().getLat(), companyList.get(i).getPosition().getLng());
+            mapG.addMarker(new MarkerOptions().position(position)).setTag(companyList.get(i));
+        }
+    }
+
+    /**
+     * Method wich resize image point
+     *
+     * @param bitmapIn
+     * @param scallZeroToOneF
+     * @return
+     */
+    private BitmapDescriptor bitmapSizeByScall(int bitmapIn, float scallZeroToOneF) {
         Bitmap bitmap= BitmapFactory.decodeResource(context.getResources(), bitmapIn);
         Bitmap bitmapOut = Bitmap.createScaledBitmap(bitmap,
-                Math.round(bitmap.getWidth() * scall_zero_to_one_f),
-                Math.round(bitmap.getHeight() * scall_zero_to_one_f), false);
+                Math.round(bitmap.getWidth() * scallZeroToOneF),
+                Math.round(bitmap.getHeight() * scallZeroToOneF), false);
 
         return BitmapDescriptorFactory.fromBitmap(bitmapOut);
+    }
+
+    /**
+     * Method wich ask GPS on
+     */
+    private void askGPSOn(){
+        final LocationManager manager = (LocationManager) context.getSystemService( Context.LOCATION_SERVICE );
+        if (!manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            view.askGPSOn();
+        }
 
     }
 
@@ -298,15 +243,92 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
         return marker;
     }
 
-    public void fillDiscountPoints(List<Company> companyList) {
-        for (int i = 0; i < companyList.size(); i++) {
-            LatLng position=new LatLng(companyList.get(i).getPosition().getLat(), companyList.get(i).getPosition().getLng());
-            mapG.addMarker(new MarkerOptions().position(position));
-        }
+    //listeners
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mapG = googleMap;
+        initialVars();
+
+        settingMap();
+
+        settingCamera();
+        detectPosition();
+        view.onMapReady();
+        askGPSOn();
+        mapG.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                view.controllClickOnMapsMarker((Company)marker.getTag());
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        myPositionMarker.setPosition(new LatLng(location.getLatitude(), location.getLongitude()));
+        myPositionMarker.setVisible(true);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+        Log.i("myLocation", "onStatucChanged=" + provider + " Statuc=" + status);
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        detectPosition();
+
+        //mapG.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        //Log.i("myLocation", "ProviderEndbled provider=" + provider);
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Log.i("myLocation", "onProviderDisabled");
+        myPositionMarker.remove();
+
+    }
+
+    @Override
+    public void onCameraIdle() {
+
+    }
+
+
+    @Override
+    public void onCameraMove() {
+
+    }
+
+    @Override
+    public void onCameraMoveStarted(int i) {
+
     }
 
     @Override
     public void onCameraMoveCanceled() {
 
+    }
+
+    /**
+     * Method wich focus on comapany marker on the map
+     *
+     * @param company
+     */
+
+    @Override
+    public void focusOnCompany(Company company) {
+        LatLng position=new LatLng(company.getPosition().getLat(), company.getPosition().getLng());
+        cameraPosition = new CameraPosition.Builder()
+                .target(position)        //Позиция на карты
+                .zoom(16)                   //Зумм карты
+                .bearing(0)                //Направление на север в градусах
+                .tilt(45)                   //Градус на карту
+                .build();
+        //mapG.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        mapG.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 }

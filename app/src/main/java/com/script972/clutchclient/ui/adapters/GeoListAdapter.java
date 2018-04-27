@@ -26,12 +26,12 @@ public class GeoListAdapter extends RecyclerView.Adapter<GeoListAdapter.ViewHold
         this.items=lists;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView companyTitle;
         TextView companyDescribe;
         ImageView companyImg;
-        public ViewHolder(View v) {
+        ViewHolder(View v) {
             super(v);
             companyTitle = v.findViewById(R.id.company_title);
             companyDescribe = v.findViewById(R.id.company_describe);

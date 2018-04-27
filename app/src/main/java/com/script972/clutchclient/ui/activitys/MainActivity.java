@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.gear:startActivity(new Intent(MainActivity.this, SettingActivity.class)); break;
+                }
                 return false;
             }
         });

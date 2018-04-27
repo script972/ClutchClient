@@ -6,10 +6,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 
-import com.artlite.bslibrary.annotations.FindViewBy;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.callbacks.GeoListCallbacks;
+import com.script972.clutchclient.helpers.DialogHelper;
 import com.script972.clutchclient.model.api.Company;
 import com.script972.clutchclient.mvp.contracts.MapsContract;
 import com.script972.clutchclient.mvp.impl.MapsPresenterImpl;
@@ -26,7 +26,7 @@ public class DiscountMapsActivity extends AppCompatActivity implements MapsContr
     //outlets
     private SupportMapFragment mapFragment;
 
-    @BindView(R.id.geo_discount_view)
+    //@BindView(R.id.geo_discount_view)
     GeoDiscountView geoDiscountView;
 
     @BindView( R.id.toolbar)
@@ -46,6 +46,8 @@ public class DiscountMapsActivity extends AppCompatActivity implements MapsContr
     }
 
     private void initView() {
+        geoDiscountView=findViewById(R.id.geo_discount_view);
+
         //Google
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -65,11 +67,39 @@ public class DiscountMapsActivity extends AppCompatActivity implements MapsContr
         public void returnWorkerList(List<Company> companyList) {
             mapsPresenter.fillDiscountPoints(companyList);
         }
+
+        /**
+         * Method wich call in click on item geo list company
+         *
+         * @param company
+         */
+        @Override
+        public void chooseItemInList(Company company) {
+            mapsPresenter.focusOnCompany(company);
+        }
     };
 
 
     @Override
     public void onMapReady() {
         geoDiscountView.onMapReady();
+    }
+
+    /**
+     * Method wich open gps on window
+     */
+    @Override
+    public void askGPSOn() {
+        DialogHelper.getGpsDialog(this).show();
+    }
+
+    /**
+     * Click on the marker map, focus on current company in the list
+     *
+     * @param marker - clicker
+     */
+    @Override
+    public void controllClickOnMapsMarker(Company marker) {
+        geoDiscountView.companyFocus(marker);
     }
 }

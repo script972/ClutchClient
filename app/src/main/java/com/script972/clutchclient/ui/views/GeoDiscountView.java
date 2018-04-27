@@ -1,10 +1,12 @@
 package com.script972.clutchclient.ui.views;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.artlite.bslibrary.annotations.FindViewBy;
@@ -15,6 +17,7 @@ import com.script972.clutchclient.model.api.Company;
 import com.script972.clutchclient.mvp.contracts.GeoListContract;
 import com.script972.clutchclient.mvp.impl.GeoDiscountPresenterImp;
 import com.script972.clutchclient.ui.adapters.GeoListAdapter;
+import com.script972.clutchclient.ui.adapters.callbacks.RecyclerTouchListener;
 
 import java.util.List;
 
@@ -29,6 +32,10 @@ public class GeoDiscountView extends BSView implements GeoListContract.View {
     private GeoListContract.Presenter presenter=new GeoDiscountPresenterImp(this);
     private Context context;
     private GeoListCallbacks callbacks;
+
+    //vars
+    @Nullable
+    private List<Company> companiesList;
 
 
     /**
@@ -80,10 +87,20 @@ public class GeoDiscountView extends BSView implements GeoListContract.View {
 
     }
 
+    /**
+     * Method for setting callback of view
+     *
+     * @param callbacks
+     */
+    public void setCallbacks(GeoListCallbacks callbacks) {
+        this.callbacks = callbacks;
+    }
+
     @Override
     public void onMapReady() {
         presenter.getListGeoCompany();
     }
+
 
     /**
      * Method wich filling company list
@@ -92,14 +109,53 @@ public class GeoDiscountView extends BSView implements GeoListContract.View {
      * @param lists
      */
     @Override
-    public void fillListGeoCompany(GeoListAdapter geoListAdapter, List<Company> lists) {
+    public void fillListGeoCompany(GeoListAdapter geoListAdapter, final List<Company> lists) {
         rv.setAdapter(geoListAdapter);
         geoListAdapter.notifyDataSetChanged();
         callbacks.returnWorkerList(lists);
+        this.companiesList=lists;
+        //click listeners of item recycler view
+        rv.addOnItemTouchListener(recyclerTouchListener);
 
     }
 
-    public void setCallbacks(GeoListCallbacks callbacks) {
-        this.callbacks = callbacks;
+
+    /**
+     * Method wich focus on item company
+     *
+     * @param marker for focusing
+     */
+    @Override
+    public void companyFocus(Company marker) {
+        if(companiesList==null || companiesList.size()==0)
+            return;
+
+        for (int i = 0; i < companiesList.size(); i++) {
+            if(companiesList.get(i).equals(marker)){
+              //  rv.scrollToPosition(i);
+                rv.smoothScrollToPosition(i);
+                break;
+            }
+        }
     }
+
+
+    // Listeners
+
+    /**
+     * Click listeners of item recycler view
+     */
+    RecyclerTouchListener recyclerTouchListener = new RecyclerTouchListener(context, rv, new RecyclerTouchListener.ClickListener() {
+        @Override
+        public void onClick(View view, int position) {
+            callbacks.chooseItemInList(companiesList.get(position));
+        }
+
+        @Override
+        public void onLongClick(View view, int position) {
+
+        }
+    });
+
+
 }

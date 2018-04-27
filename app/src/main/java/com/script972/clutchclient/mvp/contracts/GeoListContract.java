@@ -25,6 +25,13 @@ public interface GeoListContract {
          * @param lists
          */
         void fillListGeoCompany(GeoListAdapter geoListAdapter, List<Company> lists);
+
+        /**
+         * Method wich focus on item company
+         *
+         * @param marker for focusing
+         */
+        void companyFocus(Company marker);
     }
 
 }

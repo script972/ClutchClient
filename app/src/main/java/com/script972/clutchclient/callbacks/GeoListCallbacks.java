@@ -8,4 +8,9 @@ public interface GeoListCallbacks {
 
     void returnWorkerList(List<Company> companyList);
 
+    /**
+     * Method wich call in click on item geo list company
+     * @param company
+     */
+    void chooseItemInList(Company company);
 }

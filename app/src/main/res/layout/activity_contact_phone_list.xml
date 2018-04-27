@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activitys.ContactPhoneListActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_tollbar"
+        android:background="@color/main_color"
+        android:minHeight="@dimen/dimen_tollbar"
+        android:fitsSystemWindows="true"
+        android:elevation="2dp"
+        app:title="@string/toolbar_contacts"
+        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
+        app:titleTextColor="@color/colorWhite"
+        android:titleTextColor="@color/colorWhite" tools:targetApi="m"/>
+
+
+</android.support.constraint.ConstraintLayout>
