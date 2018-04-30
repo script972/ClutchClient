@@ -123,4 +123,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
 
+    implementation 'org.jetbrains:annotations-java5:15.0'
 }

@@ -10,6 +10,7 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.script972.clutchclient.R;
 import com.wajahatkarim3.easyflipview.EasyFlipView;
 
@@ -31,13 +32,13 @@ public class ActivityItemCard extends AppCompatActivity {
         barcode= (ImageView) findViewById(R.id.barcode);
 
         initToolbar();
-        //TODO mock();
+        mock();
 
 
     }
 
-    //TODO
-   /* private void mock() {
+
+    private void mock() {
         String text="11232321"; // Whatever you need to encode in the QR code
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
@@ -49,7 +50,6 @@ public class ActivityItemCard extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-*/
     private void initToolbar() {
 
     }

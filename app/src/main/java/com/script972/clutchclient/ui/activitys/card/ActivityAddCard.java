@@ -17,10 +17,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.script972.clutchclient.R;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 
 public class ActivityAddCard extends AppCompatActivity {
@@ -64,14 +69,16 @@ public class ActivityAddCard extends AppCompatActivity {
 
 
     public void openScan(View view) {
-        //TODO
-      /*  IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setDesiredBarcodeFormats(IntentIntegrator.PRODUCT_CODE_TYPES);
+
+        IntentIntegrator integrator = new IntentIntegrator(this);
+
+        integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt(getResources().getString(R.string.scaner_activity_title));
         integrator.setCameraId(0);
+
         integrator.setBeepEnabled(false);
-        integrator.setBarcodeImageEnabled(true);
-        integrator.initiateScan();*/
+        integrator.setBarcodeImageEnabled(false);
+        integrator.initiateScan();
     }
 
 
@@ -82,7 +89,7 @@ public class ActivityAddCard extends AppCompatActivity {
         Log.i("scan", "request code "+requestCode+" resultCode "+requestCode+" data ");
 
         //TODO
-       /* IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() == null) {
                 Log.i("scan", "Cancelled scan");
@@ -93,7 +100,7 @@ public class ActivityAddCard extends AppCompatActivity {
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
             }
 
-        }*/
+        }
 
         /*if (requestCode == 21) {
 

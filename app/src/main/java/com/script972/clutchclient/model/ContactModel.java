@@ -6,10 +6,6 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.artlite.adapteredrecyclerview.models.ARCell;
-import com.artlite.adapteredrecyclerview.models.ARObject;
-import com.mio.modo.helpers.ContactHelper;
-import com.mio.modo.ui.recycle.ContactRecycleView;
 import com.script972.clutchclient.helpers.ContactHelper;
 
 /**
@@ -35,16 +31,20 @@ public class ContactModel {
     private String photo;
 
     /**
-     * Instance of the {@link Uri}
-     */
-    private Uri thumbnail = null;
-
-    /**
      * Contact already use the isModo
      */
-    private boolean isModo;
+    private boolean isUser;
+
+    /**
+     * Mark as selected
+     */
+    private boolean isSelected=false;
 
     // Constructors
+
+
+    public ContactModel() {
+    }
 
     /**
      * Constructor which provide the create the {@link ContactModel}
@@ -53,65 +53,59 @@ public class ContactModel {
      * @param name   {@link String} value of the name
      * @param phone  {@link String} value of the phone number
      * @param photo  {@link String} value of the photo
-     * @param isModo
+     * @param isUser
      */
     public ContactModel(@Nullable String name,
                         @Nullable String phone,
                         @Nullable String photo,
-                        boolean isModo) {
-        this(name, phone, photo, null, isModo);
+                        boolean isUser) {
+        this.name=name;
+        this.phone=phone;
+        this.photo=photo;
+        this.isUser=isUser;
     }
 
-    /**
-     * Constructor which provide the create the {@link ContactModel}
-     * with parameters
-     *
-     * @param name      {@link String} value of the name
-     * @param phone     {@link String} value of the phone number
-     * @param photo     {@link String} value of the photo
-     * @param thumbnail instance of the {@link Uri}
-     * @param isModo
-     */
-    public ContactModel(@Nullable String name,
-                        @Nullable String phone,
-                        @Nullable String photo,
-                        @Nullable Uri thumbnail,
-                        boolean isModo) {
-        this.name = name;
-        this.phone = phone;
-        this.photo = photo;
-      //  this.setIsModo(isModo);
-        this.thumbnail = thumbnail;
-    }
 
     /**
      * Constructor which provide the create {@link ContactModel}
      * from {@link ContactHelper.ContactContainer}
      *
      * @param container instance of the {@link ContactHelper.ContactContainer}
-     * @param isModo    instance of the {@link Object}
+     * @param isUser    instance of the {@link Object}
      */
-    public ContactModel(@NonNull ContactHelper.ContactContainer container, boolean isModo) {
-        this(container.name, container.phone, container.photo, container.thumbnail, isModo);
+    public ContactModel(@NonNull ContactHelper.ContactContainer container, boolean isUser) {
+        this(container.name, container.phone, container.photo, isUser);
     }
 
-
-
-    /**
-     * Method which provide the {@link Object}
-     *
-     * @return instance of the {@link Object}
-     */
-    public Uri getThumbnail() {
-        return thumbnail;
+    public String getName() {
+        return name;
     }
 
-    /**
-     * Method which provide the setting of the {@link Object}
-     *
-     * @param thumbnail instance of the {@link Object}
-     */
-    public void setThumbnail(Uri thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public boolean isUser() {
+        return isUser;
+    }
+
+    public void setUser(boolean user) {
+        isUser = user;
     }
 }

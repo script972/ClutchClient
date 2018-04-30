@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".core.CurrentApplication"
@@ -20,17 +21,22 @@
 
         <activity android:name=".ui.activitys.SplashScreenActivity" />
         <activity android:name=".ui.activitys.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
         </activity>
-        <activity android:name=".ui.activitys.company.AboutCompany" />
-        <activity android:name=".ui.activitys.card.ActivityAddCard" />
-        <activity android:name=".ui.activitys.card.ActivityListCompany" />
 
-        <!--
+        <activity android:name=".ui.activitys.company.AboutCompany"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activitys.card.ActivityAddCard"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activitys.card.ActivityListCompany"
+            android:screenOrientation="portrait"/>
+
         <activity android:name="com.google.zxing.client.android.SCAN"
             android:screenOrientation="landscape"
             android:configChanges="orientation|keyboardHidden"
@@ -41,7 +47,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-        -->
+
         <activity
             android:name=".ui.activitys.DiscountMapsActivity"
             android:screenOrientation="portrait" />
@@ -57,8 +63,10 @@
         <activity
             android:name=".ui.activitys.authorization.PersonalInfoActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activitys.SettingActivity" />
-        <activity android:name=".ui.activitys.ContactPhoneListActivity"></activity>
+        <activity android:name=".ui.activitys.SettingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activitys.ContactPhoneListActivity"/>
+
     </application>
 
 </manifest>

@@ -1,6 +1,8 @@
-package com.script972.clutchclient.api;
+package com.script972.clutchclient.api.service;
 
 import com.script972.clutchclient.model.api.User;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -11,12 +13,15 @@ import retrofit2.http.Query;
 
 public interface UserService {
 
-    @GET("/user/{userid}")
+    @GET("/api/user/{userid}")
     Call<User> getUser(@Query("userid") String id);
 
     @Headers("Content-Type: application/json")
-    @POST("/user/")
+    @POST("/api/user/")
     Call<User> postAthletes(@Body User user);
+
+    @GET("/api/user/{phoneNumber}")
+    Call<List<User>> getUsersByPhoneNumber(@Query("phoneNumber") String phoneNumbers);
 
 
 }

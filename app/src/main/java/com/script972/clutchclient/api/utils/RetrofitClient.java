@@ -1,4 +1,4 @@
-package com.script972.clutchclient.utils;
+package com.script972.clutchclient.api.utils;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
