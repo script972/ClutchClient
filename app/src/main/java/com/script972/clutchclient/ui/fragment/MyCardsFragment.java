@@ -1,6 +1,7 @@
 package com.script972.clutchclient.ui.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -19,7 +20,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.CardModel;
+import com.script972.clutchclient.model.api.CardItem;
+import com.script972.clutchclient.mvp.contracts.CardContract;
+import com.script972.clutchclient.mvp.impl.CardPresenterImpl;
 import com.script972.clutchclient.ui.activitys.card.ActivityListCompany;
 import com.script972.clutchclient.ui.adapters.CardsAdapter;
 
@@ -32,14 +35,18 @@ import java.util.List;
  */
 
 @SuppressLint("ValidFragment")
-public class MyCardsFragment extends Fragment {
+public class MyCardsFragment extends Fragment implements CardContract.View{
     private View view;
     private final int LAYOUT=R.layout.my_cards_fragment;
     private RecyclerView rcv;
-    private List<CardModel> cardModels;
+    private  List<CardItem> cardModels;
     private TextView text;
+    private CardsAdapter cardsAdapter;
 
     private FloatingActionButton fab;
+
+
+    private CardContract.Presenter presenter;
 
 
 
@@ -47,6 +54,7 @@ public class MyCardsFragment extends Fragment {
         Bundle args = new Bundle();
         MyCardsFragment fragment = new MyCardsFragment();
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -55,7 +63,19 @@ public class MyCardsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(LAYOUT, container, false);
         initView();
+        presenter = new CardPresenterImpl(getActivity(),this);
         return view;
+    }
+
+    /**
+     * Called when the Fragment is visible to the user.  This is generally
+     * tied to {@link Activity#onStart() Activity.onStart} of the containing
+     * Activity's lifecycle.
+     */
+    @Override
+    public void onStart() {
+        super.onStart();
+        presenter.onStart();
 
     }
 
@@ -84,9 +104,8 @@ public class MyCardsFragment extends Fragment {
 
     private void initCards() {
 
-        mocke();
         rcv= (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
-        CardsAdapter cardsAdapter=new CardsAdapter(this.getContext(), cardModels);
+        cardsAdapter=new CardsAdapter(this.getContext(), cardModels);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2);
         rcv.setLayoutManager(mLayoutManager);
         rcv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
@@ -117,24 +136,22 @@ public class MyCardsFragment extends Fragment {
 
     }
 
-    private void mocke() {
-        cardModels=new ArrayList<>();
-        cardModels.add(new CardModel("Addidas", 12, "img1"));
-        cardModels.add(new CardModel("Puma", 2, "img2"));
-        cardModels.add(new CardModel("Mack", 33, "img3"));
-        cardModels.add(new CardModel("Card1", 30, "img3"));
-        cardModels.add(new CardModel("Card2", 37, "img3"));
-        cardModels.add(new CardModel("Card3", 31, "img3"));
-        cardModels.add(new CardModel("Card4", 32, "img3"));
-        cardModels.add(new CardModel("Card5", 34, "img3"));
-    }
-
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
-
+    /**
+     * Method wich call in view when presenter initial all data and fill this data
+     *
+     * @param cardList
+     */
+    @Override
+    public void fillCards( List<CardItem> cardList) {
+        cardModels.clear();
+        cardModels.addAll(cardList);
+        cardsAdapter.notifyDataSetChanged();
+    }
 
 
     /**

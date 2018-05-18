@@ -1,5 +1,7 @@
 package com.script972.clutchclient.api.service;
 
+import com.script972.clutchclient.model.api.LoginRequestBody;
+import com.script972.clutchclient.model.api.TokenResponce;
 import com.script972.clutchclient.model.api.User;
 
 import java.util.List;
@@ -7,11 +9,15 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface UserService {
+
+    @POST("/auth/login")
+    Call<TokenResponce> authorization( @Body LoginRequestBody login);
 
     @GET("/api/user/{userid}")
     Call<User> getUser(@Query("userid") String id);

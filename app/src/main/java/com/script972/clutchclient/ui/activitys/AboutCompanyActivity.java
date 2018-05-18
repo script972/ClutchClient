@@ -1,4 +1,4 @@
-package com.script972.clutchclient.ui.activitys.company;
+package com.script972.clutchclient.ui.activitys;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import com.script972.clutchclient.R;
 
 
-public class AboutCompany extends AppCompatActivity {
+public class AboutCompanyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -41,7 +41,8 @@ public class ContactPhonePresenterImpl implements ContactPhoneContract.Presenter
      */
     @Override
     public void onStart(Long itemCardID) {
-        ApiItemCardHelper.getCardItem().getItemCard(itemCardID).enqueue(new Callback<List<CardItem>>() {
+        //TODO server
+        /*ApiItemCardHelper.getCardItem().getItemCard(itemCardID).enqueue(new Callback<List<CardItem>>() {
             @Override
             public void onResponse(Call<List<CardItem>> call, Response<List<CardItem>> response) {
                 contactBookList(response.body());
@@ -51,7 +52,7 @@ public class ContactPhonePresenterImpl implements ContactPhoneContract.Presenter
             public void onFailure(Call<List<CardItem>> call, Throwable t) {
 
             }
-        });
+        });*/
 
 
     }

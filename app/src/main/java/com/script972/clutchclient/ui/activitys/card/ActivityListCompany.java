@@ -17,11 +17,18 @@ import android.view.View;
 
 
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.api.helpers.ApiCompanyHelper;
+import com.script972.clutchclient.api.helpers.ApiItemCardHelper;
+import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.model.api.Company;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ActivityListCompany extends AppCompatActivity {
@@ -76,6 +83,19 @@ public class ActivityListCompany extends AppCompatActivity {
     }
 
     private void mockeLoadData() {
+
+        ApiCompanyHelper.getComapyList().getCompanyList("").enqueue(new Callback<List<Company>>() {
+            @Override
+            public void onResponse(Call<List<Company>> call, Response<List<Company>> response) {
+                Log.i("companylist", response.body().get(0)+"");
+            }
+
+            @Override
+            public void onFailure(Call<List<Company>> call, Throwable t) {
+
+            }
+        });
+
 
         companies=new ArrayList<>();
         companies.add(new Company( "Addidas", "icon1"));

@@ -1,5 +1,6 @@
 package com.script972.clutchclient.mvp.contracts;
 
+import com.script972.clutchclient.model.api.TokenResponce;
 import com.script972.clutchclient.model.api.User;
 
 public interface LoginContract {
@@ -17,7 +18,7 @@ public interface LoginContract {
         /**
          * Withod wich show UI user login success
          */
-        void loginDone(User user);
+        void loginDone(TokenResponce token);
 
         /**
          * Method wich show UI user login fail

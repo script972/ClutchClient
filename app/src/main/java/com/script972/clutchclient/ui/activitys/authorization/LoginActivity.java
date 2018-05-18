@@ -1,7 +1,10 @@
 package com.script972.clutchclient.ui.activitys.authorization;
 
+import android.app.Application;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,11 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.artlite.bslibrary.annotations.FindViewBy;
+import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
+import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.core.CurrentApplication;
 import com.script972.clutchclient.helpers.DialogHelper;
 import com.script972.clutchclient.helpers.ValidatorHelper;
+import com.script972.clutchclient.model.api.TokenResponce;
 import com.script972.clutchclient.model.api.User;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
 import com.script972.clutchclient.mvp.contracts.RegistrationContract;
@@ -61,14 +69,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
      * Method which controll login click
      */
     private void btnLoginClick() {
-        if(!ValidatorHelper.validateEmail(edtEmail.getText().toString()) & edtEmail.getText().toString().length()<6){
+        /*if(!ValidatorHelper.validateEmail(edtEmail.getText().toString()) & edtEmail.getText().toString().length()<6){
             edtEmail.setError(getResources().getString(R.string.e_invalid_email));
             edtPassword.setError(getResources().getString(R.string.e_short_password));
             return;
         }else{
             showProgressDialog();
             this.presenter.login(edtEmail.getText().toString(), edtPassword.getText().toString());
-        }
+        }*/
+        showProgressDialog();
+        this.presenter.login(edtEmail.getText().toString(), edtPassword.getText().toString());
+
     }
 
     /**
@@ -77,6 +88,18 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private void btnRegistration() {
         Intent intent = new Intent(this, RegistrationStep1Activity.class);
         startActivity(intent);
+    }
+
+    /**
+     * Method for saving token in SharedPreferences
+     * @param token
+     */
+    private void saveToken(TokenResponce token) {
+        SharedPreferences sharedPref = this.getPreferences(CurrentApplication.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("token", token.getAccess_token());
+        editor.commit();
+        Constants.token="Bearer "+token.getAccess_token();
     }
 
     /**
@@ -102,14 +125,17 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     /**
      * Withod wich show UI user login success
      *
-     * @param user
+     * @param token
      */
     @Override
-    public void loginDone(User user) {
+    public void loginDone(TokenResponce token) {
+        hideProgressDialog();
+        saveToken(token);
         Intent intent=new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
+
 
     /**
      * Method wich show UI user login fail
@@ -118,6 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
      */
     @Override
     public void loginFail(String errorMessage) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
         hideProgressDialog();
     }
 

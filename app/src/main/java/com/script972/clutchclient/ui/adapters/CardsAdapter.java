@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.CardModel;
+import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.ui.activitys.card.ActivityItemCard;
 
 import java.util.List;
@@ -27,7 +26,7 @@ import java.util.List;
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<CardModel> cardList;
+    private  List<CardItem> cardList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, count;
@@ -43,7 +42,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
     }
 
 
-    public CardsAdapter(Context mContext, List<CardModel> cardList) {
+    public CardsAdapter(Context mContext,  List<CardItem> cardList) {
         this.mContext = mContext;
         this.cardList = cardList;
     }
@@ -59,9 +58,10 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        CardModel cardModel = cardList.get(position);
-        holder.title.setText(cardModel.getName());
-        holder.count.setText("Rang "+cardModel.getRang());
+        CardItem cardModel = cardList.get(position);
+
+        holder.title.setText(cardModel.getTitle());
+       // holder.count.setText("Rang "+cardModel.getS());
         holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

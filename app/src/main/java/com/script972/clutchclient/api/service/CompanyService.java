@@ -1,7 +1,7 @@
 package com.script972.clutchclient.api.service;
 
 import com.script972.clutchclient.model.api.CardItem;
-import com.script972.clutchclient.model.api.User;
+import com.script972.clutchclient.model.api.Company;
 
 import java.util.List;
 
@@ -10,10 +10,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Query;
 
-public interface CardItemService {
+public interface CompanyService {
 
-    @GET("/api/card")
-    Call<List<CardItem>> getAllItemCard(@Header("authorization") String token);
-
+    @GET("/api/company")
+    Call<List<Company>> getCompanyList(@Header("Authorization") String headerToken);
 
 }

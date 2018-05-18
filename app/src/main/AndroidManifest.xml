@@ -19,18 +19,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".ui.activitys.SplashScreenActivity" />
-        <activity android:name=".ui.activitys.MainActivity">
-
-        <intent-filter>
+        <activity android:name=".ui.activitys.SplashScreenActivity">
+             <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
+        </activity>
+        <activity android:name=".ui.activitys.MainActivity">
+
+       <!-- <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>-->
 
         </activity>
 
-        <activity android:name=".ui.activitys.company.AboutCompany"
+        <activity android:name=".ui.activitys.AboutCompanyActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activitys.card.ActivityAddCard"
             android:screenOrientation="portrait"/>
