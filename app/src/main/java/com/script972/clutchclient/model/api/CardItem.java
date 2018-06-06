@@ -3,9 +3,10 @@ package com.script972.clutchclient.model.api;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class CardItem {
+public class CardItem implements Serializable{
 
     @SerializedName("id")
     @Expose
@@ -30,10 +31,21 @@ public class CardItem {
     private List<User> accessUsers = null;
     @SerializedName("company")
     @Expose
-    private Object company;
+    private Company company;
     @SerializedName("dateAdded")
     @Expose
     private Object dateAdded;
+
+    @SerializedName("facePhoto")
+    @Expose
+    private String facePhoto;
+
+    @SerializedName("backPhoto")
+    @Expose
+    private String backPhoto;
+
+    public CardItem() {
+    }
 
     public Integer getId() {
         return id;
@@ -91,11 +103,11 @@ public class CardItem {
         this.accessUsers = accessUsers;
     }
 
-    public Object getCompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setCompany(Object company) {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
@@ -105,5 +117,21 @@ public class CardItem {
 
     public void setDateAdded(Object dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    public String getFacePhoto() {
+        return facePhoto;
+    }
+
+    public void setFacePhoto(String facePhoto) {
+        this.facePhoto = facePhoto;
+    }
+
+    public String getBackPhoto() {
+        return backPhoto;
+    }
+
+    public void setBackPhoto(String backPhoto) {
+        this.backPhoto = backPhoto;
     }
 }

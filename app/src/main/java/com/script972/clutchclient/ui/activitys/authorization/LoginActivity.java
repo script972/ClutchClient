@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.artlite.bslibrary.annotations.FindViewBy;
 import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
+import com.artlite.bslibrary.managers.BSContextManager;
 import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.core.CurrentApplication;
@@ -95,11 +96,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
      * @param token
      */
     private void saveToken(TokenResponce token) {
-        SharedPreferences sharedPref = this.getPreferences(CurrentApplication.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putString("token", token.getAccess_token());
-        editor.commit();
-        Constants.token="Bearer "+token.getAccess_token();
+        BSSharedPreferenceHelper.save(getApplicationContext(), "Bearer "+token.getAccess_token(), "token");
     }
 
     /**

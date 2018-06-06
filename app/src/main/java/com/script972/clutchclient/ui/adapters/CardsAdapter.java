@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.ui.activitys.card.ActivityItemCard;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        CardItem cardModel = cardList.get(position);
+        final CardItem cardModel = cardList.get(position);
 
         holder.title.setText(cardModel.getTitle());
        // holder.count.setText("Rang "+cardModel.getS());
@@ -68,10 +69,18 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
                 showPopupMenu(holder.overflow);
             }
         });
+
+        Picasso.get()
+                .load(cardModel.getFacePhoto())
+                .placeholder(R.drawable.cardtemplate)
+                .error(R.drawable.cardtemplate)
+                .into(holder.thumbnail);
+
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, ActivityItemCard.class);
+                intent.putExtra("cardItem", cardModel);
                 mContext.startActivity(intent);
             }
         });

@@ -10,6 +10,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.callbacks.GeoListCallbacks;
 import com.script972.clutchclient.helpers.DialogHelper;
+import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.model.api.Company;
 import com.script972.clutchclient.mvp.contracts.MapsContract;
 import com.script972.clutchclient.mvp.impl.MapsPresenterImpl;
@@ -35,6 +36,8 @@ public class DiscountMapsActivity extends AppCompatActivity implements MapsContr
     //presenters
     private MapsPresenterImpl mapsPresenter;
 
+    private CardItem cardItem;
+
 
 
     @Override
@@ -43,6 +46,11 @@ public class DiscountMapsActivity extends AppCompatActivity implements MapsContr
         setContentView(R.layout.activity_discount_maps);
         ButterKnife.bind(this);
         initView();
+
+        getDataFromIntent();
+
+        //TODO get cardid from intent.getExtras
+
     }
 
     private void initView() {
@@ -101,5 +109,12 @@ public class DiscountMapsActivity extends AppCompatActivity implements MapsContr
     @Override
     public void controllClickOnMapsMarker(Company marker) {
         geoDiscountView.companyFocus(marker);
+    }
+
+    public void getDataFromIntent() {
+        if(getIntent().getExtras()!=null && getIntent().getExtras().getSerializable("cardItem") != null) {
+            this.cardItem = (CardItem) getIntent().getExtras().getSerializable("cardItem");
+        }
+
     }
 }

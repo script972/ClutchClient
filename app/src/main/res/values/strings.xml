@@ -44,4 +44,11 @@
     <string name="invalid_login">Invalid login</string>
     <string name="e_check_internet">Check your internet connection</string>
     <string name="e_invalid_login">Invalid login</string>
+    <string name="shoping_maps">Shoping maps</string>
+    <string name="t_barcode">Barcode</string>
+    <string name="t_info">Info</string>
+    <string name="t_open_window">Open maps?</string>
+    <string name="t_agree_open">Are you sure that want open map?</string>
+    <string name="b_no">No</string>
+    <string name="b_yes">Yes</string>
 </resources>

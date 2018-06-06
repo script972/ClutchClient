@@ -2,10 +2,11 @@ package com.script972.clutchclient.model.api;
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
-public class Company implements Comparable{
+public class Company implements Comparable, Serializable {
 
     private String title;
 

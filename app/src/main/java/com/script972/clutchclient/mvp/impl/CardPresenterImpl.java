@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
+import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.api.helpers.ApiItemCardHelper;
 import com.script972.clutchclient.model.api.CardItem;
@@ -15,17 +16,17 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.artlite.bslibrary.managers.BSContextManager.getApplicationContext;
+
 public class CardPresenterImpl implements CardContract.Presenter {
 
     /**
      * View activity
      */
     private CardContract.View view;
-    private Activity activity;
 
-    public CardPresenterImpl(FragmentActivity activity, CardContract.View view) {
+    public CardPresenterImpl(CardContract.View view) {
         this.view = view;
-        this.activity=activity;
     }
 
     /**
@@ -40,19 +41,12 @@ public class CardPresenterImpl implements CardContract.Presenter {
      * Method witch help to initial Card list
      */
     private void initialCardList() {
-
         String token;
-
-        token = Constants.token;
-        Log.i("card", token+"<<");
-
+        token=BSSharedPreferenceHelper.getString(getApplicationContext(), "token");
         ApiItemCardHelper.getCardItem().getAllItemCard(token).enqueue(new Callback<List<CardItem>>() {
             @Override
             public void onResponse(Call<List<CardItem>> call, Response<List<CardItem>> response) {
-                List<CardItem> list=response.body();
-                view.fillCards(list);
-                Log.i("card", call.request().url()+"<<");
-                Log.i("card", response.body()+"<<");
+                view.fillCards(response.body());
             }
 
             @Override

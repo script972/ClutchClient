@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 
+import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.api.helpers.ApiCompanyHelper;
 import com.script972.clutchclient.api.helpers.ApiItemCardHelper;
@@ -84,9 +85,11 @@ public class ActivityListCompany extends AppCompatActivity {
 
     private void mockeLoadData() {
 
-        ApiCompanyHelper.getComapyList().getCompanyList("").enqueue(new Callback<List<Company>>() {
+        ApiCompanyHelper.getComapyList().getCompanyList(BSSharedPreferenceHelper.getString(getApplicationContext(), "token"))
+                .enqueue(new Callback<List<Company>>() {
             @Override
             public void onResponse(Call<List<Company>> call, Response<List<Company>> response) {
+
                 Log.i("companylist", response.body().get(0)+"");
             }
 

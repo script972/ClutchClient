@@ -46,6 +46,10 @@
         <item name="android:background">@drawable/bg_button_login</item>
     </style>
 
+    <style name="BackgroundApp">
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
 
     <color name="colorWhite">#ffffff</color>
 </resources>

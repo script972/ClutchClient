@@ -3,6 +3,8 @@ package com.script972.clutchclient.mvp.impl;
 import android.content.Context;
 import android.util.Log;
 
+import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
+import com.artlite.bslibrary.managers.BSContextManager;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.api.helpers.ApiCompanyHelper;
 import com.script972.clutchclient.api.helpers.ApiUserHelper;
@@ -39,8 +41,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
      * @param password
      */
     @Override
-    public void login(String login, String password) {
-        //TODO to server
+    public void login(final String login, final String password) {
         final LoginRequestBody body=new LoginRequestBody(login, password);
         ApiUserHelper.authorization().authorization(body).enqueue(new Callback<TokenResponce>() {
             @Override
@@ -48,6 +49,7 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
                 if(response.body()==null){
                     view.loginFail(context.getResources().getString(R.string.e_invalid_login));
                 }else{
+                    saveSuccessCredentials(login, password);
                     view.loginDone(response.body());
                 }
             }
@@ -58,5 +60,15 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
             }
         });
 
+    }
+
+    /**
+     * Method witch provide saving success credentials to SharedPreferences
+     * @param login
+     * @param password
+     */
+    private void saveSuccessCredentials(String login, String password) {
+        BSSharedPreferenceHelper.save(BSContextManager.getApplicationContext(), login, "valueLogin");
+        BSSharedPreferenceHelper.save(BSContextManager.getApplicationContext(), password, "valuePassword");
     }
 }

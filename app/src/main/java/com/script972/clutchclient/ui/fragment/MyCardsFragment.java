@@ -40,13 +40,12 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     private final int LAYOUT=R.layout.my_cards_fragment;
     private RecyclerView rcv;
     private  List<CardItem> cardModels;
-    private TextView text;
     private CardsAdapter cardsAdapter;
 
     private FloatingActionButton fab;
 
 
-    private CardContract.Presenter presenter;
+    private CardContract.Presenter presenter = new CardPresenterImpl(this);
 
 
 
@@ -63,7 +62,6 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(LAYOUT, container, false);
         initView();
-        presenter = new CardPresenterImpl(getActivity(),this);
         return view;
     }
 
@@ -80,11 +78,9 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     }
 
     private void initView() {
-
         cardModels=new ArrayList<>();//del
         initCards();
         initFloating();
-
 
     }
 
@@ -103,7 +99,6 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
 
 
     private void initCards() {
-
         rcv= (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
         cardsAdapter=new CardsAdapter(this.getContext(), cardModels);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2);
@@ -117,7 +112,6 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
                 Log.i("checkcard","dx="+dx+" dy="+dy);
-
                 if (dy > 0 ||dy<0 && fab.isShown())
                     fab.hide();
             }
@@ -147,7 +141,10 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
      * @param cardList
      */
     @Override
-    public void fillCards( List<CardItem> cardList) {
+    public void fillCards(List<CardItem> cardList) {
+        if(cardList==null || cardList.size()==0){
+            return;
+        }
         cardModels.clear();
         cardModels.addAll(cardList);
         cardsAdapter.notifyDataSetChanged();
