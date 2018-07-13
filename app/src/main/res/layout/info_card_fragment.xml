@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="5"
 
-            android:src="@drawable/cardtemplate"/>
+            android:src="@drawable/cardtemplate" />
 
         <ImageView
             android:id="@+id/photo_back"

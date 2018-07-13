@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.ui.activitys.card.ActivityItemCard;
@@ -60,6 +61,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         final CardItem cardModel = cardList.get(position);
+        final String jsonCardItem = new Gson().toJson(cardModel);
 
         holder.title.setText(cardModel.getTitle());
        // holder.count.setText("Rang "+cardModel.getS());
@@ -80,7 +82,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, ActivityItemCard.class);
-                intent.putExtra("cardItem", cardModel);
+                intent.putExtra("cardItem", jsonCardItem);
                 mContext.startActivity(intent);
             }
         });

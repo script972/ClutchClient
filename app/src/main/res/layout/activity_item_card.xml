@@ -17,7 +17,7 @@
             android:layout_height="20dp"
             android:layout_margin="@dimen/dimen_16"
             android:elevation="2dp"
-            android:src="@drawable/arrowback"/>
+            android:src="@drawable/arrow_back"/>
 
         <fragment
             android:id="@+id/map"
@@ -25,8 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_185"
             android:layout_marginTop="0dp"
-            android:scaleType="center"
-            android:elevation="1dp"/>
+            android:elevation="1dp"
+            android:scaleType="center" />
     </FrameLayout>
 
     <LinearLayout
@@ -65,12 +65,13 @@
                 android:layout_weight="4"/>
 
             <com.pkmmte.view.CircularImageView
+                android:id="@+id/icon_company"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dimen_76"
                 android:layout_weight="2"
                 android:layout_gravity="center_horizontal"
                 android:elevation="5dp"
-                android:src="@drawable/template_logo_company"
+                android:src="@drawable/add_barkode"
                 app:border_color="#EEEEEE"
                 app:border_width="4dp"
                 app:shadow="true" />

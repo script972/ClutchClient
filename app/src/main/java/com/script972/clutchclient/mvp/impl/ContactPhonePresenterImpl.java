@@ -4,8 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.script972.clutchclient.api.helpers.ApiItemCardHelper;
-import com.script972.clutchclient.api.service.CardItemService;
 import com.script972.clutchclient.helpers.ContactHelper;
 import com.script972.clutchclient.model.ContactModel;
 import com.script972.clutchclient.model.api.CardItem;
@@ -16,9 +14,6 @@ import com.script972.clutchclient.ui.adapters.ContactModelAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class ContactPhonePresenterImpl implements ContactPhoneContract.Presenter {
 
@@ -81,7 +76,7 @@ public class ContactPhonePresenterImpl implements ContactPhoneContract.Presenter
     private void checkIsUserClient(List<ContactHelper.ContactContainer> contacts) {
         /*
         //TODO to server
-        ApiUserHelper.getClientByPhoneNumbers().getUsersByPhoneNumber("+380936629627").enqueue(new Callback<List<User>>() {
+        ApiClient.getClientByPhoneNumbers().getUsersByPhoneNumber("+380936629627").enqueue(new Callback<List<User>>() {
             @Override
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
 

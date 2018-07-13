@@ -15,9 +15,11 @@ import android.widget.TextView;
 import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.api.helpers.ApiUserHelper;
+import com.script972.clutchclient.api.helpers.ApiClient;
+import com.script972.clutchclient.api.service.UserService;
 import com.script972.clutchclient.model.api.LoginRequestBody;
 import com.script972.clutchclient.model.api.TokenResponce;
+import com.script972.clutchclient.model.api.User;
 import com.script972.clutchclient.ui.activitys.authorization.LoginActivity;
 
 import butterknife.BindView;
@@ -94,9 +96,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
 
         final LoginRequestBody body=new LoginRequestBody(login, password);
-        ApiUserHelper.authorization().authorization(body).enqueue(new Callback<TokenResponce>() {
+        UserService userService=ApiClient.getClient().create(UserService.class);
+        userService.authorization(body).enqueue(new Callback<TokenResponce>() {
             @Override
-            public void onResponse(Call<TokenResponce> call, Response<TokenResponce> response) {
+            public void onResponse(@NonNull Call<TokenResponce> call, @NonNull Response<TokenResponce> response) {
                 if(response.body()==null){
                     openLoginActivity();
                 }else{
@@ -106,7 +109,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<TokenResponce> call, Throwable t) {
+            public void onFailure(@NonNull Call<TokenResponce> call, @NonNull Throwable t) {
                 //openLoginActivity();
             }
         });

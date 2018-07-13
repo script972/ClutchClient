@@ -1,12 +1,10 @@
 package com.script972.clutchclient.mvp.impl;
 
-import android.app.Activity;
-import android.support.v4.app.FragmentActivity;
-import android.util.Log;
+import android.support.annotation.NonNull;
 
 import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
-import com.script972.clutchclient.Constants;
-import com.script972.clutchclient.api.helpers.ApiItemCardHelper;
+import com.script972.clutchclient.api.helpers.ApiClient;
+import com.script972.clutchclient.api.service.CardItemService;
 import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.mvp.contracts.CardContract;
 
@@ -43,14 +41,15 @@ public class CardPresenterImpl implements CardContract.Presenter {
     private void initialCardList() {
         String token;
         token=BSSharedPreferenceHelper.getString(getApplicationContext(), "token");
-        ApiItemCardHelper.getCardItem().getAllItemCard(token).enqueue(new Callback<List<CardItem>>() {
+        CardItemService cardItemService= ApiClient.getClient().create(CardItemService.class);
+        cardItemService.getAllItemCard(token).enqueue(new Callback<List<CardItem>>() {
             @Override
-            public void onResponse(Call<List<CardItem>> call, Response<List<CardItem>> response) {
+            public void onResponse(@NonNull Call<List<CardItem>> call, @NonNull Response<List<CardItem>> response) {
                 view.fillCards(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<CardItem>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<CardItem>> call, @NonNull Throwable t) {
 
             }
         });

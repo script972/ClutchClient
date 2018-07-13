@@ -37,15 +37,11 @@ import java.util.List;
 @SuppressLint("ValidFragment")
 public class MyCardsFragment extends Fragment implements CardContract.View{
     private View view;
-    private final int LAYOUT=R.layout.my_cards_fragment;
-    private RecyclerView rcv;
     private  List<CardItem> cardModels;
     private CardsAdapter cardsAdapter;
 
     private FloatingActionButton fab;
-
-
-    private CardContract.Presenter presenter = new CardPresenterImpl(this);
+    private final CardContract.Presenter presenter = new CardPresenterImpl(this);
 
 
 
@@ -60,7 +56,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(LAYOUT, container, false);
+        view=inflater.inflate(R.layout.my_cards_fragment, container, false);
         initView();
         return view;
     }
@@ -99,7 +95,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
 
 
     private void initCards() {
-        rcv= (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
+        RecyclerView rcv = (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
         cardsAdapter=new CardsAdapter(this.getContext(), cardModels);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2);
         rcv.setLayoutManager(mLayoutManager);

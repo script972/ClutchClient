@@ -17,16 +17,22 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.script972.clutchclient.R;
+import com.squareup.picasso.Picasso;
 
 public class InfoFragment extends Fragment {
 
+    //outlets
     private View view;
+    private ImageView front;
+    private ImageView back;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.info_card_fragment, container, false);
+        front = view.findViewById(R.id.photo_front);
+        back = view.findViewById(R.id.photo_back);
       //  initView();
         return view;
     }
@@ -50,6 +56,21 @@ public class InfoFragment extends Fragment {
 
         String backphoto = bundle.getString("backphoto", null);
         String facephoto = bundle.getString("facephoto", null);
+
+        if(backphoto!=null) {
+            Picasso.get()
+                    .load(backphoto)
+                    .placeholder(R.drawable.cardtemplate)
+                    .error(R.drawable.ic_heart_outline_white_24dp)
+                    .into(back);
+        }
+        if(facephoto!=null){
+            Picasso.get()
+                    .load(facephoto)
+                    .placeholder(R.drawable.cardtemplate)
+                    .error(R.drawable.ic_heart_outline_white_24dp)
+                    .into(front);
+        }
         //((TextView)view.findViewById(R.id.barcodestr)).setText(number);
 
     }

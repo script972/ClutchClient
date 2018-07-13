@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,9 +19,8 @@ import android.view.View;
 
 import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.api.helpers.ApiCompanyHelper;
-import com.script972.clutchclient.api.helpers.ApiItemCardHelper;
-import com.script972.clutchclient.model.api.CardItem;
+import com.script972.clutchclient.api.helpers.ApiClient;
+import com.script972.clutchclient.api.service.CompanyService;
 import com.script972.clutchclient.model.api.Company;
 
 import java.util.ArrayList;
@@ -65,8 +65,6 @@ public class ActivityListCompany extends AppCompatActivity {
         companyList.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), companyList,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
-                        Log.i("taxiservicelist", "VIEW "+position);
-                        Log.i("taxiservicelist", companies.get(position).toString());
                         Intent intent=new Intent(ActivityListCompany.this, ActivityAddCard.class);
                         startActivity(intent);
 
@@ -74,7 +72,6 @@ public class ActivityListCompany extends AppCompatActivity {
                     }
 
                     public void onLongClickItem(View v, int position) {
-                        Log.i("taxiservicelist", "Long VIEW "+position);
 
                     }
                 }));
@@ -84,17 +81,16 @@ public class ActivityListCompany extends AppCompatActivity {
     }
 
     private void mockeLoadData() {
-
-        ApiCompanyHelper.getComapyList().getCompanyList(BSSharedPreferenceHelper.getString(getApplicationContext(), "token"))
+        CompanyService companyService= ApiClient.getClient().create(CompanyService.class);
+        companyService.getCompanyList(BSSharedPreferenceHelper.getString(getApplicationContext(), "token"))
                 .enqueue(new Callback<List<Company>>() {
             @Override
-            public void onResponse(Call<List<Company>> call, Response<List<Company>> response) {
+            public void onResponse(@NonNull Call<List<Company>> call, @NonNull Response<List<Company>> response) {
 
-                Log.i("companylist", response.body().get(0)+"");
             }
 
             @Override
-            public void onFailure(Call<List<Company>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<Company>> call, @NonNull Throwable t) {
 
             }
         });

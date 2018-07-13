@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -23,17 +24,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.pkmmte.view.CircularImageView;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.ui.activitys.DiscountMapsActivity;
 import com.script972.clutchclient.ui.adapters.TabAdapterInfoCard;
 import com.script972.clutchclient.ui.fragment.BarcodeFragment;
 import com.script972.clutchclient.ui.fragment.InfoFragment;
+import com.squareup.picasso.Picasso;
 import com.wajahatkarim3.easyflipview.EasyFlipView;
 
 
@@ -45,6 +49,7 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private TextView cardTitle;
+    private CircularImageView iconCompany;
 
     private GoogleMap googleMap;
 
@@ -68,7 +73,8 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
      * Get cardItem from intent
      */
     private void getDataFromIntent() {
-        this.cardItem= (CardItem) getIntent().getExtras().getSerializable("cardItem");
+        String json = String.valueOf(getIntent().getExtras().getSerializable("cardItem"));
+        this.cardItem = new Gson().fromJson(json, CardItem.class);
     }
 
     /**
@@ -78,6 +84,7 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
         initMaps();
         arrowback = findViewById(R.id.arrowback);
         cardTitle = findViewById(R.id.card_title);
+        iconCompany = findViewById(R.id.icon_company);
 
         arrowback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,8 +138,13 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
      */
     private void fillData() {
         cardTitle.setText(this.cardItem.getTitle());
-
-
+        if(this.cardItem.getCompany()!=null && this.cardItem.getCompany().getLogo()!=null) {
+            Picasso.get()
+                    .load(this.cardItem.getCompany().getLogo())
+                    .placeholder(R.drawable.cardtemplate)
+                    .error(R.drawable.ic_heart_outline_white_24dp)
+                    .into(iconCompany);
+        }
 
     }
 
