@@ -17,11 +17,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.api.helpers.ApiClient;
 import com.script972.clutchclient.api.service.CompanyService;
+import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.Company;
+import com.script972.clutchclient.ui.adapters.CompanyListAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -82,7 +83,8 @@ public class ActivityListCompany extends AppCompatActivity {
 
     private void mockeLoadData() {
         CompanyService companyService= ApiClient.getClient().create(CompanyService.class);
-        companyService.getCompanyList(BSSharedPreferenceHelper.getString(getApplicationContext(), "token"))
+        String token = PrefHelper.getAccessToken(this);
+        companyService.getCompanyList(token)
                 .enqueue(new Callback<List<Company>>() {
             @Override
             public void onResponse(@NonNull Call<List<Company>> call, @NonNull Response<List<Company>> response) {

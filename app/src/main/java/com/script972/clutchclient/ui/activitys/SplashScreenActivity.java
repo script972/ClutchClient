@@ -16,7 +16,9 @@ import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.api.helpers.ApiClient;
+import com.script972.clutchclient.api.helpers.AuthManager;
 import com.script972.clutchclient.api.service.UserService;
+import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.LoginRequestBody;
 import com.script972.clutchclient.model.api.TokenResponce;
 import com.script972.clutchclient.model.api.User;
@@ -29,11 +31,17 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class SplashScreenActivity extends AppCompatActivity {
+public class SplashScreenActivity extends BaseActivity {
 
 
     @BindView(R.id.version_show)
     TextView versionView;
+
+    /**
+     * Manager of authorize
+     */
+    private AuthManager authManager = AuthManager.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,46 +82,14 @@ public class SplashScreenActivity extends AppCompatActivity {
      * Method wich decided what activity is next
      */
     private void openNextActivty() {
-        String valueToken=BSSharedPreferenceHelper.getString(getApplicationContext(), "token");
-        if (validateToken(valueToken)) {
+        if (PrefHelper.isAuthorized(this)) {
             openMainActivity();
-        } else {
-            getNewToken();
-        }
-
-    }
-
-    /**
-     * Method wich help to get new values temporary token
-     */
-    @NonNull
-    private void getNewToken() {
-        String login = BSSharedPreferenceHelper.getString(getApplicationContext(), "valueLogin");
-        String password = BSSharedPreferenceHelper.getString(getApplicationContext(), "valuePassword");
-        if(login.equalsIgnoreCase("null") || password.equalsIgnoreCase("null")){
+        } else{
             openLoginActivity();
-            return;
         }
 
-        final LoginRequestBody body=new LoginRequestBody(login, password);
-        UserService userService=ApiClient.getClient().create(UserService.class);
-        userService.authorization(body).enqueue(new Callback<TokenResponce>() {
-            @Override
-            public void onResponse(@NonNull Call<TokenResponce> call, @NonNull Response<TokenResponce> response) {
-                if(response.body()==null){
-                    openLoginActivity();
-                }else{
-                    BSSharedPreferenceHelper.save(getApplicationContext(), "Bearer "+response.body().getAccess_token(), "token");
-                    openMainActivity();
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<TokenResponce> call, @NonNull Throwable t) {
-                //openLoginActivity();
-            }
-        });
     }
+
 
     /**
      * Method wich provide checking validation token

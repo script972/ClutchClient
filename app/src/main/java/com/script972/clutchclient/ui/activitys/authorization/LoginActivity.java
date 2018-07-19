@@ -1,40 +1,25 @@
 package com.script972.clutchclient.ui.activitys.authorization;
 
-import android.app.Application;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.artlite.bslibrary.annotations.FindViewBy;
-import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
-import com.artlite.bslibrary.managers.BSContextManager;
-import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.core.CurrentApplication;
-import com.script972.clutchclient.helpers.DialogHelper;
-import com.script972.clutchclient.helpers.ValidatorHelper;
-import com.script972.clutchclient.model.api.TokenResponce;
-import com.script972.clutchclient.model.api.User;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
-import com.script972.clutchclient.mvp.contracts.RegistrationContract;
 import com.script972.clutchclient.mvp.impl.LoginPresenterImpl;
-import com.script972.clutchclient.mvp.impl.RegistrationPresentersImpl;
+import com.script972.clutchclient.ui.activitys.BaseActivity;
 import com.script972.clutchclient.ui.activitys.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class LoginActivity extends AppCompatActivity implements LoginContract.View{
+public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @BindView(R.id.edt_email)
     EditText edtEmail;
@@ -75,10 +60,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             edtPassword.setError(getResources().getString(R.string.e_short_password));
             return;
         }else{
-            showProgressDialog();
+
             this.presenter.login(edtEmail.getText().toString(), edtPassword.getText().toString());
         }*/
-        showProgressDialog();
+
+        super.showProgressDialog();
         this.presenter.login(edtEmail.getText().toString(), edtPassword.getText().toString());
 
     }
@@ -91,43 +77,14 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         startActivity(intent);
     }
 
-    /**
-     * Method for saving token in SharedPreferences
-     * @param token
-     */
-    private void saveToken(TokenResponce token) {
-        BSSharedPreferenceHelper.save(getApplicationContext(), "Bearer "+token.getAccess_token(), "token");
-    }
-
-    /**
-     * Method wich show progress dialog and freeze window
-     */
-    private void showProgressDialog() {
-        hideProgressDialog();
-        progressDialog = DialogHelper.getProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-    /**
-     * Method wich hide progress dialog and unfreeze window
-     */
-    protected void hideProgressDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
-        }
-    }
 
     /**
      * Withod wich show UI user login success
      *
-     * @param token
      */
     @Override
-    public void loginDone(TokenResponce token) {
-        hideProgressDialog();
-        saveToken(token);
+    public void loginDone() {
+        super.hideProgressDialog();
         Intent intent=new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
@@ -142,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void loginFail(String errorMessage) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
-        hideProgressDialog();
+        super.hideProgressDialog();
     }
 
     /**

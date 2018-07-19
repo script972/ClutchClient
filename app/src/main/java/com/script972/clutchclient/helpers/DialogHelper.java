@@ -54,4 +54,15 @@ public class DialogHelper {
         return builder.create();
     }
 
+    public static void safeClose(Dialog dialog) {
+        try {
+            if (dialog != null) {
+                if (dialog.isShowing()) {
+                    dialog.cancel();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

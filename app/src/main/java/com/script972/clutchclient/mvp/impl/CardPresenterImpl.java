@@ -1,10 +1,12 @@
 package com.script972.clutchclient.mvp.impl;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.script972.clutchclient.api.helpers.ApiClient;
 import com.script972.clutchclient.api.service.CardItemService;
+import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.mvp.contracts.CardContract;
 
@@ -40,7 +42,7 @@ public class CardPresenterImpl implements CardContract.Presenter {
      */
     private void initialCardList() {
         String token;
-        token=BSSharedPreferenceHelper.getString(getApplicationContext(), "token");
+        token= PrefHelper.getAccessToken(getApplicationContext());
         CardItemService cardItemService= ApiClient.getClient().create(CardItemService.class);
         cardItemService.getAllItemCard(token).enqueue(new Callback<List<CardItem>>() {
             @Override

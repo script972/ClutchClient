@@ -8,7 +8,9 @@ import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.artlite.bslibrary.managers.BSContextManager;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.api.helpers.ApiClient;
+import com.script972.clutchclient.api.helpers.AuthManager;
 import com.script972.clutchclient.api.service.UserService;
+import com.script972.clutchclient.model.Credentials;
 import com.script972.clutchclient.model.api.LoginRequestBody;
 import com.script972.clutchclient.model.api.TokenResponce;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
@@ -38,35 +40,48 @@ public class LoginPresenterImpl implements LoginContract.Presenter {
      */
     @Override
     public void login(final String login, final String password) {
-        final LoginRequestBody body=new LoginRequestBody(login, password);
-
-        UserService userServiceAPI = ApiClient.getClient().create(UserService.class);
-        userServiceAPI.authorization(body).enqueue(new Callback<TokenResponce>() {
+        final Credentials credentials=new Credentials(login, password);
+        AuthManager.getInstance().loginWithCredentials(context, credentials, new AuthManager.AuthCallback() {
             @Override
-            public void onResponse(@NonNull Call<TokenResponce> call, @NonNull Response<TokenResponce> response) {
-                if(response.body()==null){
-                    view.loginFail(context.getResources().getString(R.string.e_invalid_login));
-                }else{
-                    saveSuccessCredentials(login, password);
-                    view.loginDone(response.body());
-                }
+            public void onStart() {
             }
 
             @Override
-            public void onFailure(@NonNull Call<TokenResponce> call, @NonNull Throwable t) {
-                view.loginFail(context.getResources().getString(R.string.e_check_internet));
+            public void onSuccess() {
+                view.loginDone();
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                view.loginFail(context.getResources().getString(R.string.e_invalid_login));
+
+                //startSplashActivity();
+//                Dialogs.showSingleButtonDialog(SplashActivity.this, e.getMessage());
             }
         });
 
     }
 
+
+
     /**
-     * Method witch provide saving success credentials to SharedPreferences
-     * @param login
-     * @param password
+     * Callbacks
      */
-    private void saveSuccessCredentials(String login, String password) {
-        BSSharedPreferenceHelper.save(BSContextManager.getApplicationContext(), login, "valueLogin");
-        BSSharedPreferenceHelper.save(BSContextManager.getApplicationContext(), password, "valuePassword");
-    }
+
+    AuthManager.AuthCallback callbackManager = new AuthManager.AuthCallback() {
+        @Override
+        public void onStart() {
+
+        }
+
+        @Override
+        public void onSuccess() {
+
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+    };
 }

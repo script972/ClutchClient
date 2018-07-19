@@ -20,40 +20,44 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".ui.activitys.SplashScreenActivity">
-             <intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.activitys.MainActivity">
+
+            <!--
+        <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
-        </activity>
-        <activity android:name=".ui.activitys.MainActivity">
-
-       <!-- <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>-->
+            -->
 
         </activity>
-
-        <activity android:name=".ui.activitys.AboutCompanyActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activitys.card.ActivityAddCard"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activitys.card.ActivityListCompany"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.google.zxing.client.android.SCAN"
-            android:screenOrientation="landscape"
+        <activity
+            android:name=".ui.activitys.AboutCompanyActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activitys.card.ActivityAddCard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activitys.card.ActivityListCompany"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.google.zxing.client.android.SCAN"
             android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="landscape"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
-                <action android:name="com.google.zxing.client.android.SCAN"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="com.google.zxing.client.android.SCAN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.activitys.DiscountMapsActivity"
             android:screenOrientation="portrait" />
@@ -69,10 +73,11 @@
         <activity
             android:name=".ui.activitys.authorization.PersonalInfoActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activitys.SettingActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activitys.ContactPhoneListActivity"/>
-
+        <activity
+            android:name=".ui.activitys.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activitys.ContactPhoneListActivity" />
+        <activity android:name=".ui.activitys.SettingCountryActivity"></activity>
     </application>
 
 </manifest>

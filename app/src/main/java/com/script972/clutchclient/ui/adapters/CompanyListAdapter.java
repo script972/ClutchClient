@@ -1,4 +1,4 @@
-package com.script972.clutchclient.ui.activitys.card;
+package com.script972.clutchclient.ui.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by script972 on 27.08.2017.
  */
 
-class CompanyListAdapter  extends RecyclerView.Adapter<CompanyListAdapter.MyViewHolder> {
+public class CompanyListAdapter  extends RecyclerView.Adapter<CompanyListAdapter.MyViewHolder> {
     private List<Company> companys;
     private Context context;
 
@@ -58,7 +58,6 @@ class CompanyListAdapter  extends RecyclerView.Adapter<CompanyListAdapter.MyView
         holder.alphaSign.setText("");
         if ((position > 0) && (companys.get(position - 1) != null) && companys.get(position - 1).getTitle().charAt(0) != companys.get(position).getTitle().charAt(0)){
             holder.alphaSign.setText(c.getTitle().substring(0, 1));
-            Log.i("search", "alpha sign");
         } else
             if(position==0){
                 holder.alphaSign.setText(c.getTitle().substring(0, 1));

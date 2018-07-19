@@ -21,7 +21,7 @@ import com.script972.clutchclient.R;
 import com.script972.clutchclient.ui.activitys.card.ActivityListCompany;
 import com.script972.clutchclient.ui.adapters.TabsPagerFragmentAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 
     private Toolbar toolbar;
@@ -37,15 +37,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initToolbar();
-        initNavigationView();
-        initTab();
+        initView();
        // initFloating();
 
     }
 
-
-
+    private void initView() {
+        initToolbar();
+        initNavigationView();
+        initTab();
+    }
 
     private void initToolbar() {
         toolbar=(Toolbar) findViewById(R.id.toolbar);
@@ -71,29 +72,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        searchView =
-                (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.i("search", "onQueryTextSubmit "+query);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.i("search", "onQueryTextChange "+newText);
-                /*Log.i("search", "onQueryTextChange "+newText);
-                List<Company> companiestemp=new ArrayList<Company>();
-                companiestemp.addAll(companies);
-                companies.clear();
-                for (int i = 0; i < companiestemp.size(); i++) {
-                    if(companiestemp.get(i).getTitle().contains(newText))
-                        companies.add(companiestemp.get(i));
-                }
-                adapter.notifyDataSetChanged();
-                Log.i("search", "adapterNofityData");*/
+
 
                 return false;
             }

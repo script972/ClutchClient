@@ -18,7 +18,7 @@ public interface LoginContract {
         /**
          * Withod wich show UI user login success
          */
-        void loginDone(TokenResponce token);
+        void loginDone();
 
         /**
          * Method wich show UI user login fail
