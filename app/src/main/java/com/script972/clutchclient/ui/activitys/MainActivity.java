@@ -9,6 +9,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +19,8 @@ import android.view.MenuItem;
 
 import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.helpers.DialogHelper;
+import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.ui.activitys.card.ActivityListCompany;
 import com.script972.clutchclient.ui.adapters.TabsPagerFragmentAdapter;
 
@@ -33,7 +36,6 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppDefault);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -138,12 +140,27 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.menuDiscountPoint:
                         showMapsDiscount();
-
+                        break;
+                    case R.id.setting_menu:
+                        showMenu();
+                        break;
+                    case R.id.menu_log_out:
+                        logOut();
                 }
                 return true;
             }
         });
 
+    }
+
+    private void logOut() {
+        DialogHelper.logOutDialog(this);
+
+    }
+
+    private void showMenu() {
+        Intent intent=new Intent(this, SettingActivity.class);
+        startActivity(intent);
     }
 
     private void showMapsDiscount() {

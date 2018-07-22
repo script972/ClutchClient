@@ -18,7 +18,7 @@ import android.view.View;
 
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.api.helpers.ApiClient;
+import com.script972.clutchclient.api.ApiClient;
 import com.script972.clutchclient.api.service.CompanyService;
 import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.Company;

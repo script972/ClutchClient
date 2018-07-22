@@ -1,34 +1,20 @@
 package com.script972.clutchclient.ui.activitys;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
-import com.script972.clutchclient.Constants;
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.api.helpers.ApiClient;
-import com.script972.clutchclient.api.helpers.AuthManager;
-import com.script972.clutchclient.api.service.UserService;
+import com.script972.manages.AuthManager;
 import com.script972.clutchclient.helpers.PrefHelper;
-import com.script972.clutchclient.model.api.LoginRequestBody;
-import com.script972.clutchclient.model.api.TokenResponce;
-import com.script972.clutchclient.model.api.User;
 import com.script972.clutchclient.ui.activitys.authorization.LoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 public class SplashScreenActivity extends BaseActivity {
@@ -82,7 +68,7 @@ public class SplashScreenActivity extends BaseActivity {
      * Method wich decided what activity is next
      */
     private void openNextActivty() {
-        if (PrefHelper.isAuthorized(this)) {
+        if (PrefHelper.isAuthorized(getApplicationContext())) {
             openMainActivity();
         } else{
             openLoginActivity();

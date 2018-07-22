@@ -1,10 +1,8 @@
 package com.script972.clutchclient.mvp.impl;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
-import com.script972.clutchclient.api.helpers.ApiClient;
+import com.script972.clutchclient.api.ApiClient;
 import com.script972.clutchclient.api.service.CardItemService;
 import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.CardItem;

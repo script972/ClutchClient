@@ -4,7 +4,7 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.script972.clutchclient.api.helpers.AuthManager;
+import com.script972.manages.AuthManager;
 import com.script972.clutchclient.helpers.DialogHelper;
 
 public class BaseActivity extends AppCompatActivity {

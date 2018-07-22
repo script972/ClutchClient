@@ -57,6 +57,13 @@ public class PrefHelper {
         return new Gson().fromJson(jsonCredentials, Credentials.class);
     }
 
+    public static boolean clearCredentials(Context context) {
+        SharedPreferences.Editor prefEditor = getSharedPreferences(context).edit();
+        prefEditor.putString(CREDENTIALS, null);
+        prefEditor.apply();
+        return true;
+    }
+
     /**
      * Method wich clear Shared Preferences block
      *
@@ -135,7 +142,7 @@ public class PrefHelper {
      * @return
      */
     public static String getAccessToken(Context context) {
-        return getSharedPreferences(context).getString(ACCESS_TOKEN, "");
+        return getSharedPreferences(context).getString(ACCESS_TOKEN, null);
     }
 
 
@@ -158,7 +165,7 @@ public class PrefHelper {
      * @return
      */
     public static String getRefreshToken(Context context) {
-        return getSharedPreferences(context).getString(REFRESH_TOKEN, "");
+        return getSharedPreferences(context).getString(REFRESH_TOKEN, null);
     }
 
     /**
@@ -204,7 +211,7 @@ public class PrefHelper {
      * @return
      */
     public static LocationPosition getLocation(Context context) {
-        String encodedCredentials = getSharedPreferences(context).getString(LOCATION, "");
+        String encodedCredentials = getSharedPreferences(context).getString(LOCATION, null);
         String jsonCredentials = new String(Base64.decode(encodedCredentials, Base64.DEFAULT));
         return new Gson().fromJson(jsonCredentials, LocationPosition.class);
     }

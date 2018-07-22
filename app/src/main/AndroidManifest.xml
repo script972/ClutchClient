@@ -26,17 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activitys.MainActivity">
+        <activity android:name=".ui.activitys.MainActivity"
+           />
 
-            <!--
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-            -->
-
-        </activity>
         <activity
             android:name=".ui.activitys.AboutCompanyActivity"
             android:screenOrientation="portrait" />
@@ -77,7 +69,7 @@
             android:name=".ui.activitys.SettingActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activitys.ContactPhoneListActivity" />
-        <activity android:name=".ui.activitys.SettingCountryActivity"></activity>
+        <activity android:name=".ui.activitys.SettingCountryActivity"/>
     </application>
 
 </manifest>

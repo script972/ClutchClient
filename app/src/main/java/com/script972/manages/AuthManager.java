@@ -1,10 +1,9 @@
-package com.script972.clutchclient.api.helpers;
+package com.script972.manages;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.google.android.gms.common.api.Api;
-import com.script972.clutchclient.R;
+import com.script972.clutchclient.api.ApiClient;
 import com.script972.clutchclient.api.service.UserService;
 import com.script972.clutchclient.exceptions.EmpyResponceException;
 import com.script972.clutchclient.helpers.PrefHelper;

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +35,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     ProgressBar pbFreeze;
 
     @BindView(R.id.link_registration)
-    TextView linkRegistration;
+    LinearLayout linkRegistration;
 
     private Dialog progressDialog = null;
 

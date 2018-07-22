@@ -1,25 +1,12 @@
 package com.script972.clutchclient.mvp.impl;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
-import com.artlite.bslibrary.managers.BSContextManager;
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.api.helpers.ApiClient;
-import com.script972.clutchclient.api.helpers.AuthManager;
-import com.script972.clutchclient.api.service.UserService;
+import com.script972.manages.AuthManager;
 import com.script972.clutchclient.model.Credentials;
-import com.script972.clutchclient.model.api.LoginRequestBody;
-import com.script972.clutchclient.model.api.TokenResponce;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
 import com.script972.clutchclient.ui.activitys.authorization.LoginActivity;
-
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginPresenterImpl implements LoginContract.Presenter {
 

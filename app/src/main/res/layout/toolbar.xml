@@ -7,4 +7,4 @@
     app:titleTextColor="@color/white"
     android:fitsSystemWindows="true"
     android:elevation="2dp"
-    android:background="@color/colorPrimary"/>
+    android:background="@drawable/background_gradient"/>

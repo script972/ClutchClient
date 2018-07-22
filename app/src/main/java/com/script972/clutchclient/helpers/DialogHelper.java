@@ -50,10 +50,16 @@ public class DialogHelper {
                     }
                 });
 
+
         builder.setCancelable(true);
         return builder.create();
     }
 
+    /**
+     * Method for safety Cloase dialog
+     *
+     * @param dialog
+     */
     public static void safeClose(Dialog dialog) {
         try {
             if (dialog != null) {
@@ -64,5 +70,38 @@ public class DialogHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public static void logOutDialog(final Context context){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+
+        builder.setMessage(R.string.msg_log_out_agree)
+                .setTitle(R.string.title_log_out);
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                PrefHelper.clearCredentials(context);
+                PrefHelper.setAuthorizedFlag(context, false);
+                PrefHelper.setAccessToken(context, null);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+
+            }
+        }).setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.create().show();
+
+
+
     }
 }
