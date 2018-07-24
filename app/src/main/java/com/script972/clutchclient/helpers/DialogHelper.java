@@ -2,10 +2,17 @@ package com.script972.clutchclient.helpers;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.provider.Settings;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.ui.views.CustomProgressDialog;
@@ -30,8 +37,7 @@ public class DialogHelper {
      * @return wish Dialog
      */
     public static Dialog getGpsDialog(final Context context){
-        final AlertDialog.Builder builder =
-                new AlertDialog.Builder(context);
+        final AlertDialog.Builder builder = getAlertDialogBuilder(context);
         final String action = Settings.ACTION_LOCATION_SOURCE_SETTINGS;
         final String message = context.getResources().getString(R.string.dialog_gps_message);
 
@@ -55,26 +61,14 @@ public class DialogHelper {
         return builder.create();
     }
 
+
     /**
-     * Method for safety Cloase dialog
+     * Method for logout from app
      *
-     * @param dialog
+     * @param context
      */
-    public static void safeClose(Dialog dialog) {
-        try {
-            if (dialog != null) {
-                if (dialog.isShowing()) {
-                    dialog.cancel();
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public static void logOutDialog(final Context context){
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        final AlertDialog.Builder builder = getAlertDialogBuilder(context);
 
         builder.setMessage(R.string.msg_log_out_agree)
                 .setTitle(R.string.title_log_out);
@@ -100,8 +94,80 @@ public class DialogHelper {
         });
 
         builder.create().show();
+    }
+
+    /**
+     * Method for raiting app with with login <4 email and >=4 play market
+     *
+     * @param context
+     */
+    public static void openRateDialog(final Context context) {
+        final String supportEmail = "script972@gmail.com";
+
+        AlertDialog.Builder builder = getAlertDialogBuilder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_rating, null);
+        builder.setView(view);
+        builder.create();
+        final AlertDialog dialog = builder.show();
+        TextView dialogButton = (TextView) view.findViewById(R.id.submit_button);
+        RatingBar ratingBar = (RatingBar) view.findViewById(R.id.rating_bar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if (ratingBar.getRating() < 4.0) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("plain/text");
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{supportEmail});
+                    intent.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(R.string.email_rate_us_subject));
+                    intent.putExtra(Intent.EXTRA_TEXT, context.getResources().getString(R.string.email_rate_us_text));
+                    context.startActivity(Intent.createChooser(intent, context.getResources().getString(R.string.email_chooser_text)));
+                } else {
+                    Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
+                    Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+                    try {
+                        context.startActivity(goToMarket);
+                    } catch (ActivityNotFoundException e) {
+                        Toast toast = Toast.makeText(context, "Failed to launch Google Play", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
+                }
+                safeClose(dialog);
+
+            }
+        });
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                safeClose(dialog);
+            }
+        });
+    }
 
 
+    /**
+     * Constructor dialog
+     *
+     * @param context
+     * @return
+     */
+    private static AlertDialog.Builder getAlertDialogBuilder(Context context) {
+        return new AlertDialog.Builder(context);
+    }
 
+    /**
+     * Method for safety Cloase dialog
+     *
+     * @param dialog
+     */
+    public static void safeClose(Dialog dialog) {
+        try {
+            if (dialog != null) {
+                if (dialog.isShowing()) {
+                    dialog.cancel();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

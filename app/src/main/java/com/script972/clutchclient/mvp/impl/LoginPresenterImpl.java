@@ -3,7 +3,7 @@ package com.script972.clutchclient.mvp.impl;
 import android.content.Context;
 
 import com.script972.clutchclient.R;
-import com.script972.manages.AuthManager;
+import com.script972.clutchclient.manages.AuthManager;
 import com.script972.clutchclient.model.Credentials;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
 import com.script972.clutchclient.ui.activitys.authorization.LoginActivity;

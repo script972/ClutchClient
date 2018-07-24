@@ -212,6 +212,8 @@ public class PrefHelper {
      */
     public static LocationPosition getLocation(Context context) {
         String encodedCredentials = getSharedPreferences(context).getString(LOCATION, null);
+        if(encodedCredentials==null)
+            return null;
         String jsonCredentials = new String(Base64.decode(encodedCredentials, Base64.DEFAULT));
         return new Gson().fromJson(jsonCredentials, LocationPosition.class);
     }

@@ -50,13 +50,22 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
         ButterKnife.bind(this);
 
         btnRegistrationOne.setOnClickListener(clicker);
+        initToolbar();
+
+    }
+
+    /**
+     * Method for init toolbar
+     */
+    private void initToolbar() {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setTitle(R.string.toolbar_registration);
     }
 
     /**

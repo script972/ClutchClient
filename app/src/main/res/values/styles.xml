@@ -26,11 +26,16 @@
         <item name="android:layout_marginLeft">0dp</item>
         <item name="android:textSize">@dimen/text_14</item>
         <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="android:textColorHint">@color/grey</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:backgroundTint" tools:ignore="NewApi">@android:color/transparent</item>
         <item name="android:background" tools:ignore="NewApi">@android:color/transparent</item>
         <item name="android:lines">1</item>
+    </style>
+
+    <style name="LoginEditTextEmpty" parent="LoginEditText">
+        <item name="android:textColorHint">@color/grey_dark</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="ButtonLight">
@@ -62,11 +67,22 @@
         <item name="android:orientation">horizontal</item>
     </style>
 
+    <style name="WrappingTextLayoutNotFill" parent="WrappingTextLayout">
+        <item name="android:background">@drawable/background_radius_not_fill</item>
+
+    </style>
+
     <style name="EditTextImage">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_marginRight">@dimen/dimen_10</item>
+    </style>
+
+    <style name="StarRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratingbar_selector</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:maxHeight">48dip</item>
     </style>
 
 

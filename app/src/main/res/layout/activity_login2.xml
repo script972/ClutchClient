@@ -50,6 +50,7 @@
                     android:id="@+id/edt_email"
                     style="@style/LoginEditText"
                     android:hint="@string/hint_email"
+                    android:textColorHint="@color/grey"
                     android:inputType="text" />
 
             </LinearLayout>
@@ -66,6 +67,7 @@
                 <EditText
                     android:id="@+id/edt_password"
                     style="@style/LoginEditText"
+                    android:textColorHint="@color/grey"
                     android:hint="@string/hint_password"
                     android:inputType="text" />
 
@@ -80,12 +82,12 @@
                 android:layout_marginTop="@dimen/dimen_10"
                 android:textColor="@color/whiteOpacitySmall" />
 
-                <Button
-                    android:id="@+id/btn_login"
-                    style="@style/ButtonLight"
-                    android:layout_marginBottom="@dimen/dimen_20"
-                    android:layout_marginTop="@dimen/dimen_20"
-                    android:text="@string/btn_login" />
+            <Button
+                android:id="@+id/btn_login"
+                style="@style/ButtonLight"
+                android:layout_marginBottom="@dimen/dimen_20"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:text="@string/btn_login" />
 
              <LinearLayout
                  android:layout_width="match_parent"
@@ -123,7 +125,7 @@
 
             <LinearLayout
                 style="@style/WrappingTextLayout"
-                android:layout_marginTop="@dimen/dimen_15"
+                android:layout_marginTop="@dimen/dimen_20"
                 android:background="@drawable/background_radius_dark">
 
                 <ImageView
@@ -141,12 +143,12 @@
 
             <LinearLayout
                 style="@style/WrappingTextLayout"
-                android:layout_marginTop="@dimen/dimen_15"
+                android:layout_marginTop="@dimen/dimen_10"
                 android:background="@drawable/bg_button_light">
 
                 <ImageView
                     style="@style/EditTextImage"
-                    android:src="@drawable/ic_facebook"/>
+                    android:src="@drawable/ic_google"/>
 
                 <TextView
                     style="@style/LoginEditText"

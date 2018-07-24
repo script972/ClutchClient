@@ -1,4 +1,4 @@
-package com.script972.manages;
+package com.script972.clutchclient.manages;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

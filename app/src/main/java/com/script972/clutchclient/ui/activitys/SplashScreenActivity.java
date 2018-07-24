@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.script972.clutchclient.R;
-import com.script972.manages.AuthManager;
+import com.script972.clutchclient.manages.AuthManager;
 import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.ui.activitys.authorization.LoginActivity;
 

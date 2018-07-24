@@ -5,22 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".ui.activitys.SplashScreenActivity">
+    tools:context=".ui.activitys.SplashScreenActivity"
+    android:background="@drawable/background_gradient">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/app_background"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:foregroundGravity="center"
-        android:src="@drawable/splash_screen_image"
-         />
+
+
 
     <TextView
         android:id="@+id/version_show"
@@ -32,7 +22,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:text="@string/txt_version_bottom"
-         />
+        android:text="@string/txt_version_bottom" />
 
 </FrameLayout>
