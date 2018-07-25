@@ -52,6 +52,7 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
         btnRegistrationOne.setOnClickListener(clicker);
         initToolbar();
 
+
     }
 
     /**

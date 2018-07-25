@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@color/whiteOpacitySmall">
 
-    <ProgressBar
-        android:id="@+id/progress"
-        style="?android:attr/progressBarStyleInverse"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+
+    <!--TODO add background-->
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="@dimen/dimen_190"
+        android:layout_height="@dimen/dimen_70"
         android:layout_gravity="center"
-        android:padding="15dp"
-        />
+        android:src="@drawable/loader"/>
+        <!--android:background="@drawable/bg_anim"-->
 
 </FrameLayout>
