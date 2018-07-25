@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/drawerLayout"
-    android:background="@color/mainBackground"
+    android:background="@drawable/background_gradient"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.CoordinatorLayout
@@ -59,6 +59,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/menu_navigation"
+        android:background="@drawable/background_gradient"
         app:headerLayout="@layout/navigation_header"/>
 
 </android.support.v4.widget.DrawerLayout>

@@ -7,41 +7,41 @@
             android:id="@+id/menuDiscountPoint"
             android:orderInCategory="1"
             android:title="@string/menu_discount_point"
-            android:icon="@drawable/ic_google_maps" />
+            android:icon="@drawable/ic_maps_menu" />
         <item
             android:id="@+id/menuAddCard"
             android:orderInCategory="1"
             android:title="@string/add_card"
-            android:icon="@drawable/ic_credit_card_plus"/>
+            android:icon="@drawable/ic_card_menu"/>
 
         <item
             android:id="@+id/menuMyCards"
             android:orderInCategory="1"
             android:title="@string/MyCards"
-            android:icon="@drawable/ic_cards_outline_grey600_36dp"/>
+            android:icon="@drawable/ic_my_card_menu"/>
 
         <item
             android:id="@+id/menuOnlineCards"
             android:orderInCategory="1"
             android:title="@string/OnlineCards"
-            android:icon="@drawable/ic_cards_variant_grey600_36dp"/>
+            android:icon="@drawable/ic_air_card_menu"/>
 
         <item
             android:orderInCategory="2"
             android:title="@string/share_app"
-            android:icon="@drawable/ic_share_variant"/>
+            android:icon="@drawable/ic_share_menu"/>
 
         <item
             android:id="@+id/setting_menu"
             android:orderInCategory="2"
             android:title="@string/toolbar_settings"
-            android:icon="@drawable/ic_settings"/>
+            android:icon="@drawable/ic_gear"/>
 
         <item
             android:id="@+id/menu_log_out"
             android:orderInCategory="2"
             android:title="@string/menu_log_out"
-            android:icon="@drawable/ic_settings"/>
+            android:icon="@drawable/ic_gear"/>
     </group>
 
 </menu>

@@ -142,7 +142,7 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
             Picasso.get()
                     .load(this.cardItem.getCompany().getLogo())
                     .placeholder(R.drawable.cardtemplate)
-                    .error(R.drawable.ic_heart_outline_white_24dp)
+                    .error(R.drawable.ic_earth)
                     .into(iconCompany);
         }
 

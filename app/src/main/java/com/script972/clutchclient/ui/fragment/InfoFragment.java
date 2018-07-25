@@ -61,14 +61,14 @@ public class InfoFragment extends Fragment {
             Picasso.get()
                     .load(backphoto)
                     .placeholder(R.drawable.cardtemplate)
-                    .error(R.drawable.ic_heart_outline_white_24dp)
+                    .error(R.drawable.ic_arrow_back)
                     .into(back);
         }
         if(facephoto!=null){
             Picasso.get()
                     .load(facephoto)
                     .placeholder(R.drawable.cardtemplate)
-                    .error(R.drawable.ic_heart_outline_white_24dp)
+                    .error(R.drawable.ic_earth)
                     .into(front);
         }
         //((TextView)view.findViewById(R.id.barcodestr)).setText(number);

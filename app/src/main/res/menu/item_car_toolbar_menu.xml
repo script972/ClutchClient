@@ -8,7 +8,7 @@
         android:id="@+id/shoping_maps"
         android:orderInCategory="300"
         android:title="@string/shoping_maps"
-        android:icon="@drawable/layers"
+        android:icon="@drawable/ic_maps_menu"
         app:showAsAction="ifRoom"/>
 
 </menu>

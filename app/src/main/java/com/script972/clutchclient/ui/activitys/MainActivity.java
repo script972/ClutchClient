@@ -185,8 +185,8 @@ public class MainActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         //icon in adapter cant add???
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_cards_outline_grey600_36dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_cards_variant_grey600_36dp);
+        //tabLayout.getTabAt(0).setIcon(R.drawable.ic_cards_outline_grey600_36dp);
+        //tabLayout.getTabAt(1).setIcon(R.drawable.ic_cards_variant_grey600_36dp);
 
 
     }

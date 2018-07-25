@@ -6,18 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.activitys.ContactPhoneListActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_tollbar"
-        android:background="@color/main_color"
-        android:minHeight="@dimen/dimen_tollbar"
-        android:fitsSystemWindows="true"
-        android:elevation="2dp"
-        app:title="@string/toolbar_contacts"
-        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:titleTextColor="@color/colorWhite"
-        android:titleTextColor="@color/colorWhite" tools:targetApi="m"/>
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/contact_phone"

@@ -7,27 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.activitys.authorization.LoginActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_tollbar"
-        android:background="@color/main_color"
-        android:minHeight="@dimen/dimen_tollbar"
-        android:fitsSystemWindows="true"
-        android:elevation="2dp"
-        app:title="@string/toolbar_personal_info"
-        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:titleTextColor="@color/colorWhite"
-        android:titleTextColor="@color/colorWhite"/>
+    <include android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:src="@drawable/app_background" />
 
     <ProgressBar
         android:id="@+id/pb_freeze"

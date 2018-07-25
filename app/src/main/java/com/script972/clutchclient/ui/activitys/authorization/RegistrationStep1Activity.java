@@ -117,7 +117,6 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
     private void showProgressDialog() {
         hideProgressDialog();
         progressDialog = DialogHelper.getProgressDialog(this);
-        progressDialog.setCancelable(false);
         progressDialog.show();
     }
 

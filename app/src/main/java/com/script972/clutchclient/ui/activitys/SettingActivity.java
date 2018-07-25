@@ -39,7 +39,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     private void initToolbar() {
         tollbar = (Toolbar) findViewById(R.id.toolbar);
 
-        tollbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_white_24dp));
+        tollbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
         tollbar.setNavigationOnClickListener(tollbarClicker);
         tollbar.setTitle(getResources().getString(R.string.toolbar_settings));
     }
