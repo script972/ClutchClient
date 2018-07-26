@@ -15,11 +15,12 @@ import com.script972.clutchclient.model.api.User;
 import com.script972.clutchclient.mvp.contracts.RegistrationContract;
 import com.script972.clutchclient.helpers.ValidatorHelper;
 import com.script972.clutchclient.mvp.impl.RegistrationPresentersImpl;
+import com.script972.clutchclient.ui.activitys.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RegistrationStep1Activity extends AppCompatActivity implements RegistrationContract.View {
+public class RegistrationStep1Activity extends BaseActivity implements RegistrationContract.View {
 
     //outlets
     @BindView(R.id.toolbar)
@@ -78,7 +79,7 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
                 edtRepPassword.setError(getResources().getString(R.string.e_password_not_same));
                 return;
             }else{
-                this.showProgressDialog();
+                super.showProgressDialog();
                 presenter.checkSameUserName(edtEmail.toString());
             }
         }
@@ -112,31 +113,12 @@ public class RegistrationStep1Activity extends AppCompatActivity implements Regi
     }
 
     /**
-     * Method wich show progress dialog and freeze window
-     */
-    private void showProgressDialog() {
-        hideProgressDialog();
-        progressDialog = DialogHelper.getProgressDialog(this);
-        progressDialog.show();
-    }
-
-    /**
-     * Method wich hide progress dialog and unfreeze window
-     */
-    protected void hideProgressDialog() {
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
-        }
-    }
-
-
-    /**
      * Method wich call if registation pass success
      * @param user
      */
     @Override
     public void registrationSuccess(User user) {
+        hideProgressDialog();
         Intent intent = new Intent(this, PersonalInfoActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);

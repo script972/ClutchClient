@@ -17,7 +17,7 @@
         <item
             android:id="@+id/menuMyCards"
             android:orderInCategory="1"
-            android:title="@string/MyCards"
+            android:title="@string/my_cards"
             android:icon="@drawable/ic_my_card_menu"/>
 
         <item

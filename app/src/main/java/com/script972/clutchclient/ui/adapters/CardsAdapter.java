@@ -52,7 +52,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_inflator, parent, false);
+                .inflate(R.layout.card_table, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -90,10 +90,10 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
     }
 
     /**
-     * Showing popup menu when tapping on 3 dots
+     * Showing popup main_toolbar_menu when tapping on 3 dots
      */
     private void showPopupMenu(View view) {
-        // inflate menu
+        // inflate main_toolbar_menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.cards_dots_menu, popup.getMenu());
@@ -104,7 +104,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
 
     /**
-     * Click listener for popup menu items
+     * Click listener for popup main_toolbar_menu items
      */
     class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
 

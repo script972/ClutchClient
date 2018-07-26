@@ -10,7 +10,7 @@
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
     <item
-        android:id="@+id/gear"
+        android:id="@+id/action_gear"
         android:title="@string/gear"
         android:orderInCategory="2"
         android:icon="@drawable/ic_gear"

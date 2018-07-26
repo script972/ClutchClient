@@ -20,7 +20,7 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
     public TabsPagerFragmentAdapter(FragmentManager fm, Context mainActivity) {
         super(fm);
         tabs=new int[]{
-                R.string.MyCards,
+                R.string.my_cards,
                 R.string.OnlineCards
         };
 
@@ -35,7 +35,6 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
         switch (position){
             case 0: return MyCardsFragment.getInstance();
             case 1: return OnlineCardsFragment.getInstance();
-          //  case 2: return MyCardsFragment.getInstance();
         }
         return null;
     }
@@ -49,6 +48,8 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return context.getResources().getString(tabs[position]) ;
     }
+
+
 
 
 

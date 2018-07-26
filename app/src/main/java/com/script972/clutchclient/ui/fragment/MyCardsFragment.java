@@ -34,7 +34,6 @@ import java.util.List;
  * Created by script972 on 09.05.2017.
  */
 
-@SuppressLint("ValidFragment")
 public class MyCardsFragment extends Fragment implements CardContract.View{
     private View view;
     private  List<CardItem> cardModels;
@@ -107,23 +106,18 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
         rcv.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                Log.i("checkcard","dx="+dx+" dy="+dy);
                 if (dy > 0 ||dy<0 && fab.isShown())
                     fab.hide();
             }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                Log.i("checkcard","newState="+newState);
-
                 if (newState == RecyclerView.SCROLL_INDICATOR_TOP){/*SCROLL_INDICATOR_BOTTOM*/
                     fab.show();
                 }
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
-
-
     }
 
     private int dpToPx(int dp) {

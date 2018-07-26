@@ -22,6 +22,9 @@
     <color name="bg_button_light">#e695b6ec</color>
 
     <color name="blue">#96BBE8</color>
+    <color name="main_blue">#03BBF1</color>
+    <color name="main_blue_active">#01B2E4</color>
+    <color name="navigation_view_item_color">@color/colorWhite</color>
 
 
 </resources>

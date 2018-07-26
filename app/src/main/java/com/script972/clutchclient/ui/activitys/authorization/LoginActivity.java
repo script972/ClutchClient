@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.helpers.KeyboardHelper;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
 import com.script972.clutchclient.mvp.impl.LoginPresenterImpl;
 import com.script972.clutchclient.ui.activitys.BaseActivity;
@@ -65,6 +66,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             this.presenter.login(edtEmail.getText().toString(), edtPassword.getText().toString());
         }*/
 
+        KeyboardHelper.hideSoftKeyboard(this);
         super.showProgressDialog();
         this.presenter.login(edtEmail.getText().toString(), edtPassword.getText().toString());
 
