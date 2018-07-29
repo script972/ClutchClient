@@ -22,7 +22,7 @@
                 android:id="@+id/thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/cardtemplate"
+                card_view:srcCompat="@drawable/cardtemplate"
                 android:scaleType="fitXY" />
 
             <TextView
@@ -53,7 +53,7 @@
                 android:layout_below="@id/thumbnail"
                 android:layout_marginTop="@dimen/dimen_16"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_dots" />
+                card_view:srcCompat="@drawable/ic_dots" />
 
         </RelativeLayout>
 

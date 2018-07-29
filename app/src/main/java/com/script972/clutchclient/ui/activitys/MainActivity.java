@@ -141,6 +141,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.menu_log_out:
                         logOut();
+                        break;
                 }
                 return true;
             }

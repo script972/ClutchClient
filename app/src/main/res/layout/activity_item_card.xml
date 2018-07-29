@@ -17,7 +17,7 @@
             android:layout_height="20dp"
             android:layout_margin="@dimen/dimen_16"
             android:elevation="2dp"
-            android:src="@drawable/ic_arrow_back"/>
+            app:srcCompat="@drawable/ic_arrow_back"/>
 
         <fragment
             android:id="@+id/map"
@@ -128,7 +128,7 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="0dp"
-                    android:src="@drawable/back_example"
+                    app:srcCompat="@drawable/back_example"
                     app:civ_border_width="2dp"/>
 
                 <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -141,7 +141,7 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="0dp"
-                    android:src="@drawable/front_example"
+                    app:srcCompat="@drawable/front_example"
                     app:civ_border_color="@color/zxing_result_view"
                     app:civ_border_width="2dp"
                     app:layout_constraintLeft_toLeftOf="parent"

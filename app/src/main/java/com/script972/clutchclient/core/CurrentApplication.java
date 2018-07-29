@@ -5,7 +5,9 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.artlite.bslibrary.core.BSInstance;
-
+import com.facebook.stetho.Stetho;
+import com.script972.clutchclient.BuildConfig;
+import com.script972.clutchclient.helpers.DebugInfoInitializer;
 
 
 /**
@@ -32,6 +34,16 @@ public final class CurrentApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         this.onInitLibraries();
+
+
+        initDebugMode();
+
+    }
+
+    private void initDebugMode() {
+        if(BuildConfig.DEBUG) {
+            DebugInfoInitializer.configNetworkAnalyzer(this);
+        }
     }
 
     /**

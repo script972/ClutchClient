@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.facebook.stetho.Stetho;
+import com.script972.clutchclient.BuildConfig;
 import com.script972.clutchclient.manages.AuthManager;
 import com.script972.clutchclient.helpers.DialogHelper;
 
@@ -16,11 +18,15 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mProgressDialog = DialogHelper.getProgressDialog(this);
-        
+
+
+
         if (isAuthShouldBeChecked() && !authManager.isUserAuthorized(getApplicationContext())) {
             tryToAuthorizeInBackground();
         }
     }
+
+
 
     /**
      * Method wich show progress dialog

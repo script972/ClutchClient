@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.ui.activitys.MainActivity;
@@ -15,21 +16,37 @@ import butterknife.ButterKnife;
 public class PersonalInfoActivity extends AppCompatActivity {
 
     //outlets
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    private Toolbar toolbar;
+    private Button btnRegistration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration_step2);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_personal_info);
 
+        initView();
+
+    }
+
+    private void initView() {
+        initToolbar();
+        btnRegistration = findViewById(R.id.btn_registration);
+        btnRegistration.setOnClickListener(clicker);
+    }
+
+    /**
+     * Method wich init Toolbar
+     */
+    private void initToolbar() {
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mainActivity();
             }
         });
+        toolbar.setTitle(getResources().getString(R.string.toolbar_personal_info));
+
     }
 
     /**

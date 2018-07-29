@@ -1,8 +1,6 @@
 package com.script972.clutchclient.ui.activitys.authorization;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -10,37 +8,27 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.helpers.DialogHelper;
 import com.script972.clutchclient.model.api.User;
 import com.script972.clutchclient.mvp.contracts.RegistrationContract;
 import com.script972.clutchclient.helpers.ValidatorHelper;
 import com.script972.clutchclient.mvp.impl.RegistrationPresentersImpl;
 import com.script972.clutchclient.ui.activitys.BaseActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RegistrationStep1Activity extends BaseActivity implements RegistrationContract.View {
 
     //outlets
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    private Toolbar toolbar;
 
-    @BindView(R.id.btn_registration_one)
-    Button btnRegistrationOne;
+    private Button btnRegistrationOne;
 
-    @BindView(R.id.edt_email)
-    EditText edtEmail;
+    private EditText edtEmail;
 
-    @BindView(R.id.edt_password)
-    EditText edtPassword;
+    private EditText edtPassword;
 
-    @BindView(R.id.edt_password_rep)
-    EditText edtRepPassword;
+    private EditText edtRepPassword;
 
-    private Dialog progressDialog = null;
-
-
+    //presenters
     private final RegistrationContract.Presenter presenter = new RegistrationPresentersImpl(this);
 
 
@@ -48,18 +36,28 @@ public class RegistrationStep1Activity extends BaseActivity implements Registrat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration_step1);
-        ButterKnife.bind(this);
+        initView();
 
-        btnRegistrationOne.setOnClickListener(clicker);
+    }
+
+    /**
+     * Method wich init views
+     */
+    private void initView() {
         initToolbar();
+        btnRegistrationOne = findViewById(R.id.btn_registration_one);
+        btnRegistrationOne.setOnClickListener(clicker);
 
-
+        edtEmail = findViewById(R.id.edt_email);
+        edtPassword = findViewById(R.id.edt_password);
+        edtRepPassword = findViewById(R.id.edt_password_rep);
     }
 
     /**
      * Method for init toolbar
      */
     private void initToolbar() {
+        toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

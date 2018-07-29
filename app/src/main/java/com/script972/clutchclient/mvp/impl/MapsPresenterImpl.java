@@ -1,7 +1,6 @@
 package com.script972.clutchclient.mvp.impl;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
@@ -83,7 +83,7 @@ public class MapsPresenterImpl implements MapsContract.Presenter{
             return;
         }
         mFusedLocationClient.getLastLocation()
-                .addOnSuccessListener((Activity) context, new OnSuccessListener<Location>() {
+                .addOnSuccessListener((AppCompatActivity) context, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
