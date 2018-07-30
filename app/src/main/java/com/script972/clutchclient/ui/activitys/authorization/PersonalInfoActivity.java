@@ -28,6 +28,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Method wich init outlets
+     */
     private void initView() {
         initToolbar();
         btnRegistration = findViewById(R.id.btn_registration);

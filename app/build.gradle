@@ -13,6 +13,17 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         applicationId 'com.script972.clutchclient'
     }
+
+    signingConfigs {
+        release {
+            storeFile file("key/release.keystore")
+            storePassword "Zeen101"
+            keyAlias "Zeen101"
+            keyPassword "Zeen101"
+            v2SigningEnabled false
+        }
+    }
+
     buildTypes {
         release {
             debuggable false

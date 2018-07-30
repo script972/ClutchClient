@@ -150,7 +150,7 @@ public class DialogHelper {
      * @param context
      * @return
      */
-    private static AlertDialog.Builder getAlertDialogBuilder(Context context) {
+    public static AlertDialog.Builder getAlertDialogBuilder(Context context) {
         return new AlertDialog.Builder(context);
     }
 

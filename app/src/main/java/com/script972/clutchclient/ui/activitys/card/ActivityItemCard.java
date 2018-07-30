@@ -23,6 +23,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.pkmmte.view.CircularImageView;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.helpers.DataTransferHelper;
+import com.script972.clutchclient.helpers.DialogHelper;
 import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.ui.activitys.DiscountMapsActivity;
 import com.script972.clutchclient.ui.adapters.TabAdapterInfoCard;
@@ -62,7 +64,7 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
      * Get cardItem from intent
      */
     private void getDataFromIntent() {
-        String json = String.valueOf(getIntent().getExtras().getSerializable("cardItem"));
+        String json = String.valueOf(getIntent().getExtras().getString("cardItem"));
         this.cardItem = new Gson().fromJson(json, CardItem.class);
     }
 
@@ -226,7 +228,7 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
     }
 
     private void openAgreeWindow() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = DialogHelper.getAlertDialogBuilder(this);
         builder.setTitle(getResources().getString(R.string.t_open_window))
                 .setMessage(getResources().getString(R.string.t_agree_open))
                 //.setIcon(R.drawable.ic_android_cat)
@@ -235,7 +237,7 @@ public class ActivityItemCard extends AppCompatActivity implements OnMapReadyCal
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(ActivityItemCard.this, DiscountMapsActivity.class);
-                        intent.putExtra("carditem", cardItem);
+                        intent.putExtra("carditem", DataTransferHelper.convertToJson(cardItem));
                         startActivity(intent);
                     }
                 })
