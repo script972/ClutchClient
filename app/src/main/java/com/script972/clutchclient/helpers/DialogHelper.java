@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.ui.activitys.MainActivity;
 import com.script972.clutchclient.ui.views.CustomProgressDialog;
 
 public class DialogHelper {
@@ -65,9 +66,11 @@ public class DialogHelper {
     /**
      * Method for logout from app
      *
+     * @param mainActivityClass
      * @param context
+     * @param mainActivity
      */
-    public static void logOutDialog(final Context context){
+    public static void logOutDialog(final Context context, MainActivity mainActivity){
         final AlertDialog.Builder builder = getAlertDialogBuilder(context);
 
         builder.setMessage(R.string.msg_log_out_agree)
@@ -80,10 +83,8 @@ public class DialogHelper {
                 PrefHelper.clearCredentials(context);
                 PrefHelper.setAuthorizedFlag(context, false);
                 PrefHelper.setAccessToken(context, null);
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                mainActivity.finish();
+                System.exit(0);
 
             }
         }).setNegativeButton(R.string.btn_cancel, new DialogInterface.OnClickListener() {

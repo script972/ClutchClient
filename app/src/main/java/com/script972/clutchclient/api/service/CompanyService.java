@@ -13,6 +13,6 @@ import retrofit2.http.Query;
 public interface CompanyService {
 
     @GET("/api/company")
-    Call<List<Company>> getCompanyList(@Header("Authorization") String headerToken);
+    Call<List<Company>> getCompanyList();
 
 }

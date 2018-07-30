@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.script972.clutchclient.api.ApiClient;
+import com.script972.clutchclient.api.RetrofitManager;
 import com.script972.clutchclient.api.service.UserService;
 import com.script972.clutchclient.exceptions.EmpyResponceException;
 import com.script972.clutchclient.helpers.PrefHelper;
@@ -26,7 +27,7 @@ public class AuthManager {
     }
 
     private static final class LAZY_HOLDER {
-        public static AuthManager INSTANCE = new AuthManager(ApiClient.getClient().create(UserService.class));
+        public static AuthManager INSTANCE = new AuthManager(RetrofitManager.getInstance().apiRetrofit.create(UserService.class));
     }
 
     private AuthManager(UserService authService) {

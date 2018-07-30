@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 public interface CardItemService {
 
     @GET("/api/card")
-    Call<List<CardItem>> getAllItemCard(@Header("authorization") String token);
+    Call<List<CardItem>> getAllItemCard();
 
 
 }

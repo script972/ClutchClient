@@ -5,16 +5,18 @@ import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
 import com.artlite.bslibrary.core.BSInstance;
-import com.facebook.stetho.Stetho;
 import com.script972.clutchclient.BuildConfig;
-import com.script972.clutchclient.helpers.DebugInfoInitializer;
+import com.script972.clutchclient.api.NetworkLoggingSettings;
+import com.script972.clutchclient.ui.activitys.BaseActivity;
 
 
 /**
  * CLass which provide the application functional
- * Created by dlernatovich on 1/4/18.
  */
-public final class CurrentApplication extends MultiDexApplication {
+public final class ClutchApplication extends MultiDexApplication {
+
+    private static BaseActivity currentActivity;
+    private static ClutchApplication application;
 
     /**
      * Method which provide the action when the base {@link Context} was attached
@@ -34,6 +36,7 @@ public final class CurrentApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         this.onInitLibraries();
+        application=this;
 
 
         initDebugMode();
@@ -42,7 +45,8 @@ public final class CurrentApplication extends MultiDexApplication {
 
     private void initDebugMode() {
         if(BuildConfig.DEBUG) {
-            DebugInfoInitializer.configNetworkAnalyzer(this);
+            NetworkLoggingSettings.init(this);
+
         }
     }
 
@@ -51,7 +55,14 @@ public final class CurrentApplication extends MultiDexApplication {
      */
     protected void onInitLibraries() {
         BSInstance.init(this);
-        /*SQDatabase.init(this);
-        JodaTimeAndroid.init(this);*/
     }
+
+    public static ClutchApplication getApplication() {
+        return application;
+    }
+
+    public static BaseActivity getCurrentActivity() {
+        return currentActivity;
+    }
+
 }

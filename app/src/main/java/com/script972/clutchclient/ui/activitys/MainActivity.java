@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void logOut() {
-        DialogHelper.logOutDialog(this);
+        DialogHelper.logOutDialog(this, MainActivity.this);
 
     }
 

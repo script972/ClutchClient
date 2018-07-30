@@ -3,6 +3,7 @@ package com.script972.clutchclient.mvp.impl;
 import android.support.annotation.NonNull;
 
 import com.script972.clutchclient.api.ApiClient;
+import com.script972.clutchclient.api.RetrofitManager;
 import com.script972.clutchclient.api.service.CardItemService;
 import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.CardItem;
@@ -41,8 +42,8 @@ public class CardPresenterImpl implements CardContract.Presenter {
     private void initialCardList() {
         String token;
         token= PrefHelper.getAccessToken(getApplicationContext());
-        CardItemService cardItemService= ApiClient.getClient().create(CardItemService.class);
-        cardItemService.getAllItemCard(token).enqueue(new Callback<List<CardItem>>() {
+        CardItemService cardItemService= RetrofitManager.getInstance().apiRetrofit.create(CardItemService.class);
+        cardItemService.getAllItemCard().enqueue(new Callback<List<CardItem>>() {
             @Override
             public void onResponse(@NonNull Call<List<CardItem>> call, @NonNull Response<List<CardItem>> response) {
                 view.fillCards(response.body());

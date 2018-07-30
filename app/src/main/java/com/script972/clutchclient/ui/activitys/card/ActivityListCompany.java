@@ -19,6 +19,7 @@ import android.view.View;
 
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.api.ApiClient;
+import com.script972.clutchclient.api.RetrofitManager;
 import com.script972.clutchclient.api.service.CompanyService;
 import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.Company;
@@ -35,6 +36,7 @@ import retrofit2.Response;
 
 public class ActivityListCompany extends AppCompatActivity {
 
+    //outlets
     private Toolbar toolbar;
     private  SearchView searchView;
     private RecyclerView companyList;
@@ -54,13 +56,11 @@ public class ActivityListCompany extends AppCompatActivity {
     private void initView() {
         initToolBar();
         initRecycler();
-
-
     }
 
 
     private void initRecycler() {
-        companyList= (RecyclerView) findViewById(R.id.company_list);
+        companyList= (RecyclerView) findViewById(R.id.rv_company_list);
 
         companyList.setClickable(true);
         companyList.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), companyList,
@@ -82,9 +82,9 @@ public class ActivityListCompany extends AppCompatActivity {
     }
 
     private void mockeLoadData() {
-        CompanyService companyService= ApiClient.getClient().create(CompanyService.class);
-        String token = PrefHelper.getAccessToken(this);
-        companyService.getCompanyList(token)
+        CompanyService companyService= RetrofitManager.getInstance().apiRetrofit.create(CompanyService.class);
+        //String token = PrefHelper.getAccessToken(this);
+        companyService.getCompanyList(/*token*/)
                 .enqueue(new Callback<List<Company>>() {
             @Override
             public void onResponse(@NonNull Call<List<Company>> call, @NonNull Response<List<Company>> response) {

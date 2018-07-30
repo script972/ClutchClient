@@ -128,7 +128,7 @@ public class PrefHelper {
      */
     public static void setAccessToken(Context context, String accessToken) {
         //composit token
-        accessToken = "Bearer "+accessToken;
+        accessToken = accessToken;
 
         SharedPreferences.Editor prefEditor = getSharedPreferences(context).edit();
         prefEditor.putString(ACCESS_TOKEN, accessToken);
