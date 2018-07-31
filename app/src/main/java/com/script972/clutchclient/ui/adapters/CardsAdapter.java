@@ -39,7 +39,6 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
             title = (TextView) view.findViewById(R.id.title);
             count = (TextView) view.findViewById(R.id.count);
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            overflow = (ImageView) view.findViewById(R.id.overflow);
         }
     }
 
@@ -65,12 +64,12 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
         holder.title.setText(cardModel.getTitle());
        // holder.count.setText("Rang "+cardModel.getS());
-        holder.overflow.setOnClickListener(new View.OnClickListener() {
+       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showPopupMenu(holder.overflow);
             }
-        });
+        });*/
 
         Picasso.get()
                 .load(cardModel.getFacePhoto())
@@ -92,14 +91,14 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
     /**
      * Showing popup main_toolbar_menu when tapping on 3 dots
      */
-    private void showPopupMenu(View view) {
+   /* private void showPopupMenu(View view) {
         // inflate main_toolbar_menu
         PopupMenu popup = new PopupMenu(mContext, view);
         MenuInflater inflater = popup.getMenuInflater();
         inflater.inflate(R.menu.cards_dots_menu, popup.getMenu());
         popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
         popup.show();
-    }
+    }*/
 
 
 
@@ -114,9 +113,9 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {
-                case R.id.action_del_card:
+               /* case R.id.action_del_card:
                     Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    return true;
+                    return true;*/
              /*   case R.id.action_play_next:
                     Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
                     return true;*/

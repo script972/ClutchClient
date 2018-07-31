@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.core.ClutchApplication;
+import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.mvp.contracts.CardContract;
 import com.script972.clutchclient.mvp.impl.CardPresenterImpl;
@@ -40,6 +42,11 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     private CardsAdapter cardsAdapter;
 
     private FloatingActionButton fab;
+
+    // vars for help cheking if change span in settings
+    private int saveOldSpan=0;
+
+    //presenter
     private final CardContract.Presenter presenter = new CardPresenterImpl(this);
 
 
@@ -69,6 +76,12 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     public void onStart() {
         super.onStart();
         presenter.onStart();
+        if(saveOldSpan!=0){
+            int value = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
+            if(value!=saveOldSpan){
+                initCards();
+            }
+        }
 
     }
 
@@ -84,8 +97,6 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               /* Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
                 Intent intent=new Intent(getContext(), ActivityListCompany.class);
                 startActivity(intent);
             }
@@ -96,9 +107,11 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     private void initCards() {
         RecyclerView rcv = (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
         cardsAdapter=new CardsAdapter(this.getContext(), cardModels);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), 2);
+        saveOldSpan = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
+
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), saveOldSpan);
         rcv.setLayoutManager(mLayoutManager);
-        rcv.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+        rcv.addItemDecoration(new GridSpacingItemDecoration(saveOldSpan, dpToPx(0), true));
         rcv.setItemAnimator(new DefaultItemAnimator());
         rcv.setAdapter(cardsAdapter);
         cardsAdapter.notifyDataSetChanged();

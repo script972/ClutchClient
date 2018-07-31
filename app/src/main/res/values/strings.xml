@@ -71,5 +71,9 @@
     <string name="email_chooser_text">Send feedback</string>
     <string name="btn_add_new_company">Add new company</string>
     <string name="txt_mock_warning">Some mock warning</string>
+    <string name="settings_display">Display Settings</string>
+    <string name="settings_display_card_view">Display Card</string>
+    <string name="txt_card_view_row">Row</string>
+    <string name="txt_card_view_column">Column</string>
 
 </resources>

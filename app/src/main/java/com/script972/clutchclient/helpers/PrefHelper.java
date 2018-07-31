@@ -18,6 +18,7 @@ public class PrefHelper {
     private static final String ACCESS_TOKEN = "ACCESS_TOKEN";
     private static final String REFRESH_TOKEN = "REFRESH_TOKEN";
     private static final String REMEMBER = "REMEMBER";
+    private static final String DISPLAY_CARD="DISPLAY_CARD";
 
 
 
@@ -217,4 +218,30 @@ public class PrefHelper {
         String jsonCredentials = new String(Base64.decode(encodedCredentials, Base64.DEFAULT));
         return new Gson().fromJson(jsonCredentials, LocationPosition.class);
     }
+
+    /*Settings block*/
+
+    /**
+     * Method wich get how column display card view
+     *
+     * @param context
+     * @return number of column
+     */
+    public static int getDisplayCardView(Context context){
+         return getSharedPreferences(context).getInt(DISPLAY_CARD, 2);
+    }
+
+    /**
+     * Mehod wich sev show column display card view
+     *
+     * @param context
+     * @param numberColumn
+     */
+    public static void setDisplayCardView(Context context, int numberColumn){
+        SharedPreferences.Editor prefEditor = getSharedPreferences(context).edit();
+        prefEditor.putInt(DISPLAY_CARD, numberColumn);
+        prefEditor.apply();
+    }
+
+
 }
