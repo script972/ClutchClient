@@ -70,5 +70,6 @@
     <string name="email_rate_us_text">Tell us how we can improve Clutch app:</string>
     <string name="email_chooser_text">Send feedback</string>
     <string name="btn_add_new_company">Add new company</string>
+    <string name="txt_mock_warning">Some mock warning</string>
 
 </resources>

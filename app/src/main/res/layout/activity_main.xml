@@ -16,6 +16,9 @@
         <include android:id="@+id/toolbar"
             layout="@layout/toolbar" />
 
+        <include
+            layout="@layout/inform_panel"/>
+
 
 
         <android.support.design.widget.TabLayout

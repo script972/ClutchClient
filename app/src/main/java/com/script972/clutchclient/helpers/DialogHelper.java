@@ -1,5 +1,6 @@
 package com.script972.clutchclient.helpers;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -64,13 +65,12 @@ public class DialogHelper {
 
 
     /**
-     * Method for logout from app
+     * Method for logout and exit from app
      *
-     * @param mainActivityClass
      * @param context
-     * @param mainActivity
+     * @param activity
      */
-    public static void logOutDialog(final Context context, MainActivity mainActivity){
+    public static void logOutDialog(final Context context, Activity activity){
         final AlertDialog.Builder builder = getAlertDialogBuilder(context);
 
         builder.setMessage(R.string.msg_log_out_agree)
@@ -83,7 +83,7 @@ public class DialogHelper {
                 PrefHelper.clearCredentials(context);
                 PrefHelper.setAuthorizedFlag(context, false);
                 PrefHelper.setAccessToken(context, null);
-                mainActivity.finish();
+                activity.finish();
                 System.exit(0);
 
             }
