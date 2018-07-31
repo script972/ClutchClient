@@ -1,66 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_8">
     <android.support.v7.widget.CardView
-        android:id="@+id/card_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/dimen_16"
-        android:elevation="3dp"
-        tools:ignore="UnusedAttribute">
-
-        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
             <ImageView
                 android:id="@+id/thumbnail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_centerInParent="true"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                card_view:srcCompat="@drawable/cardtemplate" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_160"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cardtemplate" />
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/cards_toolbar"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@color/main_blue"
-                android:backgroundTint="@color/main_blue"
-                android:layout_below="@+id/thumbnail">
-
+                android:backgroundTint="@color/main_blue">
                 <TextView
                     android:id="@+id/title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:padding="@dimen/dimen_8"
                     android:textColor="@color/card_title"
-                    android:textSize="@dimen/text_14"
-                    android:text="Addidas" />
+                    android:textSize="@dimen/text_20"
+                    android:text="Adidas"
+                    />
 
                 <TextView
                     android:id="@+id/count"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/title"
-                    android:text="dsd"
                     android:visibility="gone"
-                    android:paddingBottom="@dimen/dimen_16"
-                    android:paddingLeft="@dimen/dimen_16"
-                    android:paddingRight="@dimen/dimen_16"
-                    android:textSize="@dimen/text_24" />
-
-            </android.support.v7.widget.Toolbar>
-
-        </RelativeLayout>
-
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
     </android.support.v7.widget.CardView>
+</RelativeLayout>
 
-</LinearLayout>
+
+
