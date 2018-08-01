@@ -8,7 +8,6 @@ import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -20,17 +19,15 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.ui.activitys.BaseActivity;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 
-public class ActivityAddCard extends AppCompatActivity {
+public class ActivityAddCard extends BaseActivity {
 
-
+    //outlets
     private Toolbar toolbar;
     private ImageView cardPhotoBarckode;
     private EditText etNumberCard;
@@ -43,22 +40,26 @@ public class ActivityAddCard extends AppCompatActivity {
         setContentView(R.layout.activity_add_card);
 
         initView();
+        openScan();
+
+
 
     }
 
     private void initView() {
-        initToolBar();
+        initToolbar();
         cardPhotoBarckode= (ImageView) findViewById(R.id.card_photo_barckode);
         etNumberCard= (EditText) findViewById(R.id.et_number_card);
         cardPhotoFront= (ImageView) findViewById(R.id.card_photo_front);
         cardPhotoBack= (ImageView) findViewById(R.id.card_photo_back);
+
+        cardPhotoBarckode.setOnClickListener(clicker);
     }
 
-    private void initToolBar() {
+    private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.getNavigationIcon().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_IN);//цвет стрелки назад
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
+        toolbar.setTitle(getResources().getString(R.string.toolbar_addition_card));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,16 +69,17 @@ public class ActivityAddCard extends AppCompatActivity {
     }
 
 
-    public void openScan(View view) {
-
+    /**
+     * Method wich open scanner
+     */
+    public void openScan() {
         IntentIntegrator integrator = new IntentIntegrator(this);
-
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt(getResources().getString(R.string.scaner_activity_title));
         integrator.setCameraId(0);
 
         integrator.setBeepEnabled(false);
-        integrator.setBarcodeImageEnabled(false);
+        integrator.setBarcodeImageEnabled(true);
         integrator.initiateScan();
     }
 
@@ -156,6 +158,16 @@ public class ActivityAddCard extends AppCompatActivity {
 
         startActivityForResult(i, code);
     }
+
+    //callbacks
+    private View.OnClickListener clicker=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.card_photo_barckode: openScan(); break;
+            }
+        }
+    };
 
 }
 

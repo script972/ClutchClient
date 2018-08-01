@@ -1,14 +1,11 @@
 package com.script972.clutchclient.ui.activitys.authorization;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.script972.clutchclient.R;
@@ -18,27 +15,15 @@ import com.script972.clutchclient.mvp.impl.LoginPresenterImpl;
 import com.script972.clutchclient.ui.activitys.BaseActivity;
 import com.script972.clutchclient.ui.activitys.MainActivity;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class LoginActivity extends BaseActivity implements LoginContract.View{
 
-    @BindView(R.id.edt_email)
-    EditText edtEmail;
+    private EditText edtEmail;
 
-    @BindView(R.id.edt_password)
-    EditText edtPassword;
+    private EditText edtPassword;
 
-    @BindView(R.id.btn_login)
-    Button button;
+    private Button btnLogin;
 
-    @BindView(R.id.pb_freeze)
-    ProgressBar pbFreeze;
-
-    @BindView(R.id.link_registration)
-    LinearLayout linkRegistration;
-
-    private Dialog progressDialog = null;
+    private LinearLayout linkRegistration;
 
 
     private final LoginContract.Presenter presenter = new LoginPresenterImpl(this);
@@ -47,9 +32,18 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login2);
-        ButterKnife.bind(this);
-        button.setOnClickListener(clicker);
+        setContentView(R.layout.activity_login);
+        super.initCommonView();
+        initView();
+
+    }
+
+    private void initView() {
+        this.btnLogin = findViewById(R.id.btn_login);
+        this.edtEmail = findViewById(R.id.edt_email);
+        this.edtPassword = findViewById(R.id.edt_password);
+        this.linkRegistration = findViewById(R.id.link_registration);
+        btnLogin.setOnClickListener(clicker);
         linkRegistration.setOnClickListener(clicker);
     }
 

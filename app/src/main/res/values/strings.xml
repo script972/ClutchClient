@@ -24,7 +24,7 @@
     <string name="txt_version_bottom">ver</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="btn_login">Sign in</string>
+    <string name="btn_login">Sign In</string>
     <string name="hint_password_rep">Repeat password</string>
     <string name="btn_registration">Sign In</string>
     <string name="e_invalid_email">Invalid email</string>
@@ -62,8 +62,8 @@
     <string name="forgot_password">Forgot password?</string>
     <string name="separatet_or">or</string>
     <string name="facebook">Facebook</string>
-    <string name="login_with_google">Login with Google</string>
-    <string name="login_with_facebook">Login with facebook</string>
+    <string name="login_with_google">Sign In with Google</string>
+    <string name="login_with_facebook">Sign In with facebook</string>
     <string name="dont_have_account">Don`t have an account?</string>
     <string name="dialog_rate_us_titles">Do you like our app?</string>
     <string name="email_rate_us_subject">Clutch client</string>
@@ -75,5 +75,7 @@
     <string name="settings_display_card_view">Display Card</string>
     <string name="txt_card_view_row">Row</string>
     <string name="txt_card_view_column">Column</string>
+    <string name="btn_add_card">Add card</string>
+    <string name="toolbar_addition_card">Addition card</string>
 
 </resources>

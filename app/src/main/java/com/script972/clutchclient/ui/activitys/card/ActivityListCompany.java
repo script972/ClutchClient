@@ -68,8 +68,6 @@ public class ActivityListCompany extends AppCompatActivity {
                     public void onClickItem(View v, int position) {
                         Intent intent=new Intent(ActivityListCompany.this, ActivityAddCard.class);
                         startActivity(intent);
-
-
                     }
 
                     public void onLongClickItem(View v, int position) {

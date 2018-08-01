@@ -9,13 +9,12 @@
     <include android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <include
+        layout="@layout/inform_panel"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_company_list"
-        android:layout_marginTop="@dimen/dimen_16"
         android:layout_marginBottom="@dimen/dimen_16"
-        android:paddingRight="@dimen/dimen_16"
-        android:paddingLeft="@dimen/dimen_16"
         android:layout_below="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
