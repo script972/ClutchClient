@@ -12,8 +12,9 @@
 
     </style>
 
-
-
+    <style name="BackgroundApp">
+        <item name="android:background">@color/colorWhite</item>
+    </style>
 
     <style name="CustomEditText">
         <item name="fontFamily">@font/roboto_mono_bold</item>
@@ -59,10 +60,6 @@
 
     </style>
 
-    <style name="BackgroundApp">
-        <item name="android:background">@color/colorWhite</item>
-    </style>
-
     <style name="WrappingTextLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -73,7 +70,6 @@
         <item name="android:paddingEnd">@dimen/dimen_20</item>
         <item name="android:paddingTop">@dimen/dimen_10</item>
         <item name="android:paddingBottom">@dimen/dimen_10</item>
-
         <item name="android:orientation">horizontal</item>
     </style>
 
@@ -93,6 +89,30 @@
         <item name="android:progressDrawable">@drawable/ratingbar_selector</item>
         <item name="android:minHeight">48dip</item>
         <item name="android:maxHeight">48dip</item>
+    </style>
+
+    <style name="TitleClutch">
+
+
+    </style>
+
+    <!--Sutch title of block in Setting-->
+    <style name="TitleH3Clutch">
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:fontFamily">@font/roboto_mono_medium</item>
+    </style>
+
+    <style name="TitleH4Clutch">
+        <item name="android:fontFamily">@font/roboto_mono_regular</item>
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textSize">@dimen/text_15</item>
+    </style>
+
+    <style name="TitleLightClutch">
+        <item name="android:fontFamily">@font/roboto_mono_light</item>
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textSize">@dimen/text_12</item>
     </style>
 
 

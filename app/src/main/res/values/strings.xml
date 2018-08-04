@@ -69,7 +69,7 @@
     <string name="email_rate_us_subject">Clutch client</string>
     <string name="email_rate_us_text">Tell us how we can improve Clutch app:</string>
     <string name="email_chooser_text">Send feedback</string>
-    <string name="btn_add_new_company">Add new company</string>
+    <string name="btn_add_new_company">Add other company</string>
     <string name="txt_mock_warning">Some mock warning</string>
     <string name="settings_display">Display Settings</string>
     <string name="settings_display_card_view">Display Card</string>
@@ -77,5 +77,9 @@
     <string name="txt_card_view_column">Column</string>
     <string name="btn_add_card">Add card</string>
     <string name="toolbar_addition_card">Addition card</string>
+    <string name="settings_available_share">Available share with you</string>
+    <string name="settings_support_service">Support service</string>
+    <string name="settings_log_out">Log out</string>
+    <string name="settings_country_not_detect">Country not detect</string>
 
 </resources>

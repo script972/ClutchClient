@@ -3,8 +3,6 @@ package com.script972.clutchclient.ui.activitys.card;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
@@ -19,7 +17,10 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.helpers.DataTransferHelper;
+import com.script972.clutchclient.model.api.Company;
 import com.script972.clutchclient.ui.activitys.BaseActivity;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -28,36 +29,53 @@ import java.io.IOException;
 public class ActivityAddCard extends BaseActivity {
 
     //outlets
-    private Toolbar toolbar;
-    private ImageView cardPhotoBarckode;
+    private ImageView imCardPhotoBarckode;
     private EditText etNumberCard;
-    private ImageView cardPhotoFront;
-    private ImageView cardPhotoBack;
+    private ImageView imCompanyImage;
+    private ImageView imCardPhotoFront;
+    private ImageView imCardPhotoBack;
+
+    private Company company;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_card);
+        super.initCommonView();
+        getFromIntent();
 
         initView();
         openScan();
-
-
-
     }
 
     private void initView() {
         initToolbar();
-        cardPhotoBarckode= (ImageView) findViewById(R.id.card_photo_barckode);
+        imCardPhotoBarckode = (ImageView) findViewById(R.id.card_photo_barckode);
         etNumberCard= (EditText) findViewById(R.id.et_number_card);
-        cardPhotoFront= (ImageView) findViewById(R.id.card_photo_front);
-        cardPhotoBack= (ImageView) findViewById(R.id.card_photo_back);
+        imCardPhotoFront = (ImageView) findViewById(R.id.card_photo_front);
+        imCardPhotoBack = (ImageView) findViewById(R.id.card_photo_back);
+        imCompanyImage = findViewById(R.id.card_top_logo);
 
-        cardPhotoBarckode.setOnClickListener(clicker);
+        imCardPhotoBarckode.setOnClickListener(clicker);
+        Picasso.get()
+                .load(company.getLogo())
+                .placeholder(R.drawable.cardtemplate)
+                .error(R.drawable.ic_arrow_back)
+                .into(imCompanyImage);
     }
 
+    /**
+     * Method for get information from intent
+     */
+    private void getFromIntent() {
+        this.company = (Company) DataTransferHelper.convertFromJson(Company.class, getIntent().getExtras().getString("company"));
+    }
+
+    /**
+     * Method for init toolbar
+     */
     private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
         toolbar.setTitle(getResources().getString(R.string.toolbar_addition_card));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -111,19 +129,19 @@ public class ActivityAddCard extends BaseActivity {
             Log.i("scan", "fronPhoto ready");
 
             Picasso.with(this).load(data.getData()).noPlaceholder().centerCrop().fit()
-                    .into(cardPhotoFront);
+                    .into(imCardPhotoFront);
         }*/
 
         if(requestCode == 21 && resultCode == RESULT_OK){
             Log.i("scan", "fronPhoto ready");
 
             Uri imageUri = data.getData();
-            cardPhotoFront.setImageURI(imageUri);
+            imCardPhotoFront.setImageURI(imageUri);
 
         }
         if (requestCode == 22 && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            cardPhotoBack.setImageURI(selectedImage);
+            imCardPhotoBack.setImageURI(selectedImage);
 
         }
 
@@ -168,6 +186,7 @@ public class ActivityAddCard extends BaseActivity {
             }
         }
     };
+
 
 }
 

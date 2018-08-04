@@ -37,7 +37,7 @@ public class RetrofitManager {
             if (accessToken!=null && !accessToken.isEmpty()) {
                 requestBuilder.header(ApiClient.OAuth.Header.AUTH_TOKEN_KEY, ApiClient.OAuth.Header.buildAuthHeaderValue(accessToken));
             }
-            requestBuilder.addHeader("Connection", "close");
+            //requestBuilder.addHeader("Connection", "close");
             Request request = requestBuilder.build();
             return chain.proceed(request);
         });

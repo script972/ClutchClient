@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.model.api.Company;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -29,18 +30,15 @@ public class CompanyListAdapter  extends RecyclerView.Adapter<CompanyListAdapter
      * */
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView alphaSign;
-        public ImageView logoCompany;
-        public TextView titleCompany;
+        private TextView alphaSign;
+        private ImageView logoCompany;
+        private TextView titleCompany;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
-
             alphaSign = (TextView) view.findViewById(R.id.alpha_sign);
             logoCompany = (ImageView) view.findViewById(R.id.logo_company);
-
             titleCompany= (TextView) view.findViewById(R.id.title_company);
-
         }
     }
 
@@ -58,13 +56,15 @@ public class CompanyListAdapter  extends RecyclerView.Adapter<CompanyListAdapter
         holder.alphaSign.setText("");
         if ((position > 0) && (companys.get(position - 1) != null) && companys.get(position - 1).getTitle().charAt(0) != companys.get(position).getTitle().charAt(0)){
             holder.alphaSign.setText(c.getTitle().substring(0, 1));
-        } else
-            if(position==0){
-                holder.alphaSign.setText(c.getTitle().substring(0, 1));
+        } else if(position==0){
+            holder.alphaSign.setText(c.getTitle().substring(0, 1));
+        }
 
-            }
-
-
+        Picasso.get()
+            .load(c.getLogo())
+            .placeholder(R.drawable.cardtemplate)
+            .error(R.drawable.ic_earth)
+            .into(holder.logoCompany);
     }
 
     @Override

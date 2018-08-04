@@ -24,10 +24,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/settings_display"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_14"
-                android:textStyle="bold" />
+                style="@style/TitleH3Clutch"
+                android:text="@string/settings_display" />
 
             <LinearLayout
                 android:id="@+id/display_layout"
@@ -42,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/icon_notification"/>
+                    app:srcCompat="@drawable/ic_display_card"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -54,15 +52,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_14"
+                        style="@style/TitleH4Clutch"
                         android:text="@string/settings_display_card_view"/>
 
                     <TextView
                         android:id="@+id/display_card_status_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_dark"
+                        style="@style/TitleLightClutch"
                         android:textSize="@dimen/text_14"
                         android:text="@string/enabled"/>
 
@@ -76,9 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_notification"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_14"
-                android:textStyle="bold" />
+                style="@style/TitleH3Clutch" />
 
             <LinearLayout
                 android:id="@+id/push_notifications_layout"
@@ -93,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/icon_notification"/>
+                    app:srcCompat="@drawable/ic_push_notification"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -105,16 +100,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_14"
+                        style="@style/TitleH4Clutch"
                         android:text="@string/settings_push_notifications"/>
 
                     <TextView
                         android:id="@+id/notifications_status_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_dark"
-                        android:textSize="@dimen/text_14"
+                        style="@style/TitleLightClutch"
                         android:text="@string/enabled"/>
 
                 </LinearLayout>
@@ -125,16 +118,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_application"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_14"
-                android:textStyle="bold" />
+                style="@style/TitleH3Clutch" />
 
             <LinearLayout
                 android:id="@+id/current_location_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/dimen_16"
-                android:layout_marginTop="@dimen/dimen_16"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -142,7 +133,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:adjustViewBounds="true"
-                    app:srcCompat="@drawable/icon_location" />
+                    app:srcCompat="@drawable/ic_major_location" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -155,16 +146,114 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/settings_change_location"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/text_14" />
+                        style="@style/TitleH4Clutch" />
 
                     <TextView
-                        android:id="@+id/current_view_text_view"
+                        android:id="@+id/current_country_text_view"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_dark"
-                        android:textSize="@dimen/text_14"
-                        tools:text="Current View: IL003 LOREN HYUNDAI" />
+                        style="@style/TitleLightClutch"
+                        tools:text="@string/settings_country_not_detect" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/available_share_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/ic_available_card" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dimen_20"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_available_share"
+                        android:layout_gravity="center_vertical"
+                        style="@style/TitleH4Clutch" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/personal_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/ic_business_card" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dimen_20"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_support_service"
+                        style="@style/TitleH4Clutch" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--TODO-->
+
+            <LinearLayout
+                android:id="@+id/exit_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_6"
+                android:layout_marginBottom="@dimen/dimen_6"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    app:srcCompat="@drawable/ic_exit" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/dimen_20"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_log_out"
+                        style="@style/TitleH4Clutch" />
+
 
                 </LinearLayout>
 

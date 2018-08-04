@@ -18,7 +18,7 @@
             android:id="@+id/alpha_sign"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="@dimen/dimen_8"
             android:text="A"
             android:gravity="center"
             android:textColor="@color/main_blue"
@@ -31,7 +31,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1.5"
-        android:padding="8dp"
+        android:paddingStart="@dimen/dimen_8"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
         android:background="@color/main_blue"
         android:orientation="horizontal">
 
@@ -47,6 +49,7 @@
             android:id="@+id/title_company"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:layout_weight="3"
             android:text="Adidas"
             android:layout_marginLeft="@dimen/dimen_16"

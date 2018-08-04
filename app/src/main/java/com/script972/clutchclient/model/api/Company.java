@@ -8,23 +8,33 @@ import java.util.List;
 
 public class Company implements Comparable, Serializable {
 
-    private String title;
+    private String id;
 
     private Position position;
 
-    private String address;
+    private String site;
 
     private String logo;
 
-    private String site;
+    private Company parent;
+
+    private List<String> phones;
 
     private City city;
 
-    private String notice;
+    private String codeError;
+
+    private String title;
 
     private Integer scores;
 
-    private List<String> phones;
+    private String address;
+
+    private String color;
+
+    private String descriptionError;
+
+    private String notice;
 
     //constructors
     public Company() {
@@ -49,7 +59,7 @@ public class Company implements Comparable, Serializable {
     }
 
     public Company(String title, Position position, String address, String logo, String site,
-                   City city, String notice, Integer scores, List<String> phones) {
+                   City city, String notice, int scores, List<String> phones) {
         this.title = title;
         this.position = position;
         this.address = address;
@@ -61,14 +71,7 @@ public class Company implements Comparable, Serializable {
         this.phones = phones;
     }
 
-    //geters & setters
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
     public Position getPosition() {
         return position;
@@ -76,22 +79,6 @@ public class Company implements Comparable, Serializable {
 
     public void setPosition(Position position) {
         this.position = position;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
     }
 
     public String getSite() {
@@ -102,6 +89,30 @@ public class Company implements Comparable, Serializable {
         this.site = site;
     }
 
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public Company getParent() {
+        return parent;
+    }
+
+    public void setParent(Company parent) {
+        this.parent = parent;
+    }
+
+    public List<String> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<String> phones) {
+        this.phones = phones;
+    }
+
     public City getCity() {
         return city;
     }
@@ -110,12 +121,28 @@ public class Company implements Comparable, Serializable {
         this.city = city;
     }
 
-    public String getNotice() {
-        return notice;
+    public String getId() {
+        return id;
     }
 
-    public void setNotice(String notice) {
-        this.notice = notice;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCodeError() {
+        return codeError;
+    }
+
+    public void setCodeError(String codeError) {
+        this.codeError = codeError;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public Integer getScores() {
@@ -126,13 +153,39 @@ public class Company implements Comparable, Serializable {
         this.scores = scores;
     }
 
-    public List<String> getPhones() {
-        return phones;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPhones(List<String> phones) {
-        this.phones = phones;
+    public void setAddress(String address) {
+        this.address = address;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getDescriptionError() {
+        return descriptionError;
+    }
+
+    public void setDescriptionError(String descriptionError) {
+        this.descriptionError = descriptionError;
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
+
 
     @Override
     public String toString() {

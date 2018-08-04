@@ -28,7 +28,6 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         super.initCommonView();
-
         initView();
 
     }
@@ -39,11 +38,14 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     }
 
+    /**
+     * Method for init views
+     */
     private void initView() {
         initToolbar();
         initDisplayCard();
 
-        txtCurrentCountry=findViewById(R.id.current_view_text_view);
+        txtCurrentCountry=findViewById(R.id.current_country_text_view);
         findViewById(R.id.current_location_layout).setOnClickListener(this);
         LocationPosition location = PrefHelper.getLocation(this);
         if(location!=null)

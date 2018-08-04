@@ -22,6 +22,11 @@
         <activity android:name=".ui.activitys.SplashScreenActivity"
             android:screenOrientation="portrait">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
 
         <activity android:name=".ui.activitys.MainActivity"
@@ -35,16 +40,15 @@
         <activity
             android:name=".ui.activitys.card.ActivityAddCard"
             android:screenOrientation="portrait" />
+
+        <!-- adjust Pan help keyboard be on the upper of layout-->
         <activity
             android:name=".ui.activitys.card.ActivityListCompany"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
+
         <activity
             android:name="com.google.zxing.client.android.SCAN"
             android:configChanges="orientation|keyboardHidden"
