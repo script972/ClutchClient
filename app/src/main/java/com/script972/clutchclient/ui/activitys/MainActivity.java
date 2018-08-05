@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.script972.clutchclient.R;
@@ -104,7 +105,15 @@ public class MainActivity extends BaseActivity {
 
     private void initNavigationView() {
         drawerLayout= (DrawerLayout) findViewById(R.id.drawerLayout);
-
+        NavigationView navigationView= (NavigationView) findViewById(R.id.navigation);
+        View headerView = navigationView.inflateHeaderView(R.layout.navigation_header);
+        ImageView imgView = (ImageView)headerView.findViewById(R.id.close_drawable_menu);
+        imgView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawerLayout.closeDrawers();
+            }
+        });
         //burger button
         ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
 
@@ -118,7 +127,6 @@ public class MainActivity extends BaseActivity {
         toggle.syncState();
 
 
-        NavigationView navigationView= (NavigationView) findViewById(R.id.navigation);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -140,9 +148,6 @@ public class MainActivity extends BaseActivity {
                     case R.id.setting_menu:
                         showMenu();
                         break;
-                    case R.id.menu_log_out:
-                        logOut();
-                        break;
                 }
                 return true;
             }
@@ -152,7 +157,6 @@ public class MainActivity extends BaseActivity {
 
     private void logOut() {
         DialogHelper.logOutDialog(this, MainActivity.this);
-
     }
 
     private void showMenu() {

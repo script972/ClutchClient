@@ -14,7 +14,7 @@
     <string name="b_scan_barckode">Add barckode</string>
     <string name="card_front_side">Front side</string>
     <string name="card_back_side">Back side</string>
-    <string name="number_card">Number card</string>
+    <string name="number_card">Card number</string>
     <string name="comment_card">Comment</string>
     <string name="card_list">Cards</string>
     <string name="country_select">Country</string>
@@ -81,5 +81,6 @@
     <string name="settings_support_service">Support service</string>
     <string name="settings_log_out">Log out</string>
     <string name="settings_country_not_detect">Country not detect</string>
+    <string name="card_added">Card added, you may add more info or left this creen</string>
 
 </resources>

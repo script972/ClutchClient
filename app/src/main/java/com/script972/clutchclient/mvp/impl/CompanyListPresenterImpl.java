@@ -28,7 +28,7 @@ public class CompanyListPresenterImpl implements CompanyListContract.Presenter {
     }
 
     @Override
-    public void onStart() {
+    public void refreshCompanyList() {
         initCardCompanyListFromServer();
     }
 

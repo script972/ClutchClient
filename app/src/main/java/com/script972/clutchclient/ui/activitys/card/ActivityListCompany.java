@@ -52,13 +52,13 @@ public class ActivityListCompany extends BaseActivity implements CompanyListCont
         setContentView(R.layout.activity_list_card);
         super.initCommonView();
         initView();
+        presenter.refreshCompanyList();
+        super.showProgressDialog();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        presenter.onStart();
-        super.showProgressDialog();
     }
 
     /**
@@ -188,6 +188,7 @@ public class ActivityListCompany extends BaseActivity implements CompanyListCont
        // this.rvCompanyList.setVisibility(View.GONE);
         super.hideProgressDialog();
     }
+
 
     /**
      * Method for added for Company

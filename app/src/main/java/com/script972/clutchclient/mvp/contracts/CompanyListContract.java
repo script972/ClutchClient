@@ -8,9 +8,9 @@ public interface CompanyListContract {
 
     interface Presenter{
         /**
-         * Method wich call onStart
+         * Method wich call refreshCompanyList
          */
-        void onStart();
+        void refreshCompanyList();
 
 
     }
@@ -23,6 +23,7 @@ public interface CompanyListContract {
 
 
         void onFailureGetData(Throwable t);
+
     }
 
 }

@@ -55,6 +55,6 @@
         app:itemIconTint="@color/white"
         app:menu="@menu/menu_navigation"
         android:background="@drawable/background_gradient"
-        app:headerLayout="@layout/navigation_header"/>
+       />
 
 </android.support.v4.widget.DrawerLayout>

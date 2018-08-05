@@ -14,16 +14,27 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.vision.text.Line;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.api.RetrofitManager;
+import com.script972.clutchclient.api.service.CardItemService;
+import com.script972.clutchclient.api.service.CompanyService;
 import com.script972.clutchclient.helpers.DataTransferHelper;
+import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.model.api.Company;
 import com.script972.clutchclient.ui.activitys.BaseActivity;
 import com.squareup.picasso.Picasso;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.net.URI;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ActivityAddCard extends BaseActivity {
@@ -32,10 +43,16 @@ public class ActivityAddCard extends BaseActivity {
     private ImageView imCardPhotoBarckode;
     private EditText etNumberCard;
     private ImageView imCompanyImage;
+    private View cardPhotoFront;
+    private View cardPhotoBack;
     private ImageView imCardPhotoFront;
     private ImageView imCardPhotoBack;
 
     private Company company;
+    /**
+     * Object for server
+     */
+    private CardItem cardItem=new CardItem();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +62,29 @@ public class ActivityAddCard extends BaseActivity {
         getFromIntent();
 
         initView();
-        openScan();
+      //  openScan();
     }
 
+    /**
+     * Init view
+     */
     private void initView() {
         initToolbar();
-        imCardPhotoBarckode = (ImageView) findViewById(R.id.card_photo_barckode);
-        etNumberCard= (EditText) findViewById(R.id.et_number_card);
-        imCardPhotoFront = (ImageView) findViewById(R.id.card_photo_front);
-        imCardPhotoBack = (ImageView) findViewById(R.id.card_photo_back);
         imCompanyImage = findViewById(R.id.card_top_logo);
+        imCardPhotoFront = findViewById(R.id.card_photo_front_img);
+        imCardPhotoBack = findViewById(R.id.card_photo_back_img);
+        imCardPhotoBarckode = findViewById(R.id.card_photo_barckode);
 
+        etNumberCard = findViewById(R.id.et_number_card);
+        cardPhotoFront = findViewById(R.id.card_photo_front);
+        cardPhotoBack = findViewById(R.id.card_photo_back);
+
+        cardPhotoFront.setOnClickListener(clicker);
+        cardPhotoBack.setOnClickListener(clicker);
+        imCardPhotoFront.setOnClickListener(clicker);
         imCardPhotoBarckode.setOnClickListener(clicker);
+        imCardPhotoBack.setOnClickListener(clicker);
+
         Picasso.get()
                 .load(company.getLogo())
                 .placeholder(R.drawable.cardtemplate)
@@ -69,6 +97,7 @@ public class ActivityAddCard extends BaseActivity {
      */
     private void getFromIntent() {
         this.company = (Company) DataTransferHelper.convertFromJson(Company.class, getIntent().getExtras().getString("company"));
+        this.cardItem.setCompany(company);
     }
 
     /**
@@ -95,7 +124,6 @@ public class ActivityAddCard extends BaseActivity {
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt(getResources().getString(R.string.scaner_activity_title));
         integrator.setCameraId(0);
-
         integrator.setBeepEnabled(false);
         integrator.setBarcodeImageEnabled(true);
         integrator.initiateScan();
@@ -106,44 +134,57 @@ public class ActivityAddCard extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.i("scan", "request code "+requestCode+" resultCode "+requestCode+" data ");
-
-        //TODO
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
-                Log.i("scan", "Cancelled scan");
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                Log.i("scan", "Scanned");
-                etNumberCard.setText(result.getContents());
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
-            }
-
-        }
-
-        /*if (requestCode == 21) {
-
-            //Get ImageURi and load with help of picasso
-            //Uri selectedImageURI = data.getData();
-            Log.i("scan", "fronPhoto ready");
-
-            Picasso.with(this).load(data.getData()).noPlaceholder().centerCrop().fit()
-                    .into(imCardPhotoFront);
-        }*/
-
         if(requestCode == 21 && resultCode == RESULT_OK){
-            Log.i("scan", "fronPhoto ready");
-
+            super.showStatusPanel(getResources().getString(R.string.card_added), TypeStatus.INFORM, true);
             Uri imageUri = data.getData();
             imCardPhotoFront.setImageURI(imageUri);
-
+            return;
         }
+
         if (requestCode == 22 && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             imCardPhotoBack.setImageURI(selectedImage);
-
+            return;
         }
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if(result != null) {
+            if(result.getContents() == null) {
+                //scannser cancelled
+                super.showStatusPanel("Cancelled ", TypeStatus.ERROR, true);
+            } else {
+                //from scanner ok
+                etNumberCard.setText(result.getContents());
+                imCardPhotoFront.setImageURI(Uri.parse(result.getBarcodeImagePath()));
+                super.showStatusPanel(getResources().getString(R.string.card_added), TypeStatus.INFORM, true);
+                cardItem.setNumber(result.getContents());
+                //cardItem.setFacePhoto();
+                addCardToServer(cardItem);
+            }
+        }
+
+    }
+
+    /**
+     * Add card to server
+     */
+    private void addCardToServer(CardItem cardItem) {
+        super.showProgressDialog();
+        CardItemService cardItemService= RetrofitManager.getInstance().apiRetrofit.create(CardItemService.class);
+        cardItemService.postCardItem(cardItem).enqueue(new Callback<CardItem>() {
+            @Override
+            public void onResponse(Call<CardItem> call, Response<CardItem> response) {
+                Log.i("responce", response.message());
+                ActivityAddCard.super.hideProgressDialog();
+            }
+
+            @Override
+            public void onFailure(Call<CardItem> call, Throwable t) {
+                ActivityAddCard.super.hideProgressDialog();
+            }
+        });
+
+
 
     }
 
@@ -156,24 +197,24 @@ public class ActivityAddCard extends BaseActivity {
         return image;
     }
 
-    public void loadFront(View view) {
-        /*Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE );
-        startActivityForResult( intent, 22 );*/
+    public void loadFront() {
         pickImage(21);
     }
 
-    public void loadBack(View view) {
+    public void loadBack() {
         pickImage(22);
 
     }
 
-
+    /**
+     * Method for choosing image
+     *
+     * @param code
+     */
     private void pickImage(int code) {
-
         Intent i = new Intent(
                 Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
         startActivityForResult(i, code);
     }
 
@@ -183,6 +224,8 @@ public class ActivityAddCard extends BaseActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.card_photo_barckode: openScan(); break;
+                case R.id.card_photo_front_img: loadFront(); break;
+                case R.id.card_photo_back_img: loadBack(); break;
             }
         }
     };

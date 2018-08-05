@@ -37,11 +37,6 @@
             android:title="@string/toolbar_settings"
             android:icon="@drawable/ic_gear"/>
 
-        <item
-            android:id="@+id/menu_log_out"
-            android:orderInCategory="2"
-            android:title="@string/menu_log_out"
-            android:icon="@drawable/ic_gear"/>
     </group>
 
 </menu>

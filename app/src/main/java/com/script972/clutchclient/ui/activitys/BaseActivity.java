@@ -2,13 +2,18 @@ package com.script972.clutchclient.ui.activitys;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.manages.AuthManager;
 import com.script972.clutchclient.helpers.DialogHelper;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -49,11 +54,37 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Method wich show status panel
+     * Method for show status panel on time
      *
-     * @param value of inform data (text)
+     * @param value
      * @param typeStatus
+     * @param timer
      */
+    public void showStatusPanel(String value, TypeStatus typeStatus, boolean timer) {
+        showStatusPanel(value, typeStatus);
+        Timer t = new Timer(false);
+        t.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        statusPanel.setVisibility(View.GONE);
+                    }
+                });
+            }
+        }, 3000);
+        //statusPanel.setVisibility(View.GONE);
+
+    }
+
+
+
+        /**
+         * Method wich show status panel
+         *
+         * @param value of inform data (text)
+         * @param typeStatus
+         */
     public void showStatusPanel(String value, TypeStatus typeStatus){
         int colorStatus = getResources().getColor(R.color.color_inform_panel);
         switch (typeStatus){

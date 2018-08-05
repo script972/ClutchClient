@@ -69,7 +69,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
 
     /**
      * Called when the Fragment is visible to the user.  This is generally
-     * tied to {@link Activity#onStart() Activity.onStart} of the containing
+     * tied to {@link Activity#onStart() Activity.refreshCompanyList} of the containing
      * Activity's lifecycle.
      */
     @Override

@@ -9,6 +9,7 @@
         <item name="colorPrimaryDark">#ccaa3f</item>
         <item name="windowActionBar">true</item>
         <item name="colorControlNormal">@color/white</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
 
     </style>
 
@@ -100,6 +101,12 @@
     <style name="TitleH3Clutch">
         <item name="android:textColor">@color/title</item>
         <item name="android:textSize">@dimen/text_16</item>
+        <item name="android:fontFamily">@font/roboto_mono_medium</item>
+    </style>
+
+    <style name="TitleH5Clutch" parent="TitleClutch">
+        <item name="android:textColor">@color/title</item>
+        <item name="android:textSize">@dimen/text_14</item>
         <item name="android:fontFamily">@font/roboto_mono_medium</item>
     </style>
 
