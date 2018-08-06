@@ -62,7 +62,11 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
         final CardItem cardModel = cardList.get(position);
         final String jsonCardItem = new Gson().toJson(cardModel);
 
-        holder.title.setText(cardModel.getTitle());
+        if(cardModel.getTitle()!=null && !cardModel.getTitle().isEmpty()) {
+            holder.title.setText(cardModel.getTitle());
+        } else if(cardModel.getCompany()!=null && cardModel.getCompany().getTitle()!=null && !cardModel.getCompany().getTitle().isEmpty()){
+            holder.title.setText(cardModel.getCompany().getTitle());
+        }
        // holder.count.setText("Rang "+cardModel.getS());
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override

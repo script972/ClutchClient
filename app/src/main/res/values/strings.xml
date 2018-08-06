@@ -81,6 +81,9 @@
     <string name="settings_support_service">Support service</string>
     <string name="settings_log_out">Log out</string>
     <string name="settings_country_not_detect">Country not detect</string>
-    <string name="card_added">Card added, you may add more info or left this creen</string>
+    <string name="card_added">Card added, you may add more info or left this screen</string>
+    <string name="image_upload_fale">Image upload is fale</string>
+    <string name="image_upload_success">Image uploading is success</string>
+    <string name="card_added_failure">Card added is faile</string>
 
 </resources>
