@@ -71,7 +71,7 @@ public class DialogHelper {
      * @param activity
      */
     public static void logOutDialog(final Context context, Activity activity){
-        final AlertDialog.Builder builder = getAlertDialogBuilder(context);
+        final AlertDialog.Builder builder = getAlertDialogBuilder(activity);
 
         builder.setMessage(R.string.msg_log_out_agree)
                 .setTitle(R.string.title_log_out);

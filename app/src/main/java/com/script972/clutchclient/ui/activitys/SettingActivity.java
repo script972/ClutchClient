@@ -154,7 +154,7 @@ public class SettingActivity extends BaseActivity {
      * Method for logOut
      */
     private void logOut() {
-        DialogHelper.logOutDialog(this, this);
+        DialogHelper.logOutDialog(getApplicationContext(), this);
     }
 
 

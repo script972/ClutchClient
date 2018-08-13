@@ -42,6 +42,8 @@ public class CompanyListPresenterImpl implements CompanyListContract.Presenter {
                     @Override
                     public void onResponse(@NonNull Call<List<Company>> call, @NonNull Response<List<Company>> response) {
                         List<Company> responceList=response.body();
+                        if(responceList==null)
+                            return;
                         Collections.sort(responceList);
                         view.refreshDataCompany(responceList);
                     }

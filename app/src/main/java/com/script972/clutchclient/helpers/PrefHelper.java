@@ -60,7 +60,7 @@ public class PrefHelper {
 
     public static boolean clearCredentials(Context context) {
         SharedPreferences.Editor prefEditor = getSharedPreferences(context).edit();
-        prefEditor.putString(CREDENTIALS, null);
+        prefEditor.putString(CREDENTIALS, "");
         prefEditor.apply();
         return true;
     }

@@ -1,12 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="colorPrimary">@color/gradient_background_finish</item>
+        <item name="colorPrimaryDark">@color/gradient_background_start</item>
+        <item name="windowActionBar">true</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="android:windowBackground">@color/colorWhite</item>
+    </style>
 
     <!-- Base application theme. -->
     <style name="AppDefault" parent="AppTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#ffd54f</item>
-        <item name="colorPrimaryDark">#ccaa3f</item>
+        <item name="colorPrimary">@color/gradient_background_finish</item>
+        <item name="colorPrimaryDark">@color/gradient_background_start</item>
         <item name="windowActionBar">true</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="android:windowBackground">@color/colorWhite</item>

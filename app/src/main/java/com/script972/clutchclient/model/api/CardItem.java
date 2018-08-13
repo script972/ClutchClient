@@ -8,6 +8,14 @@ import java.util.List;
 
 public class CardItem implements Serializable{
 
+    @SerializedName("codeError")
+    @Expose
+    private Integer codeError;
+
+    @SerializedName("descriptionError")
+    @Expose
+    private String descriptionError;
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -133,5 +141,21 @@ public class CardItem implements Serializable{
 
     public void setBackPhoto(String backPhoto) {
         this.backPhoto = backPhoto;
+    }
+
+    public Integer getCodeError() {
+        return codeError;
+    }
+
+    public void setCodeError(Integer codeError) {
+        this.codeError = codeError;
+    }
+
+    public String getDescriptionError() {
+        return descriptionError;
+    }
+
+    public void setDescriptionError(String descriptionError) {
+        this.descriptionError = descriptionError;
     }
 }

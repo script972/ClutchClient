@@ -50,6 +50,8 @@ public class BarcodeFragment extends Fragment{
         }
 
         String number = bundle.getString("number", null);
+        if(number==null && number.isEmpty())
+            return;
         ((TextView)view.findViewById(R.id.barcodestr)).setText(number);
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {

@@ -26,7 +26,7 @@
     <string name="hint_password">Password</string>
     <string name="btn_login">Sign In</string>
     <string name="hint_password_rep">Repeat password</string>
-    <string name="btn_registration">Sign In</string>
+    <string name="btn_registration">Sign Up</string>
     <string name="e_invalid_email">Invalid email</string>
     <string name="e_short_password">Password must be more than 5 symbol</string>
     <string name="e_password_not_same">Check your passwords. They is not same</string>

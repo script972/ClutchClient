@@ -11,6 +11,8 @@
     <include android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+    <include
+        layout="@layout/inform_panel"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -116,29 +118,35 @@
 
 
             <LinearLayout
+                android:id="@+id/signing_via_facebook"
                 style="@style/WrappingTextLayout"
                 android:layout_marginTop="@dimen/dimen_20"
                 android:background="@drawable/background_radius_dark">
+
                 <ImageView
                     style="@style/EditTextImage"
-                    app:srcCompat="@drawable/ic_facebook"/>
+                    app:srcCompat="@drawable/ic_facebook" />
+
                 <TextView
                     style="@style/LoginEditText"
-                    android:textSize="@dimen/dimen_14"
-                    android:text="@string/login_with_facebook" />
+                    android:text="@string/login_with_facebook"
+                    android:textSize="@dimen/dimen_14" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/signing_via_googleplus"
                 style="@style/WrappingTextLayout"
                 android:layout_marginTop="@dimen/dimen_10"
                 android:background="@drawable/bg_button_light">
+
                 <ImageView
                     style="@style/EditTextImage"
-                    app:srcCompat="@drawable/ic_google"/>
+                    app:srcCompat="@drawable/ic_google" />
+
                 <TextView
                     style="@style/LoginEditText"
-                    android:textSize="@dimen/dimen_14"
-                    android:text="@string/login_with_google" />
+                    android:text="@string/login_with_google"
+                    android:textSize="@dimen/dimen_14" />
             </LinearLayout>
 
         </LinearLayout>

@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.ui.activitys.BaseActivity;
 import com.script972.clutchclient.ui.activitys.MainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class PersonalInfoActivity extends AppCompatActivity {
+public class PersonalInfoActivity extends BaseActivity {
 
     //outlets
     private Toolbar toolbar;

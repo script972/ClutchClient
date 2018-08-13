@@ -75,7 +75,7 @@ public class ActivityAddCard extends BaseActivity {
         getFromIntent();
 
         initView();
-      //  openScan();
+        openScan();
     }
 
     /**
@@ -217,17 +217,11 @@ public class ActivityAddCard extends BaseActivity {
 
                 try {
                     String url=response.body().string();
-                    Log.i("denLog", "Link to push "+ url);
-
                     cardItem.setFacePhoto(url);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.i("denLog", response.message());
                 String jsonCredentials = new Gson().toJson(cardItem);
-
-                Log.i("denLog", "Object for push "+ jsonCredentials+"");
-
                 cardItemService.postCardItem(cardItem).enqueue(new Callback<CardItem>() {
                     @Override
                     public void onResponse(Call<CardItem> call, Response<CardItem> response) {

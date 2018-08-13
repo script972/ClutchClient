@@ -22,9 +22,11 @@ public interface UserService {
     @GET("/api/user/{userid}")
     Call<User> getUser(@Query("userid") String id);
 
-    @Headers("Content-Type: application/json")
-    @POST("/api/user/")
-    Call<User> postAthletes(@Body User user);
+    @POST("/api/user/existinguser")
+    Call<User> isExistingUser(@Body User user);
+
+    @POST("/auth")
+    Call<User> postUser(@Body User user);
 
     @GET("/api/user/{phoneNumber}")
     Call<List<User>> getUsersByPhoneNumber(@Query("phoneNumber") String phoneNumbers);

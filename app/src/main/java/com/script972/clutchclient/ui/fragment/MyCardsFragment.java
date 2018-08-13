@@ -31,6 +31,8 @@ import com.script972.clutchclient.ui.adapters.CardsAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import pl.droidsonroids.gif.GifImageView;
+
 
 /**
  * Created by script972 on 09.05.2017.
@@ -40,6 +42,8 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     private View view;
     private  List<CardItem> cardModels;
     private CardsAdapter cardsAdapter;
+    private RecyclerView rcv;
+    private GifImageView noData;
 
     private FloatingActionButton fab;
 
@@ -87,6 +91,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
 
     private void initView() {
         cardModels=new ArrayList<>();//del
+        noData = view.findViewById(R.id.no_data);
         initCards();
         initFloating();
 
@@ -105,7 +110,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
 
 
     private void initCards() {
-        RecyclerView rcv = (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
+        rcv = (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
         cardsAdapter=new CardsAdapter(this.getContext(), cardModels);
         saveOldSpan = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
 
@@ -148,6 +153,12 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
         if(cardList==null || cardList.size()==0){
             return;
         }
+        if(!cardList.get(0).getCodeError().equals(0)){
+            rcv.setVisibility(View.GONE);
+            noData.setVisibility(View.VISIBLE);
+            return;
+        }
+
         cardModels.clear();
         cardModels.addAll(cardList);
         cardsAdapter.notifyDataSetChanged();

@@ -40,8 +40,6 @@ public class CardPresenterImpl implements CardContract.Presenter {
      * Method witch help to initial Card list
      */
     private void initialCardList() {
-        String token;
-        token= PrefHelper.getAccessToken(getApplicationContext());
         CardItemService cardItemService= RetrofitManager.getInstance().apiRetrofit.create(CardItemService.class);
         cardItemService.getAllItemCard().enqueue(new Callback<List<CardItem>>() {
             @Override

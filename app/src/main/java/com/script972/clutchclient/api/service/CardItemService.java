@@ -3,8 +3,6 @@ package com.script972.clutchclient.api.service;
 import android.app.DownloadManager;
 
 import com.script972.clutchclient.model.api.CardItem;
-import com.script972.clutchclient.model.api.User;
-import com.squareup.okhttp.RequestBody;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ import retrofit2.http.Part;
 
 public interface CardItemService {
 
-    @GET("/api/card")
+    @GET("/api/card/mycard")
     Call<List<CardItem>> getAllItemCard();
 
     @POST("/api/card")

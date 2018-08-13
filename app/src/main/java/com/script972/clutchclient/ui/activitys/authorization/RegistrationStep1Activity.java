@@ -1,12 +1,21 @@
 package com.script972.clutchclient.ui.activitys.authorization;
 
+import android.accounts.AccountManager;
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
+import com.google.android.gms.auth.GoogleAuthException;
+import com.google.android.gms.auth.GoogleAuthUtil;
+import com.google.android.gms.auth.UserRecoverableAuthException;
+import com.google.android.gms.common.AccountPicker;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.model.api.User;
 import com.script972.clutchclient.mvp.contracts.RegistrationContract;
@@ -14,19 +23,28 @@ import com.script972.clutchclient.helpers.ValidatorHelper;
 import com.script972.clutchclient.mvp.impl.RegistrationPresentersImpl;
 import com.script972.clutchclient.ui.activitys.BaseActivity;
 
+import java.io.IOException;
+
 
 public class RegistrationStep1Activity extends BaseActivity implements RegistrationContract.View {
 
     //outlets
     private Toolbar toolbar;
-
     private Button btnRegistrationOne;
-
     private EditText edtEmail;
-
     private EditText edtPassword;
-
     private EditText edtRepPassword;
+    private LinearLayout signInViaGoogle;
+    private LinearLayout signInViaFacebook;
+
+
+    private final static String G_PLUS_SCOPE =
+            "oauth2:https://www.googleapis.com/auth/plus.me";
+    private final static String USERINFO_SCOPE =
+            "https://www.googleapis.com/auth/userinfo.profile";
+    private final static String EMAIL_SCOPE =
+            "https://www.googleapis.com/auth/userinfo.email";
+    private final static String SCOPES = G_PLUS_SCOPE + " " + USERINFO_SCOPE + " " + EMAIL_SCOPE;
 
     //presenters
     private final RegistrationContract.Presenter presenter = new RegistrationPresentersImpl(this);
@@ -40,17 +58,56 @@ public class RegistrationStep1Activity extends BaseActivity implements Registrat
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 123 && resultCode == RESULT_OK) {
+            final String accountName = data.getStringExtra(AccountManager.KEY_ACCOUNT_NAME);
+            @SuppressLint("StaticFieldLeak")
+            AsyncTask<Void, Void, String> getToken = new AsyncTask<Void, Void, String>() {
+                @Override
+                protected String doInBackground(Void... params) {
+                    try {
+                        String token = GoogleAuthUtil.getToken(RegistrationStep1Activity.this, accountName,
+                                SCOPES);
+                        return token;
+
+                    } catch (UserRecoverableAuthException userAuthEx) {
+                        startActivityForResult(userAuthEx.getIntent(), 123);
+                    }  catch (IOException ioEx) {
+                        Log.d("logindoit", "IOException");
+                    }  catch (GoogleAuthException fatalAuthEx)  {
+                        Log.d("logindoit", "Fatal Authorization Exception" + fatalAuthEx.getLocalizedMessage());
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(String token) {
+                }
+
+            };
+            getToken.execute(null, null, null);
+        }
+    }
+
     /**
      * Method wich init views
      */
     private void initView() {
         initToolbar();
         btnRegistrationOne = findViewById(R.id.btn_registration_one);
-        btnRegistrationOne.setOnClickListener(clicker);
 
         edtEmail = findViewById(R.id.edt_email);
         edtPassword = findViewById(R.id.edt_password);
         edtRepPassword = findViewById(R.id.edt_password_rep);
+        signInViaFacebook = findViewById(R.id.signing_via_facebook);
+        signInViaGoogle = findViewById(R.id.signing_via_googleplus);
+
+        btnRegistrationOne.setOnClickListener(clicker);
+        signInViaFacebook.setOnClickListener(clicker);
+        signInViaGoogle.setOnClickListener(clicker);
+
+
     }
 
     /**
@@ -76,11 +133,30 @@ public class RegistrationStep1Activity extends BaseActivity implements Registrat
             if(!edtPassword.getText().toString().equals(edtRepPassword.getText().toString())){
                 edtRepPassword.setError(getResources().getString(R.string.e_password_not_same));
                 return;
-            }else{
-                super.showProgressDialog();
-                presenter.checkSameUserName(edtEmail.toString());
             }
+            super.showProgressDialog();
+            presenter.checkSameUserName(edtEmail.getText().toString());
+
+            //presenter.sendNewUser(edtEmail.getText().toString(), edtPassword.getText().toString());
         }
+    }
+
+    /**
+     * Method which controll registration via Google Plus click
+     */
+    private void btnRegistrationGooglePlusClick() {
+        Log.d("logindoit", "clicker");
+        Intent intent = AccountPicker.newChooseAccountIntent(null, null, new String[]{"com.google"},
+                false, null, null, null, null);
+        startActivityForResult(intent, 123);
+
+    }
+
+    /**
+     * Method which controll registration via Facebook click
+     */
+    private void btnRegistrationFacebookClick() {
+
     }
 
     /**
@@ -129,8 +205,7 @@ public class RegistrationStep1Activity extends BaseActivity implements Registrat
      */
     @Override
     public void registrationFail(String errorMessage) {
-
-
+        super.showStatusPanel(errorMessage, TypeStatus.ERROR);
     }
 
     /**
@@ -153,7 +228,11 @@ public class RegistrationStep1Activity extends BaseActivity implements Registrat
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.btn_registration_one: btnRegistrationClick(); break;
+                case R.id.signing_via_googleplus: btnRegistrationGooglePlusClick(); break;
+                case R.id.signing_via_facebook: btnRegistrationFacebookClick(); break;
             }
         }
     };
+
+
 }
