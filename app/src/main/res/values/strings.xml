@@ -86,4 +86,13 @@
     <string name="image_upload_success">Image uploading is success</string>
     <string name="card_added_failure">Card added is faile</string>
 
+    <string name="facebook_app_id">839614823053747</string>
+    <string name="fb_login_protocol_scheme">fb839614823053747</string>
+    <string name="info_code_card_already_added">Card already added</string>
+    <string name="info_card_updated_success">Card updated success</string>
+    <string name="info_card_added_success">Card added success. You may extand information</string>
+    <string name="h_title_card">Title card</string>
+    <string name="h_number_card">Number card</string>
+
+
 </resources>

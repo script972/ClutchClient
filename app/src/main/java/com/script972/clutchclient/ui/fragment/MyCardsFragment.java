@@ -1,32 +1,37 @@
 package com.script972.clutchclient.ui.fragment;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.TypedValue;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.core.ClutchApplication;
+import com.script972.clutchclient.databinding.MyCardsFragmentBinding;
+import com.script972.clutchclient.helpers.DeviceHelper;
+import com.script972.clutchclient.helpers.IntentHelpers;
 import com.script972.clutchclient.helpers.PrefHelper;
-import com.script972.clutchclient.model.api.CardItem;
 import com.script972.clutchclient.mvp.contracts.CardContract;
 import com.script972.clutchclient.mvp.impl.CardPresenterImpl;
-import com.script972.clutchclient.ui.activitys.card.ActivityListCompany;
 import com.script972.clutchclient.ui.adapters.CardsAdapter;
+import com.script972.clutchclient.ui.model.CardItem;
+import com.script972.clutchclient.viewmodels.ListCardViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,37 +43,58 @@ import pl.droidsonroids.gif.GifImageView;
  * Created by script972 on 09.05.2017.
  */
 
-public class MyCardsFragment extends Fragment implements CardContract.View{
-    private View view;
-    private  List<CardItem> cardModels;
+public class MyCardsFragment extends Fragment implements CardContract.View {
+    private List<CardItem> data;
     private CardsAdapter cardsAdapter;
     private RecyclerView rcv;
     private GifImageView noData;
+    private MyCardsFragmentBinding binding;
 
     private FloatingActionButton fab;
 
     // vars for help cheking if change span in settings
-    private int saveOldSpan=0;
+    private int saveOldSpan = 0;
+
+    private ViewModel viewModel;
+
 
     //presenter
     private final CardContract.Presenter presenter = new CardPresenterImpl(this);
 
 
-
-    public static MyCardsFragment getInstance(){
+    public static MyCardsFragment getInstance() {
         Bundle args = new Bundle();
         MyCardsFragment fragment = new MyCardsFragment();
         fragment.setArguments(args);
-
         return fragment;
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.my_cards_fragment, container, false);
+        this.binding = DataBindingUtil.inflate(
+                inflater, R.layout.my_cards_fragment, container, false);
+        //this.viewModel = ViewModelProviders.of(this).get(AddCardViewModel.class);
         initView();
-        return view;
+        return binding.getRoot();
+        /*
+        * this.binding = DataBindingUtil.setContentView(this, R.layout.activity_add_card);
+        this.viewModel = ViewModelProviders.of(this).get(AddCardViewModel.class);
+        *
+        * */
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewModel = ViewModelProviders.of(this).get(ListCardViewModel.class);
+        ((ListCardViewModel) viewModel).observeLiveData().observe(this, this::handleModification);
+    }
+
+    private void handleModification(List<CardItem> cardItems) {
+        this.data.clear();
+        this.data.addAll(cardItems);
+        this.cardsAdapter.notifyDataSetChanged();
     }
 
     /**
@@ -80,9 +106,9 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     public void onStart() {
         super.onStart();
         presenter.onStart();
-        if(saveOldSpan!=0){
+        if (saveOldSpan != 0) {
             int value = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
-            if(value!=saveOldSpan){
+            if (value != saveOldSpan) {
                 initCards();
             }
         }
@@ -90,58 +116,43 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
     }
 
     private void initView() {
-        cardModels=new ArrayList<>();//del
-        noData = view.findViewById(R.id.no_data);
+        data = new ArrayList<>();//del
+        noData = binding.noData;
         initCards();
-        initFloating();
+        binding.fab.setOnClickListener(view -> IntentHelpers.openAddCardActivity(getContext()));
 
-    }
 
-    private void initFloating() {
-        fab = (FloatingActionButton) view.findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getContext(), ActivityListCompany.class);
-                startActivity(intent);
-            }
-        });
     }
 
 
     private void initCards() {
-        rcv = (RecyclerView) view.findViewById(R.id.recycler_view_my_cards);
-        cardsAdapter=new CardsAdapter(this.getContext(), cardModels);
+        rcv = binding.rvViewMyCards;
+        cardsAdapter = new CardsAdapter(data);
         saveOldSpan = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
-
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), saveOldSpan);
         rcv.setLayoutManager(mLayoutManager);
-        rcv.addItemDecoration(new GridSpacingItemDecoration(saveOldSpan, dpToPx(0), true));
+        rcv.addItemDecoration(new GridSpacingItemDecoration(saveOldSpan, DeviceHelper.dpToPx(0), true));
         rcv.setItemAnimator(new DefaultItemAnimator());
         rcv.setAdapter(cardsAdapter);
         cardsAdapter.notifyDataSetChanged();
-
-        rcv.addOnScrollListener(new RecyclerView.OnScrollListener(){
+        rcv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy){
-                if (dy > 0 ||dy<0 && fab.isShown())
-                    fab.hide();
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0 || dy < 0 && fab.isShown()) {
+                    // fab.hide();
+                }
             }
 
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_INDICATOR_TOP){/*SCROLL_INDICATOR_BOTTOM*/
-                    fab.show();
+                if (newState == RecyclerView.SCROLL_INDICATOR_TOP) {/*SCROLL_INDICATOR_BOTTOM*/
+//                    fab.show();
                 }
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
     }
 
-    private int dpToPx(int dp) {
-        Resources r = getResources();
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
 
     /**
      * Method wich call in view when presenter initial all data and fill this data
@@ -150,17 +161,17 @@ public class MyCardsFragment extends Fragment implements CardContract.View{
      */
     @Override
     public void fillCards(List<CardItem> cardList) {
-        if(cardList==null || cardList.size()==0){
+        if (cardList == null || cardList.size() == 0) {
             return;
         }
-        if(!cardList.get(0).getCodeError().equals(0)){
+       /* if (!cardList.get(0).getCodeError().equals(0)) {
             rcv.setVisibility(View.GONE);
             noData.setVisibility(View.VISIBLE);
             return;
-        }
+        }*/
 
-        cardModels.clear();
-        cardModels.addAll(cardList);
+        data.clear();
+        data.addAll(cardList);
         cardsAdapter.notifyDataSetChanged();
     }
 

@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Base64;
 
 import com.google.gson.Gson;
-import com.script972.clutchclient.model.Credentials;
-import com.script972.clutchclient.model.LocationPosition;
+import com.script972.clutchclient.domain.api.model.Credentials;
+import com.script972.clutchclient.domain.api.model.LocationPosition;
 
 public class PrefHelper {
 

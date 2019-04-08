@@ -1,7 +1,7 @@
 package com.script972.clutchclient.ui.adapters;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.ContactModel;
+import com.script972.clutchclient.domain.api.model.ContactModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

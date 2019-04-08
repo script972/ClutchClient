@@ -4,9 +4,9 @@ import android.content.Context;
 
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.manages.AuthManager;
-import com.script972.clutchclient.model.Credentials;
+import com.script972.clutchclient.domain.api.model.Credentials;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
-import com.script972.clutchclient.ui.activitys.authorization.LoginActivity;
+import com.script972.clutchclient.ui.activities.authorization.LoginActivity;
 
 public class LoginPresenterImpl implements LoginContract.Presenter {
 

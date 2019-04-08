@@ -1,6 +1,6 @@
 package com.script972.clutchclient.mvp.contracts;
 
-import com.script972.clutchclient.model.ContactModel;
+import com.script972.clutchclient.domain.api.model.ContactModel;
 import com.script972.clutchclient.ui.adapters.ContactModelAdapter;
 
 import java.util.List;

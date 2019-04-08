@@ -15,40 +15,53 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.activities.SettingActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name=".ui.activitys.SplashScreenActivity"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activities.SplashScreenActivity"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-        <activity android:name=".ui.activitys.MainActivity"
+        <activity
+            android:name=".ui.activities.MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name=".ui.activitys.AboutCompanyActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:name=".ui.activities.AboutCompanyActivity"
+            android:screenOrientation="portrait"></activity>
         <activity
-            android:name=".ui.activitys.card.ActivityAddCard"
-            android:screenOrientation="portrait" />
-
-        <!-- adjust Pan help keyboard be on the upper of layout-->
+            android:name=".ui.activities.card.ActivityAddCard"
+            android:screenOrientation="portrait" /> <!-- adjust Pan help keyboard be on the upper of layout -->
         <activity
-            android:name=".ui.activitys.card.ActivityListCompany"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait">
-
-        </activity>
-
+            android:name=".ui.activities.card.ActivityListCompany"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name="com.google.zxing.client.android.SCAN"
             android:configChanges="orientation|keyboardHidden"
@@ -57,31 +70,34 @@
             android:windowSoftInputMode="stateAlwaysHidden">
             <intent-filter>
                 <action android:name="com.google.zxing.client.android.SCAN" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activitys.DiscountMapsActivity"
+            android:name=".ui.activities.DiscountMapsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activitys.card.ActivityItemCard"
+            android:name=".ui.activities.card.ActivityItemCard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activitys.authorization.LoginActivity"
+            android:name=".ui.activities.authorization.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activitys.authorization.RegistrationStep1Activity"
+            android:name=".ui.activities.authorization.RegistrationStep1Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activitys.authorization.PersonalInfoActivity"
+            android:name=".ui.activities.authorization.PersonalInfoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activitys.SettingActivity"
+            android:name=".ui.activities.SettingActivityDel"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activitys.ContactPhoneListActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.activitys.SettingCountryActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activities.ContactPhoneListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.SettingCountryActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

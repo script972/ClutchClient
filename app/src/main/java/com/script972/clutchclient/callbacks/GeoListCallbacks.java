@@ -1,6 +1,6 @@
 package com.script972.clutchclient.callbacks;
 
-import com.script972.clutchclient.model.api.Company;
+import com.script972.clutchclient.domain.api.model.api.Company;
 
 import java.util.List;
 

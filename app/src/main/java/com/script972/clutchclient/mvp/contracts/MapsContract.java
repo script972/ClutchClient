@@ -5,7 +5,7 @@ import android.location.LocationListener;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.script972.clutchclient.model.api.Company;
+import com.script972.clutchclient.domain.api.model.api.Company;
 
 public interface MapsContract {
 

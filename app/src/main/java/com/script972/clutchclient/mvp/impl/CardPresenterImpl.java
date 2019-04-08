@@ -1,12 +1,10 @@
 package com.script972.clutchclient.mvp.impl;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.script972.clutchclient.api.ApiClient;
-import com.script972.clutchclient.api.RetrofitManager;
-import com.script972.clutchclient.api.service.CardItemService;
-import com.script972.clutchclient.helpers.PrefHelper;
-import com.script972.clutchclient.model.api.CardItem;
+import com.script972.clutchclient.manages.RetrofitManager;
+import com.script972.clutchclient.domain.api.service.CardItemService;
+import com.script972.clutchclient.domain.api.model.api.CardItem;
 import com.script972.clutchclient.mvp.contracts.CardContract;
 
 import java.util.List;
@@ -14,8 +12,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.artlite.bslibrary.managers.BSContextManager.getApplicationContext;
 
 public class CardPresenterImpl implements CardContract.Presenter {
 
@@ -37,10 +33,10 @@ public class CardPresenterImpl implements CardContract.Presenter {
     }
 
     /**
-     * Method witch help to initial Card list
+     * Method witch help to initial CardItem list
      */
     private void initialCardList() {
-        CardItemService cardItemService= RetrofitManager.getInstance().apiRetrofit.create(CardItemService.class);
+        /*CardItemService cardItemService= RetrofitManager.getInstance().apiRetrofit.create(CardItemService.class);
         cardItemService.getAllItemCard().enqueue(new Callback<List<CardItem>>() {
             @Override
             public void onResponse(@NonNull Call<List<CardItem>> call, @NonNull Response<List<CardItem>> response) {
@@ -51,6 +47,6 @@ public class CardPresenterImpl implements CardContract.Presenter {
             public void onFailure(@NonNull Call<List<CardItem>> call, @NonNull Throwable t) {
 
             }
-        });
+        });*/
     }
 }

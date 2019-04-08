@@ -1,13 +1,13 @@
 package com.script972.clutchclient.core;
 
 import android.content.Context;
-import android.support.multidex.MultiDex;
-import android.support.multidex.MultiDexApplication;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 import com.artlite.bslibrary.core.BSInstance;
 import com.script972.clutchclient.BuildConfig;
-import com.script972.clutchclient.api.NetworkLoggingSettings;
-import com.script972.clutchclient.ui.activitys.BaseActivity;
+import com.script972.clutchclient.domain.api.NetworkLoggingSettings;
+import com.script972.clutchclient.ui.activities.BaseActivity;
 
 
 /**
@@ -37,16 +37,12 @@ public final class ClutchApplication extends MultiDexApplication {
         super.onCreate();
         this.onInitLibraries();
         application=this;
-
-
         initDebugMode();
-
     }
 
     private void initDebugMode() {
         if(BuildConfig.DEBUG) {
             NetworkLoggingSettings.init(this);
-
         }
     }
 

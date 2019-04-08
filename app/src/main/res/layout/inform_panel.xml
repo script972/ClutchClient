@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/status_panel"
+<LinearLayout android:id="@+id/status_panel"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -9,7 +8,8 @@
     android:paddingBottom="@dimen/dimen_2"
     android:background="@color/color_error_panel"
     android:visibility="gone"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <View
         android:layout_width="@dimen/dimen_5"
@@ -23,7 +23,7 @@
         android:id="@+id/txt_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/txt_mock_warning"
+        tools:text="@string/txt_mock_warning"
         android:textColor="@color/white"
         android:textSize="@dimen/text_12" />
 

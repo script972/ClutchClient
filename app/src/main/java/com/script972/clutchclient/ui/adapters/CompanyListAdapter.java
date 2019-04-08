@@ -1,8 +1,8 @@
 package com.script972.clutchclient.ui.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.api.Company;
+import com.script972.clutchclient.domain.api.model.api.Company;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -23,7 +23,6 @@ import java.util.List;
 public class CompanyListAdapter  extends RecyclerView.Adapter<CompanyListAdapter.MyViewHolder> {
     private List<Company> companys;
     private Context context;
-
 
     /**
      * View holder class

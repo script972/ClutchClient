@@ -1,8 +1,8 @@
 package com.script972.clutchclient.mvp.impl;
 
 
-import com.script972.clutchclient.model.api.Company;
-import com.script972.clutchclient.model.api.Position;
+import com.script972.clutchclient.domain.api.model.api.Company;
+import com.script972.clutchclient.domain.api.model.api.Position;
 import com.script972.clutchclient.mvp.contracts.GeoListContract;
 import com.script972.clutchclient.ui.adapters.GeoListAdapter;
 import com.script972.clutchclient.ui.views.GeoDiscountView;

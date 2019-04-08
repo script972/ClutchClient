@@ -1,23 +1,17 @@
 package com.script972.clutchclient.ui.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.widget.PopupMenu;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.api.CardItem;
-import com.script972.clutchclient.ui.activitys.card.ActivityItemCard;
-import com.squareup.picasso.Picasso;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.ViewGroup;
+
+import com.script972.clutchclient.databinding.CardItemBinding;
+import com.script972.clutchclient.ui.model.CardItem;
 
 import java.util.List;
 
@@ -27,47 +21,53 @@ import java.util.List;
 
 public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder> {
 
-    private Context mContext;
-    private  List<CardItem> cardList;
+    private List<CardItem> data;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, count;
-        public ImageView thumbnail, overflow;
+    class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public MyViewHolder(View view) {
-            super(view);
-            title = (TextView) view.findViewById(R.id.title);
-            count = (TextView) view.findViewById(R.id.count);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
+        private CardItemBinding binding;
+
+        MyViewHolder(CardItemBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
+
+        private void bind() {
+            binding.setItem(data.get(getAdapterPosition()));
+            binding.invalidateAll();
         }
     }
 
 
-    public CardsAdapter(Context mContext,  List<CardItem> cardList) {
-        this.mContext = mContext;
-        this.cardList = cardList;
+    public CardsAdapter(List<CardItem> cardList) {
+        this.data = cardList;
     }
 
+    @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_table, parent, false);
-        return new MyViewHolder(itemView);
-    }
+        CardItemBinding binding = CardItemBinding.inflate(LayoutInflater.from(parent.getContext()));
+        return new MyViewHolder(binding);
 
+       /* View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.card_item, parent, false);
+
+        return new MyViewHolder(itemView);*/
+    }
 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        final CardItem cardModel = cardList.get(position);
+        holder.bind();
+       /* final CardItem cardModel = data.get(position);
         final String jsonCardItem = new Gson().toJson(cardModel);
 
         if(cardModel.getTitle()!=null && !cardModel.getTitle().isEmpty()) {
             holder.title.setText(cardModel.getTitle());
         } else if(cardModel.getCompany()!=null && cardModel.getCompany().getTitle()!=null && !cardModel.getCompany().getTitle().isEmpty()){
             holder.title.setText(cardModel.getCompany().getTitle());
-        }
-       // holder.count.setText("Rang "+cardModel.getS());
+        }*/
+        // holder.count.setText("Rang "+cardModel.getS());
        /* holder.overflow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +75,7 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
             }
         });*/
 
-        Picasso.get()
+      /*  Picasso.get()
                 .load(cardModel.getFacePhoto())
                 .placeholder(R.drawable.cardtemplate)
                 .error(R.drawable.cardtemplate)
@@ -88,23 +88,9 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
                 intent.putExtra("cardItem", jsonCardItem);
                 mContext.startActivity(intent);
             }
-        });
+        });*/
 
     }
-
-    /**
-     * Showing popup main_toolbar_menu when tapping on 3 dots
-     */
-   /* private void showPopupMenu(View view) {
-        // inflate main_toolbar_menu
-        PopupMenu popup = new PopupMenu(mContext, view);
-        MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.cards_dots_menu, popup.getMenu());
-        popup.setOnMenuItemClickListener(new MyMenuItemClickListener());
-        popup.show();
-    }*/
-
-
 
     /**
      * Click listener for popup main_toolbar_menu items
@@ -131,6 +117,6 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return cardList.size();
+        return data.size();
     }
 }

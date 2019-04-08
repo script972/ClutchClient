@@ -1,6 +1,6 @@
 package com.script972.clutchclient.mvp.contracts;
 
-import com.script972.clutchclient.model.api.User;
+import com.script972.clutchclient.domain.api.model.api.User;
 
 public interface RegistrationContract {
 

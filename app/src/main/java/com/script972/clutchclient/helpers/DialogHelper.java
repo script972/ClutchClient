@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.Settings;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RatingBar;
@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.ui.activitys.MainActivity;
 import com.script972.clutchclient.ui.views.CustomProgressDialog;
 
 public class DialogHelper {

@@ -1,103 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="item"
+            type="com.script972.clutchclient.ui.model.CardItem" />
+
+    </data>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include android:id="@+id/toolbar"
-            layout="@layout/toolbar" />
-
-        <include
-            layout="@layout/inform_panel"/>
-
-        <ImageView
-            android:id="@+id/card_top_logo"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:background="@color/colorPrimary"
-            android:padding="16dp"
-            app:srcCompat="@drawable/transparent_logo" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_90"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/card_photo_front"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    style="@style/TitleH5Clutch"
-                    android:text="@string/card_front_side"/>
-
-                <ImageView
-                    android:id="@+id/card_photo_front_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_card_template" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/card_photo_back"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1"  >
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    style="@style/TitleH5Clutch"
-                    android:text="@string/card_back_side"/>
-
-                <ImageView
-                    android:id="@+id/card_photo_back_img"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center"
-                    android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/ic_card_template" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dimen_16"
             android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+            <include layout="@layout/inform_panel" />
+
+            <ImageView
+                android:id="@+id/card_top_logo"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@color/colorPrimary"
+                android:padding="16dp"
+                android:visibility="gone"
+                app:srcCompat="@drawable/transparent_logo" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_90"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/card_photo_front"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TitleH5Clutch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/card_front_side" />
+
+                    <ImageView
+                        android:id="@+id/img_card_photo_front"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
+                        android:src="@{item.photoFront, default=@drawable/ic_card_template }" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/card_photo_back"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TitleH5Clutch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/card_back_side" />
+
+                    <ImageView
+                        android:id="@+id/img_card_photo_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_card_template" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
 
-                <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -105,25 +112,56 @@
                         android:id="@+id/et_number_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/number_card"
-                        android:textSize="@dimen/text_14"
+                        android:inputType="number"
+                        android:hint="@string/h_number_card"
                         android:paddingRight="@dimen/dimen_40"
-                        android:inputType="number" />
-                </android.support.design.widget.TextInputLayout>
+                        android:text="@{item.cardNumber}"
+                        android:textSize="@dimen/text_14" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
-                    android:id="@+id/card_photo_barckode"
+                    android:id="@+id/img_card_photo_barckode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginEnd="@dimen/dimen_6"
                     android:layout_marginTop="@dimen/dimen_20"
+                    android:layout_marginEnd="@dimen/dimen_6"
                     app:srcCompat="@drawable/ic_add_card_camera" />
 
             </FrameLayout>
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/et_title_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/h_title_card"
+                        android:text="@{item.title}"
+                        android:textSize="@dimen/text_14" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="@dimen/dimen_20"
+                    android:layout_marginEnd="@dimen/dimen_6"
+                    app:srcCompat="@drawable/icon_title" />
+
+
+            </FrameLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -132,23 +170,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/comment_card"
-                    android:textSize="@dimen/text_14"
-                    android:inputType="number" />
+                    android:text="@{item.comment}"
+                    android:textSize="@dimen/text_14" />
 
-            </android.support.design.widget.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
 
-    <Button
-        android:id="@+id/b_add_card"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/ButtonCustom"
-        android:layout_alignParentBottom="true"
-        android:text="@string/btn_add_card" />
-
+        <Button
+            android:id="@+id/btn_add_card"
+            style="@style/ButtonCustom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="@string/btn_add_card" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

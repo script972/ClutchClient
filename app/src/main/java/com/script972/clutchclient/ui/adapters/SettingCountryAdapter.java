@@ -1,7 +1,7 @@
 package com.script972.clutchclient.ui.adapters;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +10,7 @@ import android.widget.Filter;
 import android.widget.TextView;
 
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.LocationPosition;
+import com.script972.clutchclient.domain.api.model.LocationPosition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,20 +50,10 @@ public class SettingCountryAdapter extends RecyclerView.Adapter<SettingCountryAd
         holder.countryTitle.setText(item.getCountry());
     }
 
-
     @Override
     public int getItemCount() {
         return items.size();
     }
-
-    /*@Override
-    public Filter getFilter() {
-        if (valueFilter == null) {
-            valueFilter = new ValueFilter();
-        }
-        return valueFilter;
-    }*/
-
 
     /**
      * Method for filter country

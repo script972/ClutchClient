@@ -1,16 +1,14 @@
 package com.script972.clutchclient.manages;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
-import com.script972.clutchclient.api.ApiClient;
-import com.script972.clutchclient.api.RetrofitManager;
-import com.script972.clutchclient.api.service.UserService;
+import com.script972.clutchclient.domain.api.service.UserService;
 import com.script972.clutchclient.exceptions.EmpyResponceException;
 import com.script972.clutchclient.helpers.PrefHelper;
-import com.script972.clutchclient.model.Credentials;
-import com.script972.clutchclient.model.api.LoginRequestBody;
-import com.script972.clutchclient.model.api.TokenResponce;
+import com.script972.clutchclient.domain.api.model.Credentials;
+import com.script972.clutchclient.domain.api.model.api.LoginRequestBody;
+import com.script972.clutchclient.domain.api.model.api.TokenResponce;
 
 import retrofit2.Call;
 import retrofit2.Callback;

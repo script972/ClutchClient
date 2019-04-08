@@ -1,19 +1,18 @@
 package com.script972.clutchclient.ui.views;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 import android.view.View;
 
 import com.artlite.bslibrary.annotations.FindViewBy;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.callbacks.GeoListCallbacks;
-import com.script972.clutchclient.model.api.Company;
+import com.script972.clutchclient.domain.api.model.api.Company;
 import com.script972.clutchclient.mvp.contracts.GeoListContract;
 import com.script972.clutchclient.mvp.impl.GeoDiscountPresenterImp;
 import com.script972.clutchclient.ui.adapters.GeoListAdapter;

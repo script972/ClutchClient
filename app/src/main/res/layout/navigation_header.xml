@@ -18,6 +18,7 @@
         android:id="@+id/icon_company"
         android:layout_width="@dimen/dimen_130"
         android:layout_height="@dimen/dimen_130"
+        android:visibility="gone"
         android:layout_gravity="center_horizontal"
         android:elevation="5dp"
         android:src="@drawable/add_barkode" />

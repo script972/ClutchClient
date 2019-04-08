@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activitys.SettingActivity"
+    tools:context=".ui.activities.SettingActivity"
     android:orientation="vertical">
 
-    <include android:id="@+id/toolbar"
+    <include
         layout="@layout/toolbar" />
 
     <include
@@ -76,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_notification"
+                android:visibility="gone"
                 style="@style/TitleH3Clutch" />
 
             <LinearLayout
@@ -83,6 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/dimen_16"
                 android:layout_marginBottom="@dimen/dimen_16">
 
@@ -121,6 +123,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_application"
+                android:visibility="gone"
                 style="@style/TitleH3Clutch" />
 
             <LinearLayout
@@ -129,6 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/dimen_6"
                 android:layout_marginTop="@dimen/dimen_6"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -237,6 +241,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_6"
                 android:layout_marginBottom="@dimen/dimen_6"
+                android:visibility="gone"
                 android:orientation="horizontal">
 
                 <ImageView

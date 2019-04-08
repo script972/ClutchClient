@@ -1,14 +1,14 @@
 package com.script972.clutchclient.mvp.impl;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.script972.clutchclient.helpers.ContactHelper;
-import com.script972.clutchclient.model.ContactModel;
-import com.script972.clutchclient.model.api.CardItem;
+import com.script972.clutchclient.domain.api.model.ContactModel;
+import com.script972.clutchclient.domain.api.model.api.CardItem;
 import com.script972.clutchclient.mvp.contracts.ContactPhoneContract;
-import com.script972.clutchclient.ui.activitys.ContactPhoneListActivity;
+import com.script972.clutchclient.ui.activities.ContactPhoneListActivity;
 import com.script972.clutchclient.ui.adapters.ContactModelAdapter;
 
 import java.util.ArrayList;

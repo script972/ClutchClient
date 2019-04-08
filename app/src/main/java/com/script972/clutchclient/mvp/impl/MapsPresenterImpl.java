@@ -11,8 +11,8 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
@@ -31,9 +31,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.script972.clutchclient.R;
-import com.script972.clutchclient.model.api.Company;
+import com.script972.clutchclient.domain.api.model.api.Company;
 import com.script972.clutchclient.mvp.contracts.MapsContract;
-import com.script972.clutchclient.ui.activitys.DiscountMapsActivity;
+import com.script972.clutchclient.ui.activities.DiscountMapsActivity;
 
 import java.util.List;
 

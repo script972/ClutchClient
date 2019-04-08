@@ -1,6 +1,7 @@
 package com.script972.clutchclient.mvp.contracts;
 
-import com.script972.clutchclient.model.api.CardItem;
+
+import com.script972.clutchclient.ui.model.CardItem;
 
 import java.util.List;
 

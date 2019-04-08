@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activitys.authorization.LoginActivity"
+    tools:context=".ui.activities.authorization.LoginActivity"
     android:orientation="vertical">
 
     <include android:id="@+id/toolbar"

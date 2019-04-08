@@ -3,8 +3,6 @@ package com.script972.clutchclient.helpers;
 import android.util.Base64;
 
 import com.google.gson.Gson;
-import com.script972.clutchclient.model.LocationPosition;
-import com.script972.clutchclient.model.api.CardItem;
 
 public class DataTransferHelper {
 

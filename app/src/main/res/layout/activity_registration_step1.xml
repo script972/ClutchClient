@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activitys.authorization.PersonalInfoActivity"
+    tools:context=".ui.activities.authorization.PersonalInfoActivity"
     android:orientation="vertical">
 
     <include android:id="@+id/toolbar"

@@ -1,12 +1,10 @@
 package com.script972.clutchclient.mvp.impl;
 
-import android.support.annotation.NonNull;
-import android.util.Log;
+import androidx.annotation.NonNull;
 
-import com.script972.clutchclient.api.RetrofitManager;
-import com.script972.clutchclient.api.service.CompanyService;
-import com.script972.clutchclient.model.api.Company;
-import com.script972.clutchclient.mvp.contracts.CardContract;
+import com.script972.clutchclient.manages.RetrofitManager;
+import com.script972.clutchclient.domain.api.service.CompanyService;
+import com.script972.clutchclient.domain.api.model.api.Company;
 import com.script972.clutchclient.mvp.contracts.CompanyListContract;
 
 import java.util.Collections;

@@ -1,8 +1,5 @@
 package com.script972.clutchclient.mvp.contracts;
 
-import com.script972.clutchclient.model.api.TokenResponce;
-import com.script972.clutchclient.model.api.User;
-
 public interface LoginContract {
 
     interface Presenter{

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".ui.activitys.SplashScreenActivity"
+    tools:context=".ui.activities.SplashScreenActivity"
     android:background="@drawable/background_gradient">
 
 

@@ -1,14 +1,11 @@
 package com.script972.clutchclient.mvp.impl;
 
 
-import com.script972.clutchclient.api.RetrofitManager;
-import com.script972.clutchclient.api.service.CardItemService;
-import com.script972.clutchclient.api.service.UserService;
-import com.script972.clutchclient.model.api.LoginRequestBody;
-import com.script972.clutchclient.model.api.TokenResponce;
-import com.script972.clutchclient.model.api.User;
+import com.script972.clutchclient.manages.RetrofitManager;
+import com.script972.clutchclient.domain.api.service.UserService;
+import com.script972.clutchclient.domain.api.model.api.User;
 import com.script972.clutchclient.mvp.contracts.RegistrationContract;
-import com.script972.clutchclient.ui.activitys.authorization.RegistrationStep1Activity;
+import com.script972.clutchclient.ui.activities.authorization.RegistrationStep1Activity;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -5,9 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.StatFs;
+import android.util.TypedValue;
+
+import com.script972.clutchclient.core.ClutchApplication;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -142,6 +146,11 @@ public class DeviceHelper {
         int scale = batteryStatus != null ? batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1) : -1;
         float batteryPct = level / (float) scale;
         return (int) (batteryPct * 100);
+    }
+
+    public static int dpToPx(int dp) {
+        Resources r = ClutchApplication.getApplication().getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 
 }
