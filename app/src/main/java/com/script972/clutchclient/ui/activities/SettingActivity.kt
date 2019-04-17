@@ -68,7 +68,6 @@ class SettingActivity : BaseActivity() {
     }
 
     fun initDisplayCard() {
-
         val numberColomn = PrefHelper.getDisplayCardView(applicationContext)
         if (numberColomn == 1) {
             display_card_status_text_view.text = resources.getString(R.string.txt_card_view_column)
@@ -84,7 +83,6 @@ class SettingActivity : BaseActivity() {
                 display_card_status_text_view.text = resources.getString(R.string.txt_card_view_column)
             }
         }
-
     }
 
 

@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.script972.clutchclient.R;
 import com.script972.clutchclient.databinding.CardItemBinding;
 import com.script972.clutchclient.ui.model.CardItem;
 
@@ -23,6 +25,8 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
     private List<CardItem> data;
 
+    private Clicker clicker;
+
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         private CardItemBinding binding;
@@ -34,83 +38,50 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
         private void bind() {
             binding.setItem(data.get(getAdapterPosition()));
+            binding.setListener(clicker);
             binding.invalidateAll();
         }
     }
 
 
-    public CardsAdapter(List<CardItem> cardList) {
+    public CardsAdapter(List<CardItem> cardList, Clicker clicker) {
         this.data = cardList;
+        this.clicker = clicker;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         CardItemBinding binding = CardItemBinding.inflate(LayoutInflater.from(parent.getContext()));
         return new MyViewHolder(binding);
-
-       /* View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_item, parent, false);
-
-        return new MyViewHolder(itemView);*/
     }
 
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
         holder.bind();
-       /* final CardItem cardModel = data.get(position);
-        final String jsonCardItem = new Gson().toJson(cardModel);
-
-        if(cardModel.getTitle()!=null && !cardModel.getTitle().isEmpty()) {
-            holder.title.setText(cardModel.getTitle());
-        } else if(cardModel.getCompany()!=null && cardModel.getCompany().getTitle()!=null && !cardModel.getCompany().getTitle().isEmpty()){
-            holder.title.setText(cardModel.getCompany().getTitle());
-        }*/
-        // holder.count.setText("Rang "+cardModel.getS());
-       /* holder.overflow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopupMenu(holder.overflow);
-            }
-        });*/
-
-      /*  Picasso.get()
-                .load(cardModel.getFacePhoto())
-                .placeholder(R.drawable.cardtemplate)
-                .error(R.drawable.cardtemplate)
-                .into(holder.thumbnail);
-
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(mContext, ActivityItemCard.class);
-                intent.putExtra("cardItem", jsonCardItem);
-                mContext.startActivity(intent);
-            }
-        });*/
 
     }
 
     /**
      * Click listener for popup main_toolbar_menu items
      */
-    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+    public class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
 
         public MyMenuItemClickListener() {
         }
 
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
-            switch (menuItem.getItemId()) {
-               /* case R.id.action_del_card:
+           /* switch (menuItem.getItemId()) {
+                case R.id.action_del_card:
                     Toast.makeText(mContext, "Add to favourite", Toast.LENGTH_SHORT).show();
-                    return true;*/
-             /*   case R.id.action_play_next:
+                    return true;
+                case R.id.action_play_next:
                     Toast.makeText(mContext, "Play next", Toast.LENGTH_SHORT).show();
-                    return true;*/
+                    return true;
                 default:
-            }
+            }*/
             return false;
         }
     }
@@ -119,4 +90,9 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
     public int getItemCount() {
         return data.size();
     }
+
+    public interface Clicker {
+        void onItemClick(CardItem cardItem);
+    }
+
 }

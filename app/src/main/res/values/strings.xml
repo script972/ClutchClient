@@ -3,7 +3,7 @@
     <string name="serch_title">Search</string>
     <string name="add_card">Add card</string>
     <string name="my_cards">My cards</string>
-    <string name="OnlineCards">Air cards</string>
+    <string name="online_cards">Air cards</string>
     <string name="share_app">Share app</string>
     <string name="close">close</string>
     <string name="open">Open</string>
@@ -93,6 +93,10 @@
     <string name="info_card_added_success">Card added success. You may extand information</string>
     <string name="h_title_card">Title card</string>
     <string name="h_number_card">Number card</string>
+    <string name="info_get_success">Get information success</string>
+    <string name="e_card_number_can_not_be_empy">Card number can`t be empty</string>
+    <string name="menu_item_update">Update</string>
+    <string name="btn_update_card">Update card</string>
 
 
 </resources>

@@ -1,32 +1,49 @@
 package com.script972.clutchclient.ui.fragment;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.helpers.DataTransferHelper;
+import com.script972.clutchclient.ui.model.CardItem;
 import com.squareup.picasso.Picasso;
 
+import java.net.URI;
+
 public class InfoFragment extends Fragment {
+
+    private static InfoFragment fragment;
+
 
     //outlets
     private View view;
     private ImageView front;
     private ImageView back;
 
+    public static InfoFragment getInstance() {
+        if (fragment == null) {
+            fragment = new InfoFragment();
+        }
+        return fragment;
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.info_card_fragment, container, false);
+        view = inflater.inflate(R.layout.info_card_fragment, container, false);
         front = view.findViewById(R.id.photo_front);
         back = view.findViewById(R.id.photo_back);
-      //  initView();
+        //  initView();
         return view;
     }
 
@@ -43,28 +60,35 @@ public class InfoFragment extends Fragment {
 
     private void fillData() {
         Bundle bundle = this.getArguments();
-        if(bundle==null){
+        if(bundle==null)
             return;
+        if (bundle.containsKey("cardItem")) {
+            CardItem cardItem = (CardItem) DataTransferHelper.convertFromJson(CardItem.class,
+                    bundle.getString("cardItem"));
+            setBind(cardItem);
         }
 
-        String backphoto = bundle.getString("backphoto", null);
-        String facephoto = bundle.getString("facephoto", null);
 
-        if(backphoto!=null) {
-            Picasso.get()
+    }
+
+    private void setBind(CardItem cardItem) {
+        String backphoto = cardItem.getPhotoBack();
+        String facephoto = cardItem.getPhotoFront();
+
+        if (backphoto != null && back!=null) {
+           /* Picasso.get()
                     .load(backphoto)
                     .placeholder(R.drawable.cardtemplate)
-                    .error(R.drawable.ic_arrow_back)
-                    .into(back);
+                    .into(back);*/
+            back.setImageURI(Uri.parse(backphoto));
         }
-        if(facephoto!=null){
-            Picasso.get()
-                    .load(facephoto)
-                    .placeholder(R.drawable.cardtemplate)
-                    .error(R.drawable.ic_earth)
-                    .into(front);
-        }
-        //((TextView)view.findViewById(R.id.barcodestr)).setText(number);
 
+        if (facephoto != null && front!=null) {
+            /*Picasso.get()
+                    .load(Uri.parse(facephoto))
+                    .placeholder(R.drawable.cardtemplate)
+                    .into(front);*/
+            front.setImageURI(Uri.parse(facephoto));
+        }
     }
 }

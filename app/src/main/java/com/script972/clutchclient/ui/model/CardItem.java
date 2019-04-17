@@ -5,6 +5,8 @@ import lombok.Data;
 @Data
 public class CardItem {
 
+    private long id;
+
     private String title;
 
     private String cardNumber;
@@ -14,4 +16,6 @@ public class CardItem {
     private String photoFront;
 
     private String photoBack;
+
+    private boolean updateMode;
 }

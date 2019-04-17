@@ -19,4 +19,5 @@ public interface CardRepository {
 
     LiveData<List<CardItem>> getAllCard();
 
+    LiveData findCardById(long cardId);
 }

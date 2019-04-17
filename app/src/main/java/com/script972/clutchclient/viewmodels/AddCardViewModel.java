@@ -39,4 +39,8 @@ public class AddCardViewModel extends ViewModel {
     public void updateCard(CardEntity cardItem) {
         liveData.addSource(cardRepository.updateCardEntity(cardItem), liveData::setValue);
     }
+
+    public void findOneCardById(long cardId){
+        liveData.addSource(cardRepository.findCardById(cardId), liveData::setValue);
+    }
 }

@@ -1,6 +1,7 @@
 package com.script972.clutchclient.domain.database.dao;
 
 import com.script972.clutchclient.domain.database.entity.CardEntity;
+import com.script972.clutchclient.ui.model.CardItem;
 
 import java.util.List;
 
@@ -16,6 +17,9 @@ public interface CardDao {
     @Query("SELECT * FROM CardEntity")
     LiveData<List<CardEntity>> getAllList();
 
+    @Query("SELECT * FROM CardEntity WHERE id=:cardId")
+    LiveData<CardEntity> findCardById(long cardId);
+
     @Insert
     void insert(CardEntity value);
 
@@ -24,4 +28,5 @@ public interface CardDao {
 
     @Query("SELECT * FROM CardEntity WHERE number=:number")
     CardEntity getCardByNumber(String number);
+
 }

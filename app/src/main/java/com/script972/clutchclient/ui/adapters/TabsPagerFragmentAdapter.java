@@ -21,7 +21,7 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
         super(fm);
         tabs=new int[]{
                 R.string.my_cards,
-                R.string.OnlineCards
+                R.string.online_cards
         };
 
         context=mainActivity;
@@ -48,10 +48,5 @@ public class TabsPagerFragmentAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
         return context.getResources().getString(tabs[position]) ;
     }
-
-
-
-
-
 
 }

@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
@@ -31,6 +32,7 @@ import com.script972.clutchclient.mvp.contracts.CardContract;
 import com.script972.clutchclient.mvp.impl.CardPresenterImpl;
 import com.script972.clutchclient.ui.adapters.CardsAdapter;
 import com.script972.clutchclient.ui.model.CardItem;
+import com.script972.clutchclient.viewmodels.AddCardViewModel;
 import com.script972.clutchclient.viewmodels.ListCardViewModel;
 
 import java.util.ArrayList;
@@ -47,10 +49,8 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
     private List<CardItem> data;
     private CardsAdapter cardsAdapter;
     private RecyclerView rcv;
-    private GifImageView noData;
     private MyCardsFragmentBinding binding;
 
-    private FloatingActionButton fab;
 
     // vars for help cheking if change span in settings
     private int saveOldSpan = 0;
@@ -71,17 +71,12 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.binding = DataBindingUtil.inflate(
                 inflater, R.layout.my_cards_fragment, container, false);
-        //this.viewModel = ViewModelProviders.of(this).get(AddCardViewModel.class);
+        this.viewModel = ViewModelProviders.of(this).get(AddCardViewModel.class);
         initView();
         return binding.getRoot();
-        /*
-        * this.binding = DataBindingUtil.setContentView(this, R.layout.activity_add_card);
-        this.viewModel = ViewModelProviders.of(this).get(AddCardViewModel.class);
-        *
-        * */
     }
 
     @Override
@@ -117,9 +112,8 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
 
     private void initView() {
         data = new ArrayList<>();//del
-        noData = binding.noData;
         initCards();
-        binding.fab.setOnClickListener(view -> IntentHelpers.openAddCardActivity(getContext()));
+        binding.fab.setOnClickListener(view -> IntentHelpers.pushAddCardActivity(getContext()));
 
 
     }
@@ -127,7 +121,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
 
     private void initCards() {
         rcv = binding.rvViewMyCards;
-        cardsAdapter = new CardsAdapter(data);
+        cardsAdapter = new CardsAdapter(data, cardItem -> IntentHelpers.pushDetailsCard(getContext(), cardItem.getId()));
         saveOldSpan = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), saveOldSpan);
         rcv.setLayoutManager(mLayoutManager);
@@ -138,9 +132,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
         rcv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0 || dy < 0 && fab.isShown()) {
-                    // fab.hide();
-                }
+
             }
 
             @Override

@@ -3,8 +3,10 @@ package com.script972.clutchclient.ui.fragment;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +19,27 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.ui.model.CardItem;
 
 
-public class BarcodeFragment extends Fragment{
+public class BarcodeFragment extends Fragment {
 
 
     private View view;
+    private static BarcodeFragment fragment;
 
+
+    public static BarcodeFragment getInstance() {
+        if (fragment == null) {
+            fragment = new BarcodeFragment();
+        }
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.barcode_fragment, container, false);
+        view = inflater.inflate(R.layout.barcode_fragment, container, false);
         return view;
     }
 
@@ -40,31 +51,26 @@ public class BarcodeFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
-        fillData();
+        Bundle bundle = this.getArguments();
+        if (bundle != null && bundle.containsKey("number")) {
+            setBind(bundle.getString("number"));
+        }
     }
 
-    private void fillData() {
-        Bundle bundle = this.getArguments();
-        if(bundle==null){
-            return;
-        }
 
-        String number = bundle.getString("number", null);
-        if(number==null && number.isEmpty())
+    public void setBind(String number) {
+        if (number == null || view == null)
             return;
-        ((TextView)view.findViewById(R.id.barcodestr)).setText(number);
+        ((TextView) view.findViewById(R.id.barcodestr)).setText(String.valueOf(number != null ? number : ""));
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(number, BarcodeFormat.CODE_128,1200,600);
+            BitMatrix bitMatrix = multiFormatWriter.encode(number, BarcodeFormat.CODE_128, 1200, 600);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
-            ((ImageView)view.findViewById(R.id.barcode)).setImageBitmap(bitmap);
+            ((ImageView) view.findViewById(R.id.barcode)).setImageBitmap(bitmap);
 
         } catch (WriterException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

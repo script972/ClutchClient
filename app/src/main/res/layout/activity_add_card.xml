@@ -101,7 +101,9 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -112,8 +114,8 @@
                         android:id="@+id/et_number_card"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
                         android:hint="@string/h_number_card"
+                        android:inputType="number"
                         android:paddingRight="@dimen/dimen_40"
                         android:text="@{item.cardNumber}"
                         android:textSize="@dimen/text_14" />
@@ -133,6 +135,8 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -163,7 +167,9 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp">
 
                 <EditText
                     android:id="@+id/et_comment_card"
@@ -184,7 +190,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:text="@string/btn_add_card" />
+            android:text="@{item.updateMode == true ? @string/btn_update_card :  @string/btn_add_card}" />
 
 
     </RelativeLayout>

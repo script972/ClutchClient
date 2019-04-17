@@ -88,7 +88,7 @@ public class ActivityListCompany extends BaseActivity implements CompanyListCont
         rvCompanyList.addOnItemTouchListener(new RecyclerItemListener(getApplicationContext(), rvCompanyList,
                 new RecyclerItemListener.RecyclerTouchListener() {
                     public void onClickItem(View v, int position) {
-                        IntentHelpers.openAddCardActivity(ActivityListCompany.this);
+                        IntentHelpers.pushAddCardActivity(ActivityListCompany.this);
                     }
 
                     public void onLongClickItem(View v, int position) {

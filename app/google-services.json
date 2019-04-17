@@ -1,52 +1,45 @@
 {
   "project_info": {
-    "project_number": "816618119060",
-    "firebase_url": "https://clutch-dcdbd.firebaseio.com",
-    "project_id": "clutch-dcdbd",
-    "storage_bucket": "clutch-dcdbd.appspot.com"
+    "project_number": "27584129594",
+    "firebase_url": "https://clutchclient-213115.firebaseio.com",
+    "project_id": "clutchclient-213115",
+    "storage_bucket": "clutchclient-213115.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:816618119060:android:1f2328dab5afd7ce",
+        "mobilesdk_app_id": "1:27584129594:android:1f2328dab5afd7ce",
         "android_client_info": {
           "package_name": "com.script972.clutchclient"
         }
       },
       "oauth_client": [
         {
-          "client_id": "816618119060-de0hkim7lj9tpruhi48lm3hbuchn8113.apps.googleusercontent.com",
+          "client_id": "27584129594-7ptkf94spdfif57125t891v3p1v7f30i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.script972.clutchclient",
-            "certificate_hash": "6944f781c0c32f3aaa9d61264b4c5feb548a8021"
+            "certificate_hash": "f1a2914dae132223ec79cd206c4fc5a2cb352617"
           }
         },
         {
-          "client_id": "816618119060-dlj5keco5rns1r3k6kejt5c3p7of3r2g.apps.googleusercontent.com",
+          "client_id": "27584129594-g5a08e7qkr4g14j84020drps50nakkoi.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCSOwM6SShwj1y_OJ1BNY2Sz9b7zrI9x-E"
+          "current_key": "AIzaSyCKFm4kytZYUzDBiDEPUhNWqaHmJUdoLeY"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "816618119060-dlj5keco5rns1r3k6kejt5c3p7of3r2g.apps.googleusercontent.com",
+              "client_id": "27584129594-g5a08e7qkr4g14j84020drps50nakkoi.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

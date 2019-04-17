@@ -1,169 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/BackgroundApp"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="1dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-        <ImageView
-            android:id="@+id/arrowback"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_margin="@dimen/dimen_16"
-            android:elevation="2dp"
-            app:srcCompat="@drawable/ic_arrow_back"/>
+    <data>
+        <variable
+            name="item"
+            type="com.script972.clutchclient.ui.model.CardItem"/>
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_185"
-            android:layout_marginTop="0dp"
-            android:elevation="1dp"
-            android:scaleType="center" />
-    </FrameLayout>
+    </data>
 
     <LinearLayout
+        style="@style/BackgroundApp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-55dp"
-        android:elevation="2dp"
-        android:orientation="vertical"
-        android:background="@drawable/item_card_radius_back"
-        >
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/card_title"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:layout_width="wrap_content"
+       <include layout="@layout/toolbar"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/dimen_24"
-            android:textColor="@color/title_text_color"
-            android:text="Adidas"/>
+            android:visibility="gone"
+            android:elevation="1dp">
+
+            <ImageView
+                android:id="@+id/arrowback"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_margin="@dimen/dimen_16"
+                android:elevation="2dp"
+                app:srcCompat="@drawable/ic_arrow_back" />
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_185"
+                android:layout_marginTop="0dp"
+                android:elevation="1dp"
+                android:scaleType="center" />
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/dimen_16">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="@color/grey_dark"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/dimen_8"
-                android:layout_marginRight="@dimen/dimen_8"
-                android:layout_weight="4"/>
-
-            <com.pkmmte.view.CircularImageView
-                android:id="@+id/icon_company"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dimen_76"
-                android:layout_weight="2"
-                android:layout_gravity="center_horizontal"
-                android:elevation="5dp"
-                android:src="@drawable/add_barkode"
-                app:border_color="#EEEEEE"
-                app:border_width="4dp"
-                app:shadow="true" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:background="@color/grey_dark"
-                android:layout_marginLeft="@dimen/dimen_8"
-                android:layout_marginRight="@dimen/dimen_8"
-                android:layout_weight="4"/>
-
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:background="@drawable/item_card_radius_back"
+            android:elevation="2dp"
             android:orientation="vertical">
+            <!--android:layout_marginTop="-55dp"-->
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+            <TextView
+                android:id="@+id/card_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:gravity="center"
+                android:textColor="@color/title_text_color"
+                android:textSize="@dimen/dimen_24"
+                tools:text="Adidas" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tabMode="fixed"
-                app:tabGravity="fill"/>
+                android:layout_marginTop="@dimen/dimen_16"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/viewpager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"  />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginRight="@dimen/dimen_8"
+                    android:layout_weight="4"
+                    android:background="@color/grey_dark" />
+
+                <com.pkmmte.view.CircularImageView
+                    android:id="@+id/icon_company"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dimen_76"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="2"
+                    android:elevation="5dp"
+                    android:src="@drawable/add_barkode"
+                    app:border_color="#EEEEEE"
+                    app:border_width="4dp"
+                    app:shadow="true" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    android:layout_marginRight="@dimen/dimen_8"
+                    android:layout_weight="4"
+                    android:background="@color/grey_dark" />
+
+            </LinearLayout>
 
 
-            <com.wajahatkarim3.easyflipview.EasyFlipView
-                android:id="@+id/profile_image"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="@dimen/dimen_36"
-                android:paddingBottom="@dimen/dimen_36"
-                app:flipDuration="400"
-                app:flipEnabled="true"
-                app:flipOnTouch="true">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/front_side"
-                    android:layout_width="250dp"
-                    android:layout_height="180dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="0dp"
-                    app:srcCompat="@drawable/back_example"
-                    app:civ_border_width="2dp"/>
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabGravity="fill"
+                    app:tabMode="fixed" />
 
-                <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-                    android:id="@+id/back_side"
-                    android:layout_width="250dp"
-                    android:layout_height="180dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="0dp"
-                    app:srcCompat="@drawable/front_example"
-                    app:civ_border_color="@color/zxing_result_view"
-                    app:civ_border_width="2dp"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent" />
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
+                <com.wajahatkarim3.easyflipview.EasyFlipView
+                    android:id="@+id/profile_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/dimen_36"
+                    android:paddingBottom="@dimen/dimen_36"
+                    app:flipDuration="400"
+                    app:flipEnabled="true"
+                    app:flipOnTouch="true">
 
-            </com.wajahatkarim3.easyflipview.EasyFlipView>
+                    <ImageView
+                        android:id="@+id/front_side"
+                        android:layout_width="250dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        app:civ_border_width="2dp"
+                        app:srcCompat="@drawable/back_example" />
 
+                    <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/back_side"
+                        android:layout_width="250dp"
+                        android:layout_height="180dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        app:civ_border_color="@color/zxing_result_view"
+                        app:civ_border_width="2dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:srcCompat="@drawable/front_example" />
+
+
+                </com.wajahatkarim3.easyflipview.EasyFlipView>
+
+
+            </LinearLayout>
 
         </LinearLayout>
+
 
     </LinearLayout>
 
 
-
-
-
-
-
-
-
-
-</LinearLayout>
-
+</layout>

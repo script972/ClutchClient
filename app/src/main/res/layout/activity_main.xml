@@ -22,7 +22,7 @@
 
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_56"
             app:tabIndicatorHeight="0dp"

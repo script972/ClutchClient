@@ -23,7 +23,7 @@
         <item
             android:id="@+id/menuOnlineCards"
             android:orderInCategory="1"
-            android:title="@string/OnlineCards"
+            android:title="@string/online_cards"
             android:icon="@drawable/ic_air_card_menu"/>
 
         <item

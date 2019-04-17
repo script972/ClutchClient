@@ -15,7 +15,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activities.SettingActivity"></activity>
+        <activity android:name=".ui.activities.card.BarcodeLandscapeActivity"
+            />
+        <activity android:name=".ui.activities.SettingActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -54,14 +56,14 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.AboutCompanyActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.card.ActivityAddCard"
             android:screenOrientation="portrait" /> <!-- adjust Pan help keyboard be on the upper of layout -->
         <activity
             android:name=".ui.activities.card.ActivityListCompany"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="com.google.zxing.client.android.SCAN"
             android:configChanges="orientation|keyboardHidden"
@@ -77,9 +79,7 @@
         <activity
             android:name=".ui.activities.DiscountMapsActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activities.card.ActivityItemCard"
-            android:screenOrientation="portrait" />
+        <activity android:name=".ui.activities.card.ActivityItemCard" />
         <activity
             android:name=".ui.activities.authorization.LoginActivity"
             android:screenOrientation="portrait" />

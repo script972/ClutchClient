@@ -61,6 +61,14 @@ public class CardRepositoryImpl implements CardRepository {
         });
     }
 
+    @Override
+    public LiveData<Pair<InformationCodes,CardItem>> findCardById(long cardId) {
+        return Transformations.map(cardDao.findCardById(cardId), input -> {
+            Pair pair = new Pair(InformationCodes.CARD_ADDED_SUCCESS,  CardMapper.entityToUi(input));
+            return pair;
+        });
+    }
+
     class CardUpdateDb extends AsyncTask<Void, Void, InformationCodes> {
 
         private InformationCodes result;
