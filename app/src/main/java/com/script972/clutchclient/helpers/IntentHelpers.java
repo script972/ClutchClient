@@ -1,5 +1,6 @@
 package com.script972.clutchclient.helpers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.MenuItem;
@@ -56,6 +57,17 @@ public class IntentHelpers {
     public static void pushMapsDiscount(Context context) {
         Intent intent = new Intent(context, DiscountMapsActivity.class);
         context.startActivity(intent);
+    }
+
+    /**
+     * Method for choosing image
+     *
+     * @param codeRequest
+     */
+    public static void pushPhotoFromGallary(Activity activity, int codeRequest) {
+        Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT,
+                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        activity.startActivityForResult(galleryIntent, codeRequest);
     }
 
 

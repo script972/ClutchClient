@@ -33,7 +33,7 @@
                     android:layout_height="@dimen/dimen_160"
                     android:onClick="@{() ->listener.onItemClick(item)}"
                     android:scaleType="centerCrop"
-                    android:src="@{item.photoFront, default = @drawable/cardtemplate}" />
+                    android:src="@drawable/cardtemplate" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -163,12 +163,13 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
         Bundle bundle = new Bundle();
         bundle.putString("number", cardItem.getCardNumber());
         BarcodeFragment.getInstance().setArguments(bundle);
-       // BarcodeFragment.getInstance().setBind(cardItem.getCardNumber());
+        BarcodeFragment.getInstance().setBind(cardItem.getCardNumber());
 
         Bundle bundleTwo = new Bundle();
         bundleTwo.putString("cardItem", DataTransferHelper.convertToJson(cardItem));
         InfoFragment.getInstance().setArguments(bundleTwo);
-      //  InfoFragment.getInstance().setBind(cardItem);
+        InfoFragment.getInstance().setBind(cardItem);
+
 
 
         /*if(this.cardItem.getCompany()!=null && this.cardItem.getCompany().getLogo()!=null) {

@@ -118,9 +118,9 @@ public class MainActivity extends BaseActivity {
                     IntentHelpers.pushCompanyListActivity(this);
                     break;
 
-                case R.id.menuDiscountPoint:
+             /*   case R.id.menuDiscountPoint:
                     IntentHelpers.pushMapsDiscount(this);
-                    break;
+                    break;*/
 
                 case R.id.setting_menu:
                     IntentHelpers.pushSettingsActivity(this);

@@ -1,11 +1,14 @@
 package com.script972.clutchclient.ui.activities.card;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 
@@ -15,6 +18,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.databinding.ActivityAddCardBinding;
 import com.script972.clutchclient.helpers.DataTransferHelper;
+import com.script972.clutchclient.helpers.ImageHelper;
 import com.script972.clutchclient.helpers.IntentHelpers;
 import com.script972.clutchclient.mappers.CardMapper;
 import com.script972.clutchclient.ui.activities.BaseActivity;
@@ -22,6 +26,8 @@ import com.script972.clutchclient.ui.model.CardItem;
 import com.script972.clutchclient.ui.model.InformationCodes;
 import com.script972.clutchclient.ui.model.StatusCode;
 import com.script972.clutchclient.viewmodels.AddCardViewModel;
+
+import java.io.IOException;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
@@ -69,6 +75,19 @@ public class ActivityAddCard extends BaseActivity {
             uiModel = pair.second;
             uiModel.setUpdateMode(updateMode);
             this.binding.setItem(uiModel);
+
+             //*----------------------*//*
+           /* Uri selectedImage = Uri.parse(pair.second.getPhotoBack());
+            binding.imgCardPhotoBack.setImageURI(selectedImage);
+            uiModel.setPhotoBack(String.valueOf(selectedImage));*/
+            //*----------------------*//*
+            Uri selectedImage = Uri.parse(pair.second.getPhotoFront());
+            binding.imgCardPhotoFront.setImageURI(selectedImage);
+            if(pair.second.getPhotoBack()!=null && !pair.second.getPhotoBack().isEmpty()) {
+                selectedImage = Uri.parse(pair.second.getPhotoBack());
+                this.binding.imgCardPhotoBack.setImageURI(selectedImage);
+            }
+
         });
     }
 
@@ -77,16 +96,31 @@ public class ActivityAddCard extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_LOAD_FRONT && resultCode == RESULT_OK) {
             super.showStatusPanel(getResources().getString(R.string.card_added), StatusCode.INFORMATION, true);
-            Uri imageUri = data.getData();
-            binding.imgCardPhotoFront.setImageURI(imageUri);
-            uiModel.setPhotoFront(String.valueOf(imageUri));
+            Uri selectedImage = data.getData();
+            binding.imgCardPhotoFront.setImageURI(selectedImage);
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                String filePath = ImageHelper.saveBitmapToInternalStorage(bitmap, selectedImage);
+                uiModel.setPhotoFront(filePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             return;
         }
 
         if (requestCode == REQUEST_LOAD_BACK && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
             binding.imgCardPhotoBack.setImageURI(selectedImage);
-            uiModel.setPhotoBack(String.valueOf(selectedImage));
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                String filePath = ImageHelper.saveBitmapToInternalStorage(bitmap, selectedImage);
+                uiModel.setPhotoBack(filePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
             return;
         }
 
@@ -189,17 +223,7 @@ public class ActivityAddCard extends BaseActivity {
         uiModel.setTitle(binding.etTitleCard.getText().toString());
     }
 
-    /**
-     * Method for choosing image
-     *
-     * @param code
-     */
-    private void pickImage(int code) {
-        Intent i = new Intent(
-                Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(i, code);
-    }
+
 
     //callbacks
     private View.OnClickListener clicker = v -> {
@@ -208,10 +232,10 @@ public class ActivityAddCard extends BaseActivity {
                 openScanIfNeed();
                 break;
             case R.id.img_card_photo_front:
-                pickImage(REQUEST_LOAD_FRONT);
+                IntentHelpers.pushPhotoFromGallary(this, REQUEST_LOAD_FRONT);
                 break;
             case R.id.img_card_photo_back:
-                pickImage(REQUEST_LOAD_BACK);
+                IntentHelpers.pushPhotoFromGallary(this, REQUEST_LOAD_BACK);
                 break;
             case R.id.btn_add_card:
                 btnAddCard();

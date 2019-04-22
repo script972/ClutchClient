@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -38,6 +39,9 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
         private void bind() {
             binding.setItem(data.get(getAdapterPosition()));
+            Uri selectedImage = Uri.parse(data.get(getAdapterPosition()).getPhotoFront());
+            binding.thumbnail.setImageURI(selectedImage);
+
             binding.setListener(clicker);
             binding.invalidateAll();
         }

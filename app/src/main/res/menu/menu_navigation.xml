@@ -3,11 +3,11 @@
 
     <group android:id="@+id/manipulation_card" >
 
-        <item
+        <!--<item
             android:id="@+id/menuDiscountPoint"
             android:orderInCategory="1"
             android:title="@string/menu_discount_point"
-            android:icon="@drawable/ic_maps_menu" />
+            android:icon="@drawable/ic_maps_menu" />-->
         <item
             android:id="@+id/menuAddCard"
             android:orderInCategory="1"
