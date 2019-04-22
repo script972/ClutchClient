@@ -20,6 +20,9 @@ public interface CardDao {
     @Query("SELECT * FROM CardEntity WHERE id=:cardId")
     LiveData<CardEntity> findCardById(long cardId);
 
+    @Query("SELECT * FROM CardEntity WHERE id=:cardId")
+    CardEntity getCardById(long cardId);
+
     @Insert
     void insert(CardEntity value);
 

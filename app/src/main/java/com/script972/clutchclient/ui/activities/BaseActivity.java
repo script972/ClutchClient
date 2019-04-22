@@ -127,7 +127,7 @@ public class BaseActivity extends AppCompatActivity {
     /**
      * Method wich show progress dialog
      */
-    protected void showProgressDialog() {
+    public void showProgressDialog() {
         if (!mProgressDialog.isShowing())
             mProgressDialog.show();
     }
@@ -136,7 +136,8 @@ public class BaseActivity extends AppCompatActivity {
      * Method wich close Dialog view
      */
     protected void hideProgressDialog() {
-        DialogHelper.safeClose(mProgressDialog);
+        if(mProgressDialog.isShowing())
+            DialogHelper.safeClose(mProgressDialog);
     }
 
     /**

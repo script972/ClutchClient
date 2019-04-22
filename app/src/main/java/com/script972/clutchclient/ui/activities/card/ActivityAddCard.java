@@ -187,11 +187,20 @@ public class ActivityAddCard extends BaseActivity {
         });
     }
 
+    public void openScanIfNeed() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(IntentHelpers.OPEN_SCAN) &&
+                !((boolean) bundle.get(IntentHelpers.OPEN_SCAN))) {
+            return;
+        }
+        openScan();
+    }
+
 
     /**
      * Method wich open scanner
      */
-    public void openScanIfNeed() {
+    public void openScan() {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null && bundle.containsKey(IntentHelpers.OPEN_SCAN) &&
                 !((boolean) bundle.get(IntentHelpers.OPEN_SCAN))) {
@@ -229,7 +238,7 @@ public class ActivityAddCard extends BaseActivity {
     private View.OnClickListener clicker = v -> {
         switch (v.getId()) {
             case R.id.img_card_photo_barckode:
-                openScanIfNeed();
+                openScan();
                 break;
             case R.id.img_card_photo_front:
                 IntentHelpers.pushPhotoFromGallary(this, REQUEST_LOAD_FRONT);

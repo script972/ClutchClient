@@ -26,10 +26,12 @@ import com.script972.clutchclient.R;
 import com.script972.clutchclient.core.ClutchApplication;
 import com.script972.clutchclient.databinding.MyCardsFragmentBinding;
 import com.script972.clutchclient.helpers.DeviceHelper;
+import com.script972.clutchclient.helpers.DialogHelper;
 import com.script972.clutchclient.helpers.IntentHelpers;
 import com.script972.clutchclient.helpers.PrefHelper;
 import com.script972.clutchclient.mvp.contracts.CardContract;
 import com.script972.clutchclient.mvp.impl.CardPresenterImpl;
+import com.script972.clutchclient.ui.activities.MainActivity;
 import com.script972.clutchclient.ui.adapters.CardsAdapter;
 import com.script972.clutchclient.ui.model.CardItem;
 import com.script972.clutchclient.viewmodels.AddCardViewModel;
@@ -121,7 +123,10 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
 
     private void initCards() {
         rcv = binding.rvViewMyCards;
-        cardsAdapter = new CardsAdapter(data, cardItem -> IntentHelpers.pushDetailsCard(getContext(), cardItem.getId()));
+        cardsAdapter = new CardsAdapter(data, cardItem ->{
+            ((MainActivity)getActivity()).showProgressDialog();
+            IntentHelpers.pushDetailsCard(getContext(), cardItem.getId());
+        });
         saveOldSpan = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), saveOldSpan);
         rcv.setLayoutManager(mLayoutManager);

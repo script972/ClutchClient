@@ -8,8 +8,26 @@
     tools:context=".ui.activities.SplashScreenActivity"
     android:background="@drawable/background_gradient">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_future"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/slogan"
+            android:textColor="@color/colorWhite"
+            android:layout_margin="@dimen/dimen_16"  />
+    </LinearLayout>
 
 
     <TextView

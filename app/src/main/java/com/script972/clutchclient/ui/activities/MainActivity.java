@@ -26,7 +26,6 @@ import com.script972.clutchclient.ui.adapters.TabsPagerFragmentAdapter;
 
 public class MainActivity extends BaseActivity {
 
-
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     private ViewPager viewPager;
@@ -46,6 +45,12 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         super.initCommonView();
         initView();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        super.hideProgressDialog();
     }
 
     private void initView() {

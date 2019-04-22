@@ -97,6 +97,8 @@
     <string name="e_card_number_can_not_be_empy">Card number can`t be empty</string>
     <string name="menu_item_update">Update</string>
     <string name="btn_update_card">Update card</string>
+    <string name="online_cards_under_developing">Air cards under developing</string>
+    <string name="slogan">We are your trusted partner for managing your discount cards</string>
 
 
 </resources>

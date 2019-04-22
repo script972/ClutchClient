@@ -85,10 +85,10 @@ public class CardRepositoryImpl implements CardRepository {
 
         @Override
         protected InformationCodes doInBackground(Void... voids) {
-            CardEntity dbEntity = database.getCardByNumber(item.getNumber());
+            CardEntity dbEntity = database.getCardById(item.getId());
             if (dbEntity != null) {
-                item.setId(dbEntity.getId());
                 database.update(item);
+               // item = database.getCardByNumber(item.getNumber());
                 result = InformationCodes.CARD_UPDATED_SUCCESS;
             } else {
                 database.insert(item);
@@ -123,6 +123,7 @@ public class CardRepositoryImpl implements CardRepository {
             CardEntity dbEntity = database.getCardByNumber(item.getNumber());
             if (dbEntity == null) {
                 database.insert(item);
+                item = database.getCardByNumber(item.getNumber());
                 result = InformationCodes.CARD_ADDED_SUCCESS;
             } else {
                 result = InformationCodes.CARD_ALREADY_ADDED;

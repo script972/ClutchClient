@@ -22,6 +22,7 @@ public class CardMapper {
     public static CardEntity uiToEntity(CardItem uiModel) {
         Log.i("carditem", "tostring"+uiModel.toString());
         CardEntity cardEntity = new CardEntity();
+        cardEntity.setId(uiModel.getId());
         cardEntity.setTitle(uiModel.getTitle());
         cardEntity.setComment(uiModel.getComment());
         cardEntity.setNumber(uiModel.getCardNumber());
