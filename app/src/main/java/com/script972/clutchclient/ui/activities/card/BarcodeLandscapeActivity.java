@@ -15,6 +15,7 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.helpers.DeviceHelper;
 import com.script972.clutchclient.helpers.IntentHelpers;
 
 public class BarcodeLandscapeActivity extends AppCompatActivity {
@@ -24,6 +25,11 @@ public class BarcodeLandscapeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_landscape);
         initView();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
     }
 
     private void initView() {

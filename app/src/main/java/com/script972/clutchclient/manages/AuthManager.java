@@ -43,7 +43,7 @@ public class AuthManager {
 
         Credentials credentials = PrefHelper.getCredentials(context);
         if (credentials == null || credentials.getEmail().isEmpty() || credentials.getPassword().isEmpty()) {
-            PrefHelper.clear(context);
+            PrefHelper.clearAuth(context);
             authCallback.onError(new Throwable());
             return;
         }

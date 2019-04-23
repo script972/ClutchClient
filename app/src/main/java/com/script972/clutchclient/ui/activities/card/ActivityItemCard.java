@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
@@ -160,6 +161,8 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
      */
     private void fillData(CardItem cardItem) {
         cardTitle.setText(cardItem.getTitle() != null ? cardItem.getTitle() : "");
+        cardTitle.setVisibility((cardItem.getTitle() != null && !cardItem.getTitle().isEmpty()) ?
+                View.VISIBLE : View.GONE);
         Bundle bundle = new Bundle();
         bundle.putString("number", cardItem.getCardNumber());
         BarcodeFragment.getInstance().setArguments(bundle);
@@ -172,34 +175,9 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
 
 
 
-        /*if(this.cardItem.getCompany()!=null && this.cardItem.getCompany().getLogo()!=null) {
-            Picasso.get()
-                    .load(this.cardItem.getCompany().getLogo())
-                    .placeholder(R.drawable.cardtemplate)
-                    .error(R.drawable.ic_earth)
-                    .into(iconCompany);
-        }*/
-
     }
 
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.item_car_toolbar_menu, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.shoping_maps:
-                openActivity();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 
     /**
      * Method wich open Maps Activity

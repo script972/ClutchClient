@@ -20,4 +20,6 @@ public interface CardRepository {
     LiveData<List<CardItem>> getAllCard();
 
     LiveData findCardById(long cardId);
+
+    void removeCardById(int id);
 }

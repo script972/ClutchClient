@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.StatFs;
+import android.provider.Settings;
 import android.util.TypedValue;
 
 import com.script972.clutchclient.core.ClutchApplication;
@@ -152,5 +153,7 @@ public class DeviceHelper {
         Resources r = ClutchApplication.getApplication().getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
+
+
 
 }

@@ -43,4 +43,8 @@ public class AddCardViewModel extends ViewModel {
     public void findOneCardById(long cardId){
         liveData.addSource(cardRepository.findCardById(cardId), liveData::setValue);
     }
+
+    public void removeItemCard(int id) {
+        cardRepository.removeCardById(id);
+    }
 }

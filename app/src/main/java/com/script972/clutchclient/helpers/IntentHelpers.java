@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import com.script972.clutchclient.ui.activities.DiscountMapsActivity;
 import com.script972.clutchclient.ui.activities.MainActivity;
 import com.script972.clutchclient.ui.activities.SettingActivity;
+import com.script972.clutchclient.ui.activities.SplashScreenActivity;
 import com.script972.clutchclient.ui.activities.card.ActivityAddCard;
 import com.script972.clutchclient.ui.activities.card.ActivityItemCard;
 import com.script972.clutchclient.ui.activities.card.ActivityListCompany;
@@ -19,6 +20,12 @@ public class IntentHelpers {
     public static final String CARD_ITEM = "cardItem";
     public static final String OPEN_SCAN = "openScan";
     public static final String CARD_NUMBER = "cardNumber";
+
+    public static void pushMainActivity(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+    }
 
     public static void pushAddCardActivity(Context context) {
         Intent intent = new Intent(context, ActivityAddCard.class);
@@ -69,7 +76,6 @@ public class IntentHelpers {
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         activity.startActivityForResult(galleryIntent, codeRequest);
     }
-
 
 
 }

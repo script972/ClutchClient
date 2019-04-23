@@ -66,14 +66,14 @@ public class PrefHelper {
     }
 
     /**
-     * Method wich clear Shared Preferences block
+     * Method wich clearAuth Shared Preferences block
      *
      * @param context
      */
-    public static void clear(Context context) {
-        SharedPreferences.Editor prefEditor = getSharedPreferences(context).edit();
+    public static void clearAuth(Context context) {
+       /* SharedPreferences.Editor prefEditor = getSharedPreferences(context).edit();
         prefEditor.clear();
-        prefEditor.apply();
+        prefEditor.apply();*/
     }
 
     /**

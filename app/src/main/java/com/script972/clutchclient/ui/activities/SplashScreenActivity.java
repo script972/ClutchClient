@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.facebook.AccessToken;
 import com.script972.clutchclient.R;
+import com.script972.clutchclient.helpers.IntentHelpers;
 import com.script972.clutchclient.manages.AuthManager;
 import com.script972.clutchclient.ui.activities.authorization.LoginActivity;
 
@@ -66,12 +67,12 @@ public class SplashScreenActivity extends BaseActivity {
      * Method wich decided what activity is next
      */
     private void openNextActivity() {
-        openMainActivity();
+        IntentHelpers.pushMainActivity(this);
 
         /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
         if (isLoggedIn) {
-            openMainActivity();
+                    IntentHelpers.pushMainActivity(this);
         } else {
             openLoginActivity();
         }*/
@@ -93,15 +94,6 @@ public class SplashScreenActivity extends BaseActivity {
 
         //TODO send request to server for check token
         return false;
-    }
-
-    /**
-     * Method wich provide open main screen
-     */
-    private void openMainActivity() {
-        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
 
     /**

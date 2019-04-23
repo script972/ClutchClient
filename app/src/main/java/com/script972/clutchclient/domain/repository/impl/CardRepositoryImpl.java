@@ -69,6 +69,13 @@ public class CardRepositoryImpl implements CardRepository {
         });
     }
 
+    @Override
+    public void removeCardById(int id) {
+        AsyncTask.execute(() -> {
+            cardDao.removeCardById(id);
+        });
+    }
+
     class CardUpdateDb extends AsyncTask<Void, Void, InformationCodes> {
 
         private InformationCodes result;
@@ -140,6 +147,7 @@ public class CardRepositoryImpl implements CardRepository {
 
         }
     }
+
 
 }
 

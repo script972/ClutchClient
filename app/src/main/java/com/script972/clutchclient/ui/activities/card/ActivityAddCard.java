@@ -10,6 +10,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.Pair;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 
@@ -41,6 +43,7 @@ public class ActivityAddCard extends BaseActivity {
 
     private AddCardViewModel viewModel;
     private ActivityAddCardBinding binding;
+    private LiveData<Pair<InformationCodes, CardItem>> liveData;
 
     /**
      * Binding object
@@ -56,6 +59,7 @@ public class ActivityAddCard extends BaseActivity {
         super.onCreate(savedInstanceState);
         this.binding = DataBindingUtil.setContentView(this, R.layout.activity_add_card);
         this.viewModel = ViewModelProviders.of(this).get(AddCardViewModel.class);
+
         super.initCommonView();
         initView();
         initLiveData();
@@ -63,9 +67,29 @@ public class ActivityAddCard extends BaseActivity {
         openScanIfNeed();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.item_edit_card_toolbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_remove: {
+                liveData.removeObservers(this);
+                viewModel.removeItemCard(uiModel.getId());
+                IntentHelpers.pushMainActivity(this);
+                break;
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void initLiveData() {
-        LiveData<Pair<InformationCodes, CardItem>> liveData = viewModel.observeLiveData();
+        liveData = viewModel.observeLiveData();
         liveData.observe(this, pair -> {
             if (showMessage) {
                 ActivityAddCard.super.showStatusPanel(pair.first);
@@ -76,14 +100,14 @@ public class ActivityAddCard extends BaseActivity {
             uiModel.setUpdateMode(updateMode);
             this.binding.setItem(uiModel);
 
-             //*----------------------*//*
+            //*----------------------*//*
            /* Uri selectedImage = Uri.parse(pair.second.getPhotoBack());
             binding.imgCardPhotoBack.setImageURI(selectedImage);
             uiModel.setPhotoBack(String.valueOf(selectedImage));*/
             //*----------------------*//*
             Uri selectedImage = Uri.parse(pair.second.getPhotoFront());
             binding.imgCardPhotoFront.setImageURI(selectedImage);
-            if(pair.second.getPhotoBack()!=null && !pair.second.getPhotoBack().isEmpty()) {
+            if (pair.second.getPhotoBack() != null && !pair.second.getPhotoBack().isEmpty()) {
                 selectedImage = Uri.parse(pair.second.getPhotoBack());
                 this.binding.imgCardPhotoBack.setImageURI(selectedImage);
             }
@@ -163,7 +187,7 @@ public class ActivityAddCard extends BaseActivity {
      * Method for get information from intent
      */
     private void getDataFromIntent() {
-        if(getIntent().hasExtra(IntentHelpers.CARD_ITEM)) {
+        if (getIntent().hasExtra(IntentHelpers.CARD_ITEM)) {
             this.uiModel = (CardItem) DataTransferHelper.convertFromJson(CardItem.class, getIntent().getExtras()
                     .getString(IntentHelpers.CARD_ITEM));
             if (uiModel != null && uiModel.getId() != 0) {
@@ -201,11 +225,6 @@ public class ActivityAddCard extends BaseActivity {
      * Method wich open scanner
      */
     public void openScan() {
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(IntentHelpers.OPEN_SCAN) &&
-                !((boolean) bundle.get(IntentHelpers.OPEN_SCAN))) {
-            return;
-        }
         IntentIntegrator integrator = new IntentIntegrator(this);
         integrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         integrator.setPrompt(getResources().getString(R.string.scaner_activity_title));
@@ -231,7 +250,6 @@ public class ActivityAddCard extends BaseActivity {
         uiModel.setCardNumber(binding.etNumberCard.getText().toString());
         uiModel.setTitle(binding.etTitleCard.getText().toString());
     }
-
 
 
     //callbacks
