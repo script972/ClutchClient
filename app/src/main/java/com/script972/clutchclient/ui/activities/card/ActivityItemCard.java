@@ -92,6 +92,8 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
                 return;
             }
             globalItemCard = pair.second;
+            setupViewPager(viewPager);
+
             fillData(globalItemCard);
         });
         viewModel.findOneCardById(cardId);
@@ -139,7 +141,6 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
      */
     private void initTabView() {
         viewPager = findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);

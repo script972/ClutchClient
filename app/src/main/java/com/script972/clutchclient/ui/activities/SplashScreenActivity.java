@@ -11,6 +11,11 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
+import com.microsoft.appcenter.distribute.Distribute;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.helpers.IntentHelpers;
 import com.script972.clutchclient.manages.AuthManager;
@@ -34,6 +39,8 @@ public class SplashScreenActivity extends BaseActivity {
         setContentView(R.layout.activity_splash_screen);
         fillVersion();
         waiter();
+        AppCenter.start(getApplication(), "49c9fbc0-79b0-4009-a8b2-35e4e9b8dfe6", Analytics.class, Crashes.class, Distribute.class);
+
     }
 
     /**
