@@ -102,6 +102,8 @@
     <string name="photo_card">Photo card</string>
     <string name="additional_info">Additional Info</string>
     <string name="menu_item_remove">Remove</string>
+    <string name="settings_login_and_sync_your_card">Sign in and sync your card</string>
+    <string name="settings_account">Account</string>
 
 
 </resources>

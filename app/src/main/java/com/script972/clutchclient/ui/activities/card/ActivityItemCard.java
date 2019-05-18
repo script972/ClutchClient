@@ -78,7 +78,7 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_update:
-                IntentHelpers.pushAddCardActivity(ActivityItemCard.this, globalItemCard);
+                IntentHelpers.INSTANCE.pushAddCardActivity(ActivityItemCard.this, globalItemCard);
                 break;
         }
 
@@ -88,7 +88,7 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
     private void initViewModel(long cardId) {
         viewModel.observeLiveData().observe(this, pair -> {
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                IntentHelpers.pushBarcodeLandScape(this, pair.second.getCardNumber());
+                IntentHelpers.INSTANCE.pushBarcodeLandScape(this, pair.second.getCardNumber());
                 return;
             }
             globalItemCard = pair.second;
@@ -101,7 +101,7 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
      * Get cardItem from intent
      */
     private void getDataFromIntent() {
-        long cardId = getIntent().getExtras().getLong(IntentHelpers.CARD_ITEM);
+        long cardId = getIntent().getExtras().getLong(IntentHelpers.INSTANCE.getCARD_ITEM());
         initViewModel(cardId);
         //this.cardItem = new Gson().fromJson(json, CardItem.class);
     }
@@ -149,7 +149,7 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
         TabAdapterInfoCard adapter = new TabAdapterInfoCard(getSupportFragmentManager());
         adapter.addFragment(BarcodeFragment.getInstance(), getResources().getString(R.string.t_barcode));
 
-        adapter.addFragment(InfoFragment.getInstance(), getResources().getString(R.string.t_info));
+        adapter.addFragment(InfoFragment.Companion.instance(), getResources().getString(R.string.t_info));
         viewPager.setAdapter(adapter);
     }
 
@@ -166,12 +166,10 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
         Bundle bundle = new Bundle();
         bundle.putString("number", cardItem.getCardNumber());
         BarcodeFragment.getInstance().setArguments(bundle);
-        BarcodeFragment.getInstance().setBind(cardItem.getCardNumber());
 
         Bundle bundleTwo = new Bundle();
         bundleTwo.putString("cardItem", DataTransferHelper.convertToJson(cardItem));
-        InfoFragment.getInstance().setArguments(bundleTwo);
-        InfoFragment.getInstance().setBind(cardItem);
+        InfoFragment.Companion.instance().setArguments(bundleTwo);
 
 
 

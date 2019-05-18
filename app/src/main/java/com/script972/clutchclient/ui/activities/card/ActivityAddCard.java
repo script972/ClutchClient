@@ -79,7 +79,7 @@ public class ActivityAddCard extends BaseActivity {
             case R.id.action_remove: {
                 liveData.removeObservers(this);
                 viewModel.removeItemCard(uiModel.getId());
-                IntentHelpers.pushMainActivity(this);
+                IntentHelpers.INSTANCE.pushMainActivity(this);
                 break;
             }
         }
@@ -187,9 +187,9 @@ public class ActivityAddCard extends BaseActivity {
      * Method for get information from intent
      */
     private void getDataFromIntent() {
-        if (getIntent().hasExtra(IntentHelpers.CARD_ITEM)) {
+        if (getIntent().hasExtra(IntentHelpers.INSTANCE.getCARD_ITEM())) {
             this.uiModel = (CardItem) DataTransferHelper.convertFromJson(CardItem.class, getIntent().getExtras()
-                    .getString(IntentHelpers.CARD_ITEM));
+                    .getString(IntentHelpers.INSTANCE.getCARD_ITEM()));
             if (uiModel != null && uiModel.getId() != 0) {
                 updateMode = true;
                 showMessage = false;
@@ -213,8 +213,8 @@ public class ActivityAddCard extends BaseActivity {
 
     public void openScanIfNeed() {
         Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(IntentHelpers.OPEN_SCAN) &&
-                !((boolean) bundle.get(IntentHelpers.OPEN_SCAN))) {
+        if (bundle != null && bundle.containsKey(IntentHelpers.INSTANCE.getOPEN_SCAN()) &&
+                !((boolean) bundle.get(IntentHelpers.INSTANCE.getOPEN_SCAN()))) {
             return;
         }
         openScan();
@@ -259,10 +259,10 @@ public class ActivityAddCard extends BaseActivity {
                 openScan();
                 break;
             case R.id.img_card_photo_front:
-                IntentHelpers.pushPhotoFromGallary(this, REQUEST_LOAD_FRONT);
+                IntentHelpers.INSTANCE.pushPhotoFromGallary(this, REQUEST_LOAD_FRONT);
                 break;
             case R.id.img_card_photo_back:
-                IntentHelpers.pushPhotoFromGallary(this, REQUEST_LOAD_BACK);
+                IntentHelpers.INSTANCE.pushPhotoFromGallary(this, REQUEST_LOAD_BACK);
                 break;
             case R.id.btn_add_card:
                 btnAddCard();

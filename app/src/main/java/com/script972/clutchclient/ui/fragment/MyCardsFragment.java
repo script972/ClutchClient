@@ -115,7 +115,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
     private void initView() {
         data = new ArrayList<>();//del
         initCards();
-        binding.fab.setOnClickListener(view -> IntentHelpers.pushAddCardActivity(getContext()));
+        binding.fab.setOnClickListener(view -> IntentHelpers.INSTANCE.pushAddCardActivity(getContext()));
 
 
     }
@@ -125,7 +125,7 @@ public class MyCardsFragment extends Fragment implements CardContract.View {
         rcv = binding.rvViewMyCards;
         cardsAdapter = new CardsAdapter(data, cardItem ->{
             ((MainActivity)getActivity()).showProgressDialog();
-            IntentHelpers.pushDetailsCard(getContext(), cardItem.getId());
+            IntentHelpers.INSTANCE.pushDetailsCard(getContext(), cardItem.getId());
         });
         saveOldSpan = PrefHelper.getDisplayCardView(ClutchApplication.getApplication().getApplicationContext());
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this.getContext(), saveOldSpan);

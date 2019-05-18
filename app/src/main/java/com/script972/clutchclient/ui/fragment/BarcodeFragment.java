@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -43,20 +44,14 @@ public class BarcodeFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Called when the Fragment is visible to the user.  This is generally
-     * tied to {@link Activity#onStart() Activity.refreshCompanyList} of the containing
-     * Activity's lifecycle.
-     */
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         Bundle bundle = this.getArguments();
         if (bundle != null && bundle.containsKey("number")) {
             setBind(bundle.getString("number"));
         }
     }
-
 
     public void setBind(String number) {
         if (number == null || view == null)

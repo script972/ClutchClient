@@ -67,7 +67,7 @@ public class SplashScreenActivity extends BaseActivity {
      * Method wich decided what activity is next
      */
     private void openNextActivity() {
-        IntentHelpers.pushMainActivity(this);
+        IntentHelpers.INSTANCE.pushMainActivity(this);
 
         /*AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();

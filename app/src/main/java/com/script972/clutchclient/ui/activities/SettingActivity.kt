@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import com.script972.clutchclient.R
+import com.script972.clutchclient.helpers.IntentHelpers
 import com.script972.clutchclient.helpers.PrefHelper
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.toolbar.*
 
-class SettingActivity : BaseActivity() {
+class SettingActivity : BaseActivity(), View.OnClickListener {
 
     //outlets
     /*  private TextView txtCurrentCountry;
@@ -42,18 +43,20 @@ class SettingActivity : BaseActivity() {
         }
     }
 
-    fun initView() {
+    private fun initView() {
         initToolbar()
         initDisplayCard()
+        llAccount.setOnClickListener(this);
         //initLocationLayout();
         //exitLayout = findViewById(R.id.exit_layout);
         //exitLayout.setOnClickListener(clicker);
     }
 
+
     /**
      * Method wich init toolbar
      */
-    fun initToolbar() {
+    private fun initToolbar() {
         toolbar.title = resources.getString(R.string.toolbar_settings)
         toolbar.navigationIcon = resources.getDrawable(R.drawable.ic_arrow_back)
         toolbar.setNavigationOnClickListener({
@@ -65,9 +68,10 @@ class SettingActivity : BaseActivity() {
         })
 
 
+
     }
 
-    fun initDisplayCard() {
+    private fun initDisplayCard() {
         val numberColomn = PrefHelper.getDisplayCardView(applicationContext)
         if (numberColomn == 1) {
             display_card_status_text_view.text = resources.getString(R.string.txt_card_view_column)
@@ -82,6 +86,12 @@ class SettingActivity : BaseActivity() {
                 PrefHelper.setDisplayCardView(applicationContext, 1)
                 display_card_status_text_view.text = resources.getString(R.string.txt_card_view_column)
             }
+        }
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.llAccount -> IntentHelpers.pushLoginActivity(this);
         }
     }
 

@@ -38,7 +38,7 @@ public class BarcodeLandscapeActivity extends AppCompatActivity {
             return;
         }
 
-        String number = getIntent().getStringExtra(IntentHelpers.CARD_NUMBER);
+        String number = getIntent().getStringExtra(IntentHelpers.INSTANCE.getCARD_NUMBER());
         try {
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
             BitMatrix bitMatrix = multiFormatWriter.encode(number, BarcodeFormat.CODE_128, 1200, 600);

@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_gear) {
-            IntentHelpers.pushSettingsActivity(this);
+            IntentHelpers.INSTANCE.pushSettingsActivity(this);
         }
         return true;
     }
@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity {
                     break;
 
                 case R.id.menuAddCard:
-                    IntentHelpers.pushCompanyListActivity(this);
+                    IntentHelpers.INSTANCE.pushCompanyListActivity(this);
                     break;
 
              /*   case R.id.menuDiscountPoint:
@@ -128,7 +128,7 @@ public class MainActivity extends BaseActivity {
                     break;*/
 
                 case R.id.setting_menu:
-                    IntentHelpers.pushSettingsActivity(this);
+                    IntentHelpers.INSTANCE.pushSettingsActivity(this);
                     break;
             }
             return true;

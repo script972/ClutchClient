@@ -14,12 +14,17 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.script972.clutchclient.R;
 import com.script972.clutchclient.helpers.KeyboardHelper;
 import com.script972.clutchclient.mvp.contracts.LoginContract;
 import com.script972.clutchclient.mvp.impl.LoginPresenterImpl;
 import com.script972.clutchclient.ui.activities.BaseActivity;
 import com.script972.clutchclient.ui.activities.MainActivity;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import androidx.annotation.Nullable;
 
@@ -30,6 +35,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     private EditText edtPassword;
 
     private Button btnLogin;
+    private LoginButton btnLoginFacebook;
 
     private LinearLayout linkRegistration;
 
@@ -57,6 +63,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private void initView() {
         this.btnLogin = findViewById(R.id.btn_login);
+        this.btnLoginFacebook = findViewById(R.id.login_facebook_button);
+        //"user_age_range", "id", "public_profile" , "email", "user_birthday", "user_hometown", "user_link", "user_location","user_photos","instagram_basic"
+        this.btnLoginFacebook.setReadPermissions(Arrays.asList("email", "public_profile"));
         this.edtEmail = findViewById(R.id.edt_email);
         this.edtPassword = findViewById(R.id.edt_password);
         this.linkRegistration = findViewById(R.id.link_registration);
@@ -84,8 +93,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                     }
                 });
     }
-
-
 
 
     /**
