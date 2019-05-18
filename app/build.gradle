@@ -23,7 +23,7 @@ android {
         suppressWarnings = true
     }
 
-    signingConfigs {
+    /*signingConfigs {
         release {
             storeFile file("key/release.keystore")
             storePassword "Zeen101"
@@ -31,7 +31,7 @@ android {
             keyPassword "Zeen101"
             v2SigningEnabled false
         }
-    }
+    }*/
 
     buildTypes {
         release {
