@@ -34,4 +34,5 @@ public interface CardDao {
 
     @Query("DELETE FROM CardEntity WHERE id =:id")
     void removeCardById(int id);
+
 }

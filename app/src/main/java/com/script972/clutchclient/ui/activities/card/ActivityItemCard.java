@@ -55,6 +55,8 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
     private AddCardViewModel viewModel;
     private CardItem globalItemCard;
 
+    private InfoFragment infoFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +94,6 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
                 return;
             }
             globalItemCard = pair.second;
-            setupViewPager(viewPager);
-
             fillData(globalItemCard);
         });
         viewModel.findOneCardById(cardId);
@@ -113,6 +113,8 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
      */
     private void initView() {
         initToolbar();
+        infoFragment = new InfoFragment();
+
         arrowback = findViewById(R.id.arrowback);
         cardTitle = findViewById(R.id.card_title);
         iconCompany = findViewById(R.id.icon_company);
@@ -141,6 +143,7 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
      */
     private void initTabView() {
         viewPager = findViewById(R.id.viewpager);
+        setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
@@ -150,7 +153,7 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
         TabAdapterInfoCard adapter = new TabAdapterInfoCard(getSupportFragmentManager());
         adapter.addFragment(BarcodeFragment.getInstance(), getResources().getString(R.string.t_barcode));
 
-        adapter.addFragment(InfoFragment.Companion.instance(), getResources().getString(R.string.t_info));
+        adapter.addFragment(infoFragment, getResources().getString(R.string.t_info));
         viewPager.setAdapter(adapter);
     }
 
@@ -167,10 +170,13 @@ public class ActivityItemCard extends BaseActivity implements OnMapReadyCallback
         Bundle bundle = new Bundle();
         bundle.putString("number", cardItem.getCardNumber());
         BarcodeFragment.getInstance().setArguments(bundle);
+        BarcodeFragment.getInstance().setBind(cardItem.getCardNumber());
 
         Bundle bundleTwo = new Bundle();
         bundleTwo.putString("cardItem", DataTransferHelper.convertToJson(cardItem));
-        InfoFragment.Companion.instance().setArguments(bundleTwo);
+        infoFragment.setArguments(bundleTwo);
+        infoFragment.setBind(cardItem);
+
 
 
 

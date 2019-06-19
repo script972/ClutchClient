@@ -14,6 +14,8 @@ data class CardItem(
 
         var photoBack: String? = null,
 
-        var updateMode: Boolean = false
+        var updateMode: Boolean = false,
+
+        var listAccessUser: MutableList<AccessPersonItem>? = ArrayList()
 
 )

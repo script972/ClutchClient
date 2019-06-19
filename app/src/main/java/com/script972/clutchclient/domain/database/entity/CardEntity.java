@@ -1,5 +1,6 @@
 package com.script972.clutchclient.domain.database.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
@@ -43,83 +44,22 @@ public class CardEntity {
 
     private String comment;
 
-    public int getId() {
-        return id;
-    }
+    @Data//https://commonsware.com/AndroidArch/previews/mn-relations-in-room
+    @Entity (
+            tableName = "card_item_join",
+            primaryKeys = {"cardId", "userId"},
+            foreignKeys = {
+                    @ForeignKey(
+                            entity = ,
 
-    public void setId(int id) {
-        this.id = id;
-    }
+                    )
+            }
+    )
+    public static class CardItemUserJoin {
+        @NonNull
+        public final String cardId;
+        @NonNull
+        public final String userId;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    public Long getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
-    }
-
-    public String getPhotoFrontLocal() {
-        return photoFrontLocal;
-    }
-
-    public void setPhotoFrontLocal(String photoFrontLocal) {
-        this.photoFrontLocal = photoFrontLocal;
-    }
-
-    public String getPhotoBackLocal() {
-        return photoBackLocal;
-    }
-
-    public void setPhotoBackLocal(String photoBackLocal) {
-        this.photoBackLocal = photoBackLocal;
-    }
-
-    public String getPhotoFrontServer() {
-        return photoFrontServer;
-    }
-
-    public void setPhotoFrontServer(String photoFrontServer) {
-        this.photoFrontServer = photoFrontServer;
-    }
-
-    public String getPhotoBackServer() {
-        return photoBackServer;
-    }
-
-    public void setPhotoBackServer(String photoBackServer) {
-        this.photoBackServer = photoBackServer;
-    }
-
-    public long getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(long dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 }

@@ -39,8 +39,10 @@ public class CardsAdapter extends RecyclerView.Adapter<CardsAdapter.MyViewHolder
 
         private void bind() {
             binding.setItem(data.get(getAdapterPosition()));
-            Uri selectedImage = Uri.parse(data.get(getAdapterPosition()).getPhotoFront());
-            binding.thumbnail.setImageURI(selectedImage);
+            if(data.get(getAdapterPosition()).getPhotoFront()!=null) {
+                Uri selectedImage = Uri.parse(data.get(getAdapterPosition()).getPhotoFront());
+                binding.thumbnail.setImageURI(selectedImage);
+            }
 
             binding.setListener(clicker);
             binding.invalidateAll();

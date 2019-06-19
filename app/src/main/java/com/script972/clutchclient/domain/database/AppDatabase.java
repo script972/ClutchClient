@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {CardEntity.class, CompanyEntity.class, UserEntity.class},
+@Database(entities = {CardEntity.class, CompanyEntity.class, UserEntity.class, CardEntity.CardItemUserJoin.class},
         version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
